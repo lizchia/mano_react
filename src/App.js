@@ -12,11 +12,11 @@ import Cart from './pages/Cart'
 
 import NotFoundPage from './pages/NotFoundPage'
 import MemberLogin from './pages/MemberLogin'
+import Marketing from './pages/Marketing'
 
 import ProtectedRoute from './utils/ProtectedRoute'
 
 function App(props) {
-
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -26,6 +26,7 @@ function App(props) {
 
   // 會員是否登入狀態(認証狀態)
   const [auth, setAuth] = useState(false)
+  const [comment, setComment] = useState([])
 
   // 處理會員登入
   const loginProcess = (loginSuccessCallback) => {
@@ -65,7 +66,7 @@ function App(props) {
   return (
     <Router>
       <>
-        <MyNavbar auth={auth} name={name}/>
+        <MyNavbar auth={auth} name={name} />
         <MainContent>
           <Switch>
             <Route path="/about">
@@ -94,6 +95,9 @@ function App(props) {
             {/* <ProtectedRoute path="/todoapp">
               <TodoApp todos={todos} setTodos={setTodos} isAuth={auth} />
             </ProtectedRoute> */}
+            <Route exact path="/marketing">
+              <Marketing />
+            </Route>
             <Route exact path="/">
               <Home />
             </Route>

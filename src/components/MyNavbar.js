@@ -49,8 +49,15 @@ function MyNavbar(props) {
           <Nav.Link as={NavLink} to="/memberlogin">
             會員登入
           </Nav.Link>
-          <Nav.Link as={NavLink} to="/shop" onClick={() => localStorage.setItem("page",1)}>
+          <Nav.Link
+            as={NavLink}
+            to="/shop"
+            onClick={() => localStorage.setItem('page', 1)}
+          >
             產品列表
+          </Nav.Link>
+          <Nav.Link as={NavLink} to="/marketing">
+            專屬優惠
           </Nav.Link>
           <Nav.Link as={NavLink} to="/cart">
             購物車

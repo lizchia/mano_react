@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Items from "../../components/Items/Items";
-import CategoryBar from "../../components/CategoryBar/CategoryBar";
-import "./productList-style.scss";
+import Items from '../../components/Items/Items'
+import CategoryBar from '../../components/CategoryBar/CategoryBar'
+import './productList-style.scss'
 
 function ProductList() {
   const loading = (
@@ -15,12 +15,10 @@ function ProductList() {
   )
 
   const display = (
-    <>
     <div className="d-flex align-items-start product-list">
       <CategoryBar />
       <Items />
     </div>
-    </>
   )
 
   return (
