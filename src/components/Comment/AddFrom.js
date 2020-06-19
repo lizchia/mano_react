@@ -1,10 +1,19 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button'
 
 function AddForm(props) {
   console.log(props)
   // 先解構賦值，直接套用由props得到的變數值
-  const { username, text, com, setCom, setText, setUser, addNewTodoItemToSever} = props
-  console.log("im here",com)
+  const {
+    username,
+    text,
+    com,
+    setCom,
+    setText,
+    setUser,
+    addNewTodoItemToSever,
+  } = props
+  console.log(com)
   console.log(setCom)
 
   return (
@@ -21,7 +30,7 @@ function AddForm(props) {
           setUser(event.target.value)
         }}
       />
-      <input
+      <textarea
         id="todoInput"
         className="form-control"
         type="text"
@@ -30,31 +39,38 @@ function AddForm(props) {
         onChange={(event) => {
           setText(event.target.value)
         }}
-        onKeyPress={(event) => {
+        required
+      />
+      <Button
+        variant="secondary"
+        size="sm"
+        onClick={(event) => {
           // 處理按下 Enter鍵
-          if (event.key === 'Enter' && event.target.value !== '') {
+          if (text !== '') {
             // 建立一個新的todo項目
             const newComItem = {
-              "id": +new Date(),
-              "username": username,
-              "text": event.target.value,
-              "completed": "true",
-              "editd": "false",
+              id: +new Date(),
+              username: username,
+              text: text,
+              edited: 0,
             }
 
             // 建立新的todos陣列
             //const newCom = comment.push(newComItem)
-
+            setCom([newComItem, ...com])
             // 設定新的todos，變動呈現的列
-            setCom([...com, newComItem])
             addNewTodoItemToSever(newComItem)
+
+            //console.log(newComItem)
 
             // 清空文字輸入框
             setUser('')
             setText('')
           }
         }}
-      />
+      >
+        Post
+      </Button>
     </div>
   )
 }

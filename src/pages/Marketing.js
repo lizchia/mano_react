@@ -7,14 +7,25 @@ import { ToastsContainer, ToastsStore } from 'react-toasts'
 import MyBanner from '../components/MyBanner'
 import AddFrom from '../components/Comment/AddFrom'
 import List from '../components/Comment/List'
-// import { Button } from 'react-bootstrap'
+import ItemC from '../components/Comment/ItemC'
+import ItemR from '../components/Comment/ItemR'
+//import ReplyForm from '../components/Comment/ReplyForm'
+import { Button } from 'react-bootstrap'
 import requestToServer from '../utils/requestToServer'
+import ReplyForm from '../components/Comment/ReplyForm'
 
 function Marketing(props) {
   const [com, setCom] = useState([])
   const [text, setText] = useState('')
   const [username, setUser] = useState('')
-
+  const {
+    replyCom,
+    setReplyCom,
+    replyText,
+    setReplyText,
+    replyUser,
+    setReplyUser,
+  } = props
   async function getComFromServer() {
     const request = new Request('http://localhost:3002/comment/', {
       method: 'GET',
@@ -25,8 +36,8 @@ function Marketing(props) {
     })
     const response = await fetch(request)
     const data = await response.json()
-    //const comments = data.rows
-    setCom(data)
+    const comments = data.rows
+    setCom(comments)
     //console.log(data.rows)
   }
 
@@ -49,17 +60,16 @@ function Marketing(props) {
     //const comments = data.rows
     console.log('伺服器回傳的json資料', data)
     // 要等驗証過，再設定資料(簡單的直接設定)
-    setCom(data)
+    // setCom(comments)
   }
 
   // function handleInsertSave (comment) {
   //   const newComment = comment
   //   addNewTodoItemToSever(newComment)
   //   setCom(newComment)
-//}
-  
+  //}
   async function updateComToServer(item) {
-    const request = new Request('http://localhost:3002/comment/' + item.id, {
+    const request = new Request('http://localhost:3002/comment/' + item.cid, {
       method: 'PUT',
       body: JSON.stringify(item),
       headers: new Headers({
@@ -69,8 +79,8 @@ function Marketing(props) {
     })
     const response = await fetch(request)
     const data = await response.json()
-    const comments = data.rows
-    setCom(comments)
+    //const comments = data.rows
+    //setCom(comments)
   }
   // 一開始就會開始載入資料
   useEffect(() => {
@@ -88,41 +98,79 @@ function Marketing(props) {
     const comIndex = com.findIndex((v, i) => v.id === id)
     if (comIndex !== -1) {
       newCom[comIndex].completed = !newCom[comIndex].completed
-      updateComToServer(newCom[comIndex], () => {
+      addNewTodoItemToSever(newCom[comIndex], () => {
         setCom(newCom)
       })
     }
   }
-  const handleEditedToggle = (id) => {
+  const handleReplyToggle = (cid) => {
     const newCom = [...com]
-    const comIndex = com.findIndex((v, i) => v.id === id)
+    const comIndex = com.findIndex((v, i) => v.cid === cid)
     if (comIndex !== -1) {
-      console.log(newCom)
-      newCom[comIndex].editd = !newCom[comIndex].editd
-      updateComToServer(newCom[comIndex], () => {
-        setCom(newCom)
-      })
+      // console.log(newCom)
+      // console.log(newCom[comIndex])
+      // console.log(comIndex)
+      // console.log(newCom[comIndex].edited)
+      // for(let i in newCom[comIndex]){
+      //   let o = newCom[comIndex][i]
+      //   console.log(i, o)
+      // }
+      // console.log(newCom[comIndex].constructor.name)
+      newCom[comIndex].reply = !newCom[comIndex].reply
+      // console.log(newCom)
+      // console.log(newCom[comIndex])
+      // console.log(newCom[comIndex].edited)
+      updateComToServer(newCom[comIndex])
+      setCom(newCom)
     }
   }
-  const handleEditedSave = (id, username, text) => {
+  const handleReplySave = (id) => {
+    const newCom = [...replyCom]
+    const comIndex = replyCom.findIndex((v, i) => v.id === id)
+    if (comIndex !== -1) {
+      newCom[comIndex].reply = !newCom[comIndex].reply
+      addNewTodoItemToSever(newCom[comIndex])
+      setReplyCom(newCom)
+    }
+  }
+  const handleEditedToggle = (cid) => {
     const newCom = [...com]
-    const comIndex = com.findIndex((v, i) => v.id === id)
+    const comIndex = com.findIndex((v, i) => v.cid === cid)
+    if (comIndex !== -1) {
+      // console.log(newCom)
+      // console.log(newCom[comIndex])
+      // console.log(comIndex)
+      // console.log(newCom[comIndex].edited)
+      // for(let i in newCom[comIndex]){
+      //   let o = newCom[comIndex][i]
+      //   console.log(i, o)
+      // }
+      // console.log(newCom[comIndex].constructor.name)
+      newCom[comIndex].edited = !newCom[comIndex].edited
+      // console.log(newCom)
+      // console.log(newCom[comIndex])
+      // console.log(newCom[comIndex].edited)
+      updateComToServer(newCom[comIndex])
+      setCom(newCom)
+    }
+  }
+  const handleEditedSave = (cid, username, text) => {
+    const newCom = [...com]
+    const comIndex = com.findIndex((v, i) => v.cid === cid)
     if (comIndex !== -1) {
       newCom[comIndex].username = username
       newCom[comIndex].text = text
       updateComToServer(newCom[comIndex])
+      // newCom[comIndex].edited = !newCom[comIndex].edited
       setCom(newCom)
     }
-    handleEditedToggle(id)
+    handleEditedToggle(cid)
   }
 
-  const handleDelete = (id) => {
-    const newCom = com.filter((v, i) => v.id !== id)
+  const handleDelete = (cid) => {
+    const newCom = com.filter((v, i) => v.cid !== cid)
     setCom(newCom)
   }
-  console.log(props)
-  console.log(com)
-  console.log(setCom)
   return (
     <>
       <MyBanner title="專屬優惠" lead="mano友" />
@@ -186,9 +234,45 @@ function Marketing(props) {
         com={com}
         handleCompleted={handleCompleted}
         handleDelete={handleDelete}
+        handleReplyToggle={handleReplyToggle}
         handleEditedToggle={handleEditedToggle}
         handleEditedSave={handleEditedSave}
       />
+      {/* {com.map((value, index) => {
+        if (value.edited) {
+          return (
+            <>
+              <ItemC
+                key={value.id}
+                value={value}
+                handleReplyToggle={handleReplyToggle}
+                handleEditedToggle={handleEditedToggle}
+                handleDelete={handleDelete}
+              />
+              <ReplyForm
+                key={value.id}
+                value={value}
+                replyUser={replyUser}
+                replyText={replyText}
+                replyCom={replyCom}
+                setReplyUser={setReplyUser}
+                setReplyText={setReplyText}
+                setReplyCom={setReplyCom}
+                addNewTodoItemToSever={addNewTodoItemToSever}
+              />
+            </>
+          )
+        }
+        return (
+          <ItemR
+            key={value.id}
+            value={value}
+            handleReplyToggle={handleReplyToggle}
+            handleEditedToggle={handleEditedToggle}
+            handleDelete={handleDelete}
+          />
+        )
+      })} */}
     </>
   )
 }

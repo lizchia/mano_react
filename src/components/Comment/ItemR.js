@@ -1,16 +1,14 @@
 import React from 'react'
 
-function ItemC(props) {
+function ItemR(props) {
   //console.log(props)
   // 先解構賦值，直接套用由props得到的變數值
-  const { value, handleDelete, handleEditedToggle } = props
+  const { value, handleDelete, handleReplyToggle } = props
 
   const date = new Date(value.id)
 
   const cssClasses =
     'list-group-item justify-content-between align-items-center list-group-item-light'
-  const cssBtn = ''
-
   return (
     <li className={cssClasses}>
       {value.username}
@@ -21,7 +19,7 @@ function ItemC(props) {
           type="button"
           className="btn btn-light"
           onClick={() => {
-            handleEditedToggle(value.cid)
+            handleReplyToggle(value.cid)
           }}
         >
           reply
@@ -30,7 +28,7 @@ function ItemC(props) {
           type="button"
           className="btn btn-light"
           onClick={() => {
-            handleEditedToggle(value.cid)
+            handleReplyToggle(value.cid)
           }}
         >
           edit
@@ -59,4 +57,4 @@ function ItemC(props) {
   )
 }
 
-export default ItemC
+export default ItemR

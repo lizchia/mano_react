@@ -4,11 +4,10 @@ function EditForm(props) {
   const [editText, setEditText] = useState(props.value.text)
   const [editUser, setEditUser] = useState(props.value.username)
 
-  //console.log(props)
+  //console.log('EditForm',props)
   // 先解構賦值，直接套用由props得到的變數值
   const { value, handleEditSave } = props
   console.log(props)
-
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
       <div className="form-inline">
@@ -34,7 +33,8 @@ function EditForm(props) {
           type="button"
           className="btn btn-info mb2"
           onClick={() => {
-            handleEditSave(value.id, editText)
+            console.log(handleEditSave)
+            handleEditSave(value.cid, editUser, editText)
           }}
         >
           儲存
