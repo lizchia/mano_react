@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 
 function ReplyForm(props) {
-  const [editText, setEditText] = useState(props.value.text)
-  const [editUser, setEditUser] = useState(props.value.username)
+  //   const [editText, setEditText] = useState(props.value.text)
+  //   const [editUser, setEditUser] = useState(props.value.username)
 
   //console.log('EditForm',props)
   // 先解構賦值，直接套用由props得到的變數值
-  const { value, handleReplySave, updateComToServer } = props
-//   console.log(addNewTodoItemToSever)
+  const { value, handleEditSave, updateComToServer } = props
+  //   console.log(addNewTodoItemToSever)
   const {
     replyCom,
     setReplyCom,
@@ -18,12 +18,11 @@ function ReplyForm(props) {
     setReplyUser,
   } = props
   console.log(value)
+  const date = new Date()
+  const cssClasses =
+    'list-group-item justify-content-between align-items-center list-group-item-light'
 
   const addNewTodoItemToSever = async (item) => {
-    //console.log(item)
-    // 開啟載入指示
-
-    // 注意資料格式要設定，伺服器才知道是json格式
     const request = new Request('http://localhost:3002/comment', {
       method: 'POST',
       body: JSON.stringify(item),
@@ -32,13 +31,9 @@ function ReplyForm(props) {
         'Content-Type': 'application/json',
       }),
     })
-    //console.log("項目",JSON.stringify(item))
     const response = await fetch(request)
     const data = await response.json()
-    //const comments = data.rows
     console.log('伺服器回傳的json資料', data)
-    // 要等驗証過，再設定資料(簡單的直接設定)
-    // setCom(comments)
   }
 
   return (
@@ -66,26 +61,52 @@ function ReplyForm(props) {
             setReplyText(event.target.value)
           }}
         />
-        <h1> {replyUser}{replyText} </h1>
+        <h1>
+          {' '}
+          {replyUser}
+          {replyText}{' '}
+        </h1>
         <Button
           variant="secondary"
           size="sm"
           onClick={(event) => {
             // 處理按下 Enter鍵
-            if (replyText !== '') {
-              // 建立一個新的todo項目
-              const newComItem = {
-                id: +new Date(),
-                username: replyUser,
-                text: replyText,
-                edited: 0,
-              }
-              // 建立新的todos陣列
-              console.log(newComItem)
-              setReplyCom([newComItem, ...replyCom])
-              // 設定新的todos，變動呈現的列
-              addNewTodoItemToSever(newComItem)
+            // if (replyText !== '') {
+            //   // 建立一個新的todo項目
+            const newComItem = {
+              id: +new Date(),
+              username: replyUser,
+              text: replyText,
+              edited: 0,
             }
+            //   // 建立新的todos陣列
+            //   console.log(newComItem)
+            //   setReplyCom([newComItem, ...replyCom])
+            //   // 設定新的todos，變動呈現的列
+            addNewTodoItemToSever(newComItem)
+            // }
+            setReplyCom([newComItem, ...replyCom])
+            //handleEditSave(newComItem)
+            return (
+              <li className={cssClasses}>
+                {value.username}
+                <br />
+                {value.text}
+                <div className="badge badge-secondary">
+                  {date.toLocaleString()}
+                </div>
+                <ul className="list-group"></ul>
+                <li className={cssClasses}>
+                  {replyUser}
+                  <br />
+                  {replyText}
+                  <div className="badge badge-secondary">
+                    {date.toLocaleString()}
+                  </div>
+                </li>
+                <ul className="list-group"></ul>
+              </li>
+            )
           }}
         >
           Post

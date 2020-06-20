@@ -13,6 +13,7 @@ function List(props) {
     handleEditedToggle,
     handleEditedSave,
     addNewTodoItemToSever,
+    handleCompleted,
   } = props
   const [replyCom, setReplyCom] = useState([])
   const [replyText, setReplyText] = useState('')
@@ -20,52 +21,50 @@ function List(props) {
   //console.log(com.rows)
   console.log(com)
   return (
-    <>
-      <div>
-        <ul className="list-group">
-          {com.map((value, index) => {
-            if (value.edited) {
-              return (
-                <>
-                  <EditForm
+    <ul className="list-group">
+      {com.map((value, index) => {
+        if (value.edited) {
+          return (
+            <>
+              {/* <EditForm
                     key={value.id}
                     value={value}
                     handleEditSave={handleEditedSave}
-                  />
-                  {/* <ItemC
-                    key={value.id}
-                    value={value}
-                    handleReplyToggle={handleReplyToggle}
-                    handleEditedToggle={handleEditedToggle}
-                    handleDelete={handleDelete}
-                  />
-                  <ReplyForm
-                    key={value.id}
-                    value={value}
-                    replyUser={replyUser}
-                    replyText={replyText}
-                    replyCom={replyCom}
-                    setReplyUser={setReplyUser}
-                    setReplyText={setReplyText}
-                    setReplyCom={setReplyCom}
-                    addNewTodoItemToSever={addNewTodoItemToSever}
                   /> */}
-                </>
-              )
-            }
-            return (
               <ItemC
                 key={value.id}
                 value={value}
                 handleReplyToggle={handleReplyToggle}
                 handleEditedToggle={handleEditedToggle}
                 handleDelete={handleDelete}
+                handleCompleted={handleCompleted}
               />
-            )
-          })}
-        </ul>
-      </div>
-    </>
+              <ReplyForm
+                key={value.id}
+                value={value}
+                replyUser={replyUser}
+                replyText={replyText}
+                replyCom={replyCom}
+                setReplyUser={setReplyUser}
+                setReplyText={setReplyText}
+                setReplyCom={setReplyCom}
+                handleEditSave={handleEditedSave}
+              />
+            </>
+          )
+        }
+        return (
+          <ItemC
+            key={value.id}
+            value={value}
+            handleReplyToggle={handleReplyToggle}
+            handleEditedToggle={handleEditedToggle}
+            handleDelete={handleDelete}
+            handleCompleted={handleCompleted}
+          />
+        )
+      })}
+    </ul>
   )
 }
 

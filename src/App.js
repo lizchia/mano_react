@@ -13,6 +13,7 @@ import Cart from './pages/Cart'
 import NotFoundPage from './pages/NotFoundPage'
 import MemberLogin from './pages/MemberLogin'
 import Marketing from './pages/Marketing'
+import Comment from './pages/Comment'
 
 import ProtectedRoute from './utils/ProtectedRoute'
 
@@ -97,6 +98,9 @@ function App(props) {
             </ProtectedRoute> */}
             <Route exact path="/marketing">
               <Marketing />
+            </Route>
+            <Route exact path="/comment">
+              <Comment />
             </Route>
             <Route exact path="/">
               <Home />

@@ -4,6 +4,7 @@ function ItemR(props) {
   //console.log(props)
   // 先解構賦值，直接套用由props得到的變數值
   const { value, handleDelete, handleReplyToggle } = props
+  console.log(value)
 
   const date = new Date(value.id)
 
@@ -14,8 +15,8 @@ function ItemR(props) {
       {value.username}
       <br />
       {value.text}
-      <div>
-        <button
+      {/* <div> */}
+        {/* <button
           type="button"
           className="btn btn-light"
           onClick={() => {
@@ -41,9 +42,9 @@ function ItemR(props) {
           }}
         >
           drop
-        </button> 
+        </button>  */}
       <div className="badge badge-secondary">{date.toLocaleString()}</div>
-      </div>
+      {/* </div> */}
       {/* <button
         type="button"
         className="btn btn-secondary"
