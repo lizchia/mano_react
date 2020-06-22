@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
-import Table from 'react-bootstrap/Table'
-import { ToastsContainer, ToastsStore } from 'react-toasts'
-
 import MyBanner from '../components/MyBanner'
 import AddFrom from '../components/Comment/AddFrom'
 import List from '../components/Comment/List'
@@ -45,7 +42,6 @@ function Comment(props) {
   }
 
   async function addNewTodoItemToSever(item) {
-    //console.log(item)
     // 開啟載入指示
 
     // 注意資料格式要設定，伺服器才知道是json格式

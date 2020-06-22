@@ -35,6 +35,14 @@ function ReplyForm(props) {
     const data = await response.json()
     console.log('伺服器回傳的json資料', data)
   }
+  const handleEditedHide = (cid) => {
+    const newCom = [...replyCom]
+    const comIndex = replyCom.findIndex((v, i) => v.cid === cid)
+    if (comIndex !== -1) {
+      console.log('handleEditedHide')
+      newCom[comIndex].edited = !newCom[comIndex].edited
+    }
+  }
 
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
@@ -78,11 +86,14 @@ function ReplyForm(props) {
               username: replyUser,
               text: replyText,
               edited: 0,
+              completed: 0,
+              parentReply: value.cid,
             }
             //   // 建立新的todos陣列
             //   console.log(newComItem)
             //   setReplyCom([newComItem, ...replyCom])
             //   // 設定新的todos，變動呈現的列
+            handleEditedHide(value.cid)
             addNewTodoItemToSever(newComItem)
             // }
             setReplyCom([newComItem, ...replyCom])
