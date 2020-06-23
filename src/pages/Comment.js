@@ -15,6 +15,7 @@ function Comment(props) {
   const [com, setCom] = useState([])
   const [text, setText] = useState('')
   const [username, setUser] = useState('')
+  const [heart, setHeart] = useState(0)
   // const [page, setPage] = useState('')
   const {
     replyCom,
@@ -92,14 +93,13 @@ function Comment(props) {
     //   setDataLoading(false)
     // }, 500)
   }, [com])
-  const handleCompleted = (id) => {
+  const handleCompleted = (cid) => {
     const newCom = [...com]
-    const comIndex = com.findIndex((v, i) => v.id === id)
+    const comIndex = com.findIndex((v, i) => v.cid === cid)
     if (comIndex !== -1) {
       newCom[comIndex].completed = !newCom[comIndex].completed
-      addNewTodoItemToSever(newCom[comIndex], () => {
-        setCom(newCom)
-      })
+      updateComToServer(newCom[comIndex])
+      setCom(newCom)
     }
   }
   const handleReplyToggle = (cid) => {
@@ -165,7 +165,25 @@ function Comment(props) {
     }
     handleEditedToggle(cid)
   }
-
+  const handleEditedHeartPlus = (cid, value) => {
+    const newHeart = value + 1
+    const comIndex = com.findIndex((v, i) => v.cid === cid)
+    if (comIndex !== -1) {
+      console.log(heart)
+      com[comIndex].heart = heart
+      updateComToServer(com[comIndex])
+      setHeart(newHeart + heart)
+    }
+  }
+  const handleEditedHeartMinus = (value) => {
+    const newHeart = heart - value
+    const comIndex = com.findIndex((v, i) => v.heart === heart)
+    if (comIndex !== -1) {
+      com[comIndex].heart = newHeart
+      updateComToServer(com[comIndex])
+      setHeart(newHeart)
+    }
+  }
   const handleDelete = (cid) => {
     const newCom = com.filter((v, i) => v.cid !== cid)
     setCom(newCom)
@@ -192,42 +210,9 @@ function Comment(props) {
         handleEditedToggle={handleEditedToggle}
         handleEditedSave={handleEditedSave}
         handleCompleted={handleCompleted}
+        handleEditedHeartPlus={handleEditedHeartPlus}
+        handleEditedHeartMinus={handleEditedHeartMinus}
       />
-      {/* {com.map((value, index) => {
-        if (value.edited) {
-          return (
-            <>
-              <ItemC
-                key={value.id}
-                value={value}
-                handleReplyToggle={handleReplyToggle}
-                handleEditedToggle={handleEditedToggle}
-                handleDelete={handleDelete}
-              />
-              <ReplyForm
-                key={value.id}
-                value={value}
-                replyUser={replyUser}
-                replyText={replyText}
-                replyCom={replyCom}
-                setReplyUser={setReplyUser}
-                setReplyText={setReplyText}
-                setReplyCom={setReplyCom}
-                addNewTodoItemToSever={addNewTodoItemToSever}
-              />
-            </>
-          )
-        }
-        return (
-          <ItemR
-            key={value.id}
-            value={value}
-            handleReplyToggle={handleReplyToggle}
-            handleEditedToggle={handleEditedToggle}
-            handleDelete={handleDelete}
-          />
-        )
-      })} */}
     </>
   )
 }

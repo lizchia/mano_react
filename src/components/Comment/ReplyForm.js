@@ -98,26 +98,6 @@ function ReplyForm(props) {
             // }
             setReplyCom([newComItem, ...replyCom])
             //handleEditSave(newComItem)
-            return (
-              <li className={cssClasses}>
-                {value.username}
-                <br />
-                {value.text}
-                <div className="badge badge-secondary">
-                  {date.toLocaleString()}
-                </div>
-                <ul className="list-group"></ul>
-                <li className={cssClasses}>
-                  {replyUser}
-                  <br />
-                  {replyText}
-                  <div className="badge badge-secondary">
-                    {date.toLocaleString()}
-                  </div>
-                </li>
-                <ul className="list-group"></ul>
-              </li>
-            )
           }}
         >
           Post

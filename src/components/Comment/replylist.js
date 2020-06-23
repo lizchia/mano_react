@@ -15,6 +15,7 @@ function List(props) {
     handleEditedSave,
     addNewTodoItemToSever,
     handleCompleted,
+    handleEditedHeartPlus
   } = props
   //   const [replyCom, setReplyCom] = useState([])
   //   const [replyText, setReplyText] = useState('')
@@ -42,6 +43,7 @@ function List(props) {
               handleEditedToggle={handleEditedToggle}
               handleDelete={handleDelete}
               handleCompleted={handleCompleted}
+              handleEditedHeartPlus={handleEditedHeartPlus}
             />
             {/* <ReplyForm
                 key={value.id}
