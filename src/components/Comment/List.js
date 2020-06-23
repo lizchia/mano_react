@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ItemC from './ItemC'
 import EditForm from './EditForm'
 import ReplyForm from './ReplyForm'
+import ReplyList from './replylist'
 
 function List(props) {
   //console.log(props)
@@ -14,6 +15,7 @@ function List(props) {
     handleEditedSave,
     addNewTodoItemToSever,
     handleCompleted,
+    handleEditedHeartPlus,
   } = props
   const [replyCom, setReplyCom] = useState([])
   const [replyText, setReplyText] = useState('')
@@ -38,6 +40,17 @@ function List(props) {
                 handleEditedToggle={handleEditedToggle}
                 handleDelete={handleDelete}
                 handleCompleted={handleCompleted}
+                handleEditedHeartPlus={handleEditedHeartPlus}
+              />
+              <ReplyList
+                replyCom={replyCom}
+                handleCompleted={handleCompleted}
+                handleDelete={handleDelete}
+                handleReplyToggle={handleReplyToggle}
+                handleEditedToggle={handleEditedToggle}
+                handleEditedSave={handleEditedSave}
+                handleCompleted={handleCompleted}
+                handleEditedHeartPlus={handleEditedHeartPlus}
               />
               <ReplyForm
                 key={value.id}
@@ -61,6 +74,7 @@ function List(props) {
             handleEditedToggle={handleEditedToggle}
             handleDelete={handleDelete}
             handleCompleted={handleCompleted}
+            handleEditedHeartPlus={handleEditedHeartPlus}
           />
         )
       })}

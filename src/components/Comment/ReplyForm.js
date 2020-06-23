@@ -35,6 +35,14 @@ function ReplyForm(props) {
     const data = await response.json()
     console.log('伺服器回傳的json資料', data)
   }
+  const handleEditedHide = (cid) => {
+    const newCom = [...replyCom]
+    const comIndex = replyCom.findIndex((v, i) => v.cid === cid)
+    if (comIndex !== -1) {
+      console.log('handleEditedHide')
+      newCom[comIndex].edited = !newCom[comIndex].edited
+    }
+  }
 
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
@@ -78,35 +86,18 @@ function ReplyForm(props) {
               username: replyUser,
               text: replyText,
               edited: 0,
+              completed: 0,
+              parentReply: value.cid,
             }
             //   // 建立新的todos陣列
             //   console.log(newComItem)
             //   setReplyCom([newComItem, ...replyCom])
             //   // 設定新的todos，變動呈現的列
+            handleEditedHide(value.cid)
             addNewTodoItemToSever(newComItem)
             // }
             setReplyCom([newComItem, ...replyCom])
             //handleEditSave(newComItem)
-            return (
-              <li className={cssClasses}>
-                {value.username}
-                <br />
-                {value.text}
-                <div className="badge badge-secondary">
-                  {date.toLocaleString()}
-                </div>
-                <ul className="list-group"></ul>
-                <li className={cssClasses}>
-                  {replyUser}
-                  <br />
-                  {replyText}
-                  <div className="badge badge-secondary">
-                    {date.toLocaleString()}
-                  </div>
-                </li>
-                <ul className="list-group"></ul>
-              </li>
-            )
           }}
         >
           Post
