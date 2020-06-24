@@ -33,6 +33,7 @@ import NotFoundPage from './pages/NotFoundPage'
 
 import Marketing from './pages/Marketing'
 import Comment from './pages/Comment'
+import Story from './pages/Story'
 
 import Login from './pages/login/login'
 import MyWelcome from './pages/login/welcome'
@@ -240,6 +241,9 @@ function App(props) {
               <Comment
                 changeBackgroundColorLight={changeBackgroundColorLight}
               />
+            </Route>
+            <Route exact path="/life/story">
+              <Story changeBackgroundColorLight={changeBackgroundColorLight} />
             </Route>
 
             <Route path="/mall/login">

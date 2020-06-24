@@ -22,7 +22,7 @@ function ReplyForm(props) {
   const cssClasses =
     'list-group-item justify-content-between align-items-center list-group-item-light'
 
-  const addNewReplyItemToSever = async (item) => {
+  const addNewTodoItemToSever = async (item) => {
     const request = new Request('http://localhost:3002/comment', {
       method: 'POST',
       body: JSON.stringify(item),
@@ -31,10 +31,17 @@ function ReplyForm(props) {
         'Content-Type': 'application/json',
       }),
     })
-    console.log(item)
     const response = await fetch(request)
     const data = await response.json()
     console.log('伺服器回傳的json資料', data)
+  }
+  const handleEditedHide = (cid) => {
+    const newCom = [...replyCom]
+    const comIndex = replyCom.findIndex((v, i) => v.cid === cid)
+    if (comIndex !== -1) {
+      console.log('handleEditedHide')
+      newCom[comIndex].edited = !newCom[comIndex].edited
+    }
   }
 
   return (
@@ -71,17 +78,26 @@ function ReplyForm(props) {
           variant="secondary"
           size="sm"
           onClick={(event) => {
+            // 處理按下 Enter鍵
+            // if (replyText !== '') {
+            //   // 建立一個新的todo項目
             const newComItem = {
               id: +new Date(),
               username: replyUser,
               text: replyText,
               edited: 0,
               completed: 0,
-              heart: 0,
               parentReply: value.cid,
             }
+            //   // 建立新的todos陣列
+            //   console.log(newComItem)
+            //   setReplyCom([newComItem, ...replyCom])
+            //   // 設定新的todos，變動呈現的列
+            handleEditedHide(value.cid)
+            addNewTodoItemToSever(newComItem)
+            // }
             setReplyCom([newComItem, ...replyCom])
-            addNewReplyItemToSever(newComItem)
+            //handleEditSave(newComItem)
           }}
         >
           Post

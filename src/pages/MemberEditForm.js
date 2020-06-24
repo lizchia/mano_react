@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react'
 import {
   Table,
   Container,
@@ -7,8 +7,8 @@ import {
   ListGroup,
   Image,
   Form,
-} from "react-bootstrap"
-import areaData from "./areaData"
+} from 'react-bootstrap'
+import areaData from './areaData'
 function MemberEditForm(props) {
   const {
     member,
@@ -39,14 +39,14 @@ function MemberEditForm(props) {
     })
   })
   function areaChange() {
-    var objS = document.getElementById("pid")
+    var objS = document.getElementById('pid')
     setIndexstatus(objS.selectedIndex)
   }
   //真正的圖片上傳
   function doUpload(event) {
     // const fd = new FormData(document.form1)
-    fetch("http://localhost:3002/membercenter/try-upload2", {
-      method: "POST",
+    fetch('http://localhost:3002/membercenter/try-upload2', {
+      method: 'POST',
       body: new FormData(document.form1),
     })
       .then((r) => r.json())
@@ -61,7 +61,7 @@ function MemberEditForm(props) {
   }
   const handleImgToDirectory = (event) => {
     doUpload(event)
-    alert("上傳成功")
+    alert('上傳成功')
   }
   useEffect(() => {
     // setMember({ ...member, memberId: localMember[0].memberId })
@@ -69,12 +69,12 @@ function MemberEditForm(props) {
 
   return (
     <>
-      <Col md={10} xs={12} style={{ background: "white" }}>
-        <Table responsive style={{ color: "#5C6447" }}>
+      <Col md={10} xs={12} style={{ background: 'white' }}>
+        <Table responsive style={{ color: '#5C6447' }}>
           <thead>
             <tr>
               <Image
-                style={{ width: "100px", height: "100px" }}
+                style={{ width: '100px', height: '100px' }}
                 src={`http://localhost:3002/img-uploads/${member.memberImg}`}
                 alt={member.memberImg}
                 rounded
@@ -87,7 +87,10 @@ function MemberEditForm(props) {
                       name="avatar"
                       onChange={(event) => {
                         handleImgToDirectory(event)
-                        setMember({ ...member, memberId: localMember[0].memberId })
+                        setMember({
+                          ...member,
+                          memberId: localMember[0].memberId,
+                        })
                       }}
                     />
                     <button
@@ -177,7 +180,7 @@ function MemberEditForm(props) {
                     setMember({
                       ...member,
                       paymentCity: event.target.value,
-                      paymentDistrict: "請選擇區域",
+                      paymentDistrict: '請選擇區域',
                     })
                   }}
                 >
@@ -221,7 +224,7 @@ function MemberEditForm(props) {
         <div className=" d-flex justify-content-end">
           <button
             className="btn btn-primary"
-            onMouseEnter={()=>{
+            onMouseEnter={() => {
               setMember({ ...member, memberId: localMember[0].memberId })
             }}
             onClick={() => {

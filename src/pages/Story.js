@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import {
+  Table,
+  Container,
+  Row,
+  Col,
+  ListGroup,
+  Image,
+  Form,
+} from 'react-bootstrap'
 
 import MyBanner from '../components/MyBanner'
-import AddFrom from '../components/Comment/AddFrom'
-import List from '../components/Comment/List'
-import ItemC from '../components/Comment/ItemC'
+import AddFrom from '../components/Story/AddFrom'
+import List from '../components/Story/List'
+import ItemC from '../components/Story/ItemC'
 import ItemR from '../components/Comment/ItemR'
 //import ReplyForm from '../components/Comment/ReplyForm'
 import { Button } from 'react-bootstrap'
@@ -16,6 +25,7 @@ function Comment(props) {
   const [text, setText] = useState('')
   const [username, setUser] = useState('')
   const [heart, setHeart] = useState(0)
+  const [img, setImg] = useState('')
   // const [page, setPage] = useState('')
   const {
     replyCom,
@@ -25,6 +35,9 @@ function Comment(props) {
     replyUser,
     setReplyUser,
   } = props
+  const localMember = JSON.parse(localStorage.getItem('member')) || [
+    { memberName: '', memberId: '' },
+  ]
   async function getComFromServer() {
     const request = new Request('http://localhost:3002/comment/', {
       method: 'GET',
@@ -61,6 +74,19 @@ function Comment(props) {
     console.log('伺服器回傳的json資料', data)
     // 要等驗証過，再設定資料(簡單的直接設定)
     // setCom(comments)
+  }
+
+  function doUpload(event) {
+    // const fd = new FormData(document.form1)
+    fetch('http://localhost:3002/comment/try-upload2', {
+      method: 'POST',
+      body: new FormData(document.form1),
+    })
+      .then((r) => r.json())
+      .then((obj) => {
+        //$('#myimg').attr('src', '/img-uploads/' +obj.filename)
+        console.log(obj.filename)
+      })
   }
 
   // function handleInsertSave (comment) {
@@ -179,18 +205,54 @@ function Comment(props) {
     const newCom = com.filter((v, i) => v.cid !== cid)
     setCom(newCom)
   }
+  const handleImgToDirectory = (event) => {
+    doUpload(event)
+    alert('上傳成功')
+  }
   return (
     <>
       <MyBanner title="社群" lead="mano友" />
       <hr />
+      {/* <Table responsive style={{ color: '#5C6447' }}>
+        <thead>
+          <tr>
+            <th colSpan={4}>
+              <Form name="form1">
+                <Form.Group>
+                  <Form.File
+                    id="avatar"
+                    name="avatar"
+                    onChange={(event) => {
+                      handleImgToDirectory(event)
+                    }}
+                  />
+                  <button
+                    className="btn btn-primary"
+                    onClick={(event) => {
+                      handleImgToDirectory()
+                    }}
+                  >
+                    儲存為新的大頭貼
+                  </button>
+                </Form.Group>
+              </Form>
+              <img src="" alt="" id="myimg"></img>
+            </th>
+          </tr>
+        </thead>
+      </Table> */}
       <AddFrom
         username={username}
         text={text}
+        img={img}
         com={com}
         setUser={setUser}
         setText={setText}
+        setImg={setImg}
         setCom={setCom}
         addNewTodoItemToSever={addNewTodoItemToSever}
+        doUpload={doUpload}
+        handleImgToDirectory={handleImgToDirectory}
       />
       <List
         com={com}

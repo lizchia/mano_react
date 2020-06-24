@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import "./itemTracking-style.scss";
-import ItemTracking from '../../components/ItemTracking/ItemTracking';
+import './itemTracking-style.scss'
+import ItemTracking from '../../components/ItemTracking/ItemTracking'
 
 function ItemTrack() {
   const loading = (
@@ -15,9 +15,9 @@ function ItemTrack() {
 
   const display = (
     <>
-    <div className="d-flex align-items-start product-list">
-      <ItemTracking />
-    </div>
+      <div className="d-flex align-items-start product-list">
+        <ItemTracking />
+      </div>
     </>
   )
 

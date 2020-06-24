@@ -1,17 +1,23 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+//import { object } from 'prop-types'
 
 function AddForm(props) {
   console.log(props)
   // 先解構賦值，直接套用由props得到的變數值
   const {
+    event,
     username,
     text,
+    img,
     com,
     setCom,
     setText,
     setUser,
+    setImg,
     addNewTodoItemToSever,
+    handleImgToDirectory,
   } = props
   console.log(com)
   console.log(setCom)
@@ -35,12 +41,25 @@ function AddForm(props) {
         className="form-control"
         type="text"
         value={text}
-        placeholder="輸入完請按enter"
+        placeholder="有什麼想說的嗎？"
         onChange={(event) => {
           setText(event.target.value)
         }}
         required
       />
+      <label for="exampleFormControlFile1">Example file input</label>
+      <Form name="form1">
+        <input
+          id="avatar"
+          name="avatar"
+          type="file"
+          value={img}
+          className="form-control-file"
+          onChange={(event) => {
+            setImg(event.target.value)
+          }}
+        />
+      </Form>
       <Button
         variant="secondary"
         size="sm"
@@ -56,6 +75,7 @@ function AddForm(props) {
               completed: 0,
               heart: 0,
               parentReply: null,
+              commentImg: img,
             }
 
             // 建立新的todos陣列
@@ -63,6 +83,7 @@ function AddForm(props) {
             setCom([newComItem, ...com])
             // 設定新的todos，變動呈現的列
             addNewTodoItemToSever(newComItem)
+            handleImgToDirectory()
 
             //console.log(newComItem)
 

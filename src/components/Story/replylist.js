@@ -3,7 +3,7 @@ import ItemC from './ItemC'
 //import EditForm from './EditForm'
 //import ReplyForm from './ReplyForm'
 
-function ReplyList(props) {
+function List(props) {
   //console.log(props)
   const {
     replyCom,
@@ -13,7 +13,7 @@ function ReplyList(props) {
     handleReplySave,
     handleEditedToggle,
     handleEditedSave,
-    addNewReplyItemToSever,
+    addNewTodoItemToSever,
     handleCompleted,
     handleEditedHeartPlus
   } = props
@@ -26,8 +26,16 @@ function ReplyList(props) {
   return (
     <li className={cssClasses}>
       {replyCom.map((value, index) => {
+        {
+          /* if (value.edited) { */
+        }
         return (
           <>
+            {/* <EditForm
+                    key={value.id}
+                    value={value}
+                    handleEditSave={handleEditedSave}
+                  /> */}
             <ItemC
               key={value.id}
               value={value}
@@ -36,13 +44,36 @@ function ReplyList(props) {
               handleDelete={handleDelete}
               handleCompleted={handleCompleted}
               handleEditedHeartPlus={handleEditedHeartPlus}
-              addNewReplyItemToSever={addNewReplyItemToSever}
             />
+            {/* <ReplyForm
+                key={value.id}
+                value={value}
+                replyUser={replyUser}
+                replyText={replyText}
+                replyCom={replyCom}
+                setReplyUser={setReplyUser}
+                setReplyText={setReplyText}
+                setReplyCom={setReplyCom}
+                handleEditSave={handleEditedSave}
+              /> */}
           </>
         )
+
+        {
+          /* return (
+          <ItemC
+            key={value.id}
+            value={value}
+            handleReplyToggle={handleReplyToggle}
+            handleEditedToggle={handleEditedToggle}
+            handleDelete={handleDelete}
+            handleCompleted={handleCompleted}
+          />
+        ) */
+        }
       })}
     </li>
   )
 }
 
-export default ReplyList
+export default List
