@@ -12,26 +12,15 @@ function ItemC(props) {
     handleEditedHeartPlus,
     handleEditedHeartMinus,
   } = props
-  console.log(value)
+  //console.log(value)
 
   const date = new Date(value.id)
 
   const cssClasses =
     'list-group-item justify-content-between align-items-center list-group-item-light'
-  // async function updateHeartToServer(value) {
-  //   const newHeart = { heart: heart + value }
-  //   const request = new Request('http://localhost:3002/comment', {
-  //     method: 'PUT',
-  //     body: JSON.stringify(newHeart),
-  //     headers: new Headers({
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     }),
-  //   })
-  //   const response = await fetch(request)
-  //   const data = await response.json()
-  //   setHeart(heart + value)
-  // }
+  const cssCard = {
+    width: '400',
+  }
 
   return (
     <li className={cssClasses}>
@@ -95,7 +84,7 @@ function ItemC(props) {
         )}
         <div className="badge badge-secondary">{date.toLocaleString()}</div>
 
-        <Card className="bg-dark text-white">
+        <Card className="bg-dark text-white" style={cssCard}>
           <Card.Img
             src={`http://localhost:3002/img-uploads/${value.commentImg}`}
             alt="Card image"

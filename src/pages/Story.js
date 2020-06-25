@@ -85,7 +85,7 @@ function Comment(props) {
       .then((r) => r.json())
       .then((obj) => {
         //$('#myimg').attr('src', '/img-uploads/' +obj.filename)
-        console.log(obj.filename)
+        console.log(obj)
       })
   }
 
@@ -206,6 +206,7 @@ function Comment(props) {
     setCom(newCom)
   }
   const handleImgToDirectory = (event) => {
+    console.log(event.value)
     doUpload(event)
     alert('上傳成功')
   }

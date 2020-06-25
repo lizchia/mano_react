@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import FormFileInput from 'react-bootstrap/FormFileInput'
 //import { object } from 'prop-types'
 
 function AddForm(props) {
@@ -56,6 +57,7 @@ function AddForm(props) {
           value={img}
           className="form-control-file"
           onChange={(event) => {
+            console.log(event.target)
             setImg(event.target.value)
           }}
         />
@@ -83,7 +85,8 @@ function AddForm(props) {
             setCom([newComItem, ...com])
             // 設定新的todos，變動呈現的列
             addNewTodoItemToSever(newComItem)
-            handleImgToDirectory()
+            console.log(event)
+            handleImgToDirectory(event)
 
             //console.log(newComItem)
 
