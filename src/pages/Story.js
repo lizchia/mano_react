@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import {
-  Table,
-  Container,
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Form,
-} from 'react-bootstrap'
 
 import MyBanner from '../components/MyBanner'
 import AddFrom from '../components/Story/AddFrom'
 import List from '../components/Story/List'
 import ItemC from '../components/Story/ItemC'
-import ItemR from '../components/Comment/ItemR'
+//import ItemR from '../components/Comment/ItemR'
 //import ReplyForm from '../components/Comment/ReplyForm'
 import { Button } from 'react-bootstrap'
 import requestToServer from '../utils/requestToServer'
-import ReplyForm from '../components/Comment/ReplyForm'
+import ReplyForm from '../components/Story/ReplyForm'
 
 function Comment(props) {
   const [com, setCom] = useState([])
@@ -77,23 +68,16 @@ function Comment(props) {
   }
 
   function doUpload(event) {
-    // const fd = new FormData(document.form1)
     fetch('http://localhost:3002/comment/try-upload2', {
       method: 'POST',
       body: new FormData(document.form1),
     })
       .then((r) => r.json())
       .then((obj) => {
-        //$('#myimg').attr('src', '/img-uploads/' +obj.filename)
         console.log(obj)
       })
   }
 
-  // function handleInsertSave (comment) {
-  //   const newComment = comment
-  //   addNewTodoItemToSever(newComment)
-  //   setCom(newComment)
-  //}
   async function updateComToServer(item) {
     const request = new Request('http://localhost:3002/comment/' + item.cid, {
       method: 'PUT',
@@ -132,19 +116,7 @@ function Comment(props) {
     const newCom = [...com]
     const comIndex = com.findIndex((v, i) => v.cid === cid)
     if (comIndex !== -1) {
-      // console.log(newCom)
-      // console.log(newCom[comIndex])
-      // console.log(comIndex)
-      // console.log(newCom[comIndex].edited)
-      // for(let i in newCom[comIndex]){
-      //   let o = newCom[comIndex][i]
-      //   console.log(i, o)
-      // }
-      // console.log(newCom[comIndex].constructor.name)
       newCom[comIndex].reply = !newCom[comIndex].reply
-      // console.log(newCom)
-      // console.log(newCom[comIndex])
-      // console.log(newCom[comIndex].edited)
       updateComToServer(newCom[comIndex])
       setCom(newCom)
     }
@@ -162,19 +134,7 @@ function Comment(props) {
     const newCom = [...com]
     const comIndex = com.findIndex((v, i) => v.cid === cid)
     if (comIndex !== -1) {
-      // console.log(newCom)
-      // console.log(newCom[comIndex])
-      // console.log(comIndex)
-      // console.log(newCom[comIndex].edited)
-      // for(let i in newCom[comIndex]){
-      //   let o = newCom[comIndex][i]
-      //   console.log(i, o)
-      // }
-      // console.log(newCom[comIndex].constructor.name)
       newCom[comIndex].edited = !newCom[comIndex].edited
-      // console.log(newCom)
-      // console.log(newCom[comIndex])
-      // console.log(newCom[comIndex].edited)
       updateComToServer(newCom[comIndex])
       setCom(newCom)
     }
@@ -214,34 +174,6 @@ function Comment(props) {
     <>
       <MyBanner title="社群" lead="mano友" />
       <hr />
-      {/* <Table responsive style={{ color: '#5C6447' }}>
-        <thead>
-          <tr>
-            <th colSpan={4}>
-              <Form name="form1">
-                <Form.Group>
-                  <Form.File
-                    id="avatar"
-                    name="avatar"
-                    onChange={(event) => {
-                      handleImgToDirectory(event)
-                    }}
-                  />
-                  <button
-                    className="btn btn-primary"
-                    onClick={(event) => {
-                      handleImgToDirectory()
-                    }}
-                  >
-                    儲存為新的大頭貼
-                  </button>
-                </Form.Group>
-              </Form>
-              <img src="" alt="" id="myimg"></img>
-            </th>
-          </tr>
-        </thead>
-      </Table> */}
       <AddFrom
         username={username}
         text={text}

@@ -5,10 +5,7 @@ import FormFileInput from 'react-bootstrap/FormFileInput'
 //import { object } from 'prop-types'
 
 function AddForm(props) {
-  console.log(props)
-  // 先解構賦值，直接套用由props得到的變數值
   const {
-    event,
     username,
     text,
     img,
@@ -20,8 +17,8 @@ function AddForm(props) {
     addNewTodoItemToSever,
     handleImgToDirectory,
   } = props
-  console.log(com)
-  console.log(setCom)
+  // console.log(com)
+  // console.log(setCom)
 
   return (
     <div className="form-group">
@@ -49,16 +46,16 @@ function AddForm(props) {
         required
       />
       <label for="exampleFormControlFile1">Example file input</label>
-      <Form name="form1">
+      <Form name="form2">
         <input
           id="avatar"
           name="avatar"
           type="file"
-          value={img}
           className="form-control-file"
           onChange={(event) => {
-            console.log(event.target)
-            setImg(event.target.value)
+            let img2 = event.target.value.substr(12)
+            console.log(img2)
+            setImg(img2)
           }}
         />
       </Form>
@@ -68,7 +65,6 @@ function AddForm(props) {
         onClick={(event) => {
           // 處理按下 Enter鍵
           if (text !== '') {
-            // 建立一個新的todo項目
             const newComItem = {
               id: +new Date(),
               username: username,
@@ -80,17 +76,12 @@ function AddForm(props) {
               commentImg: img,
             }
 
-            // 建立新的todos陣列
-            //const newCom = comment.push(newComItem)
             setCom([newComItem, ...com])
-            // 設定新的todos，變動呈現的列
+
             addNewTodoItemToSever(newComItem)
             console.log(event)
             handleImgToDirectory(event)
 
-            //console.log(newComItem)
-
-            // 清空文字輸入框
             setUser('')
             setText('')
           }
@@ -98,6 +89,159 @@ function AddForm(props) {
       >
         Post
       </Button>
+      {/* Modal */}
+      <div
+        class="modal fade"
+        id="darkModalForm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog form-dark" role="document">
+          {/* Content */}
+          <div
+            class="modal-content card card-image"
+            style={{ backgroundImage: '/picture/leaves.jpg'}}
+          >
+            <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+              {/* Header */}
+              <div class="modal-header text-center pb-4">
+                <h3
+                  class="modal-title w-100 white-text font-weight-bold"
+                  id="myModalLabel"
+                >
+                  <strong>留</strong>{' '}
+                  <a class="green-text font-weight-bold">
+                    <strong> 言</strong>
+                  </a>
+                </h3>
+                <button
+                  type="button"
+                  class="close white-text"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {/* Body */}
+              <div class="modal-body">
+                {/* Body */}
+                <div class="md-form mb-5">
+                  <input
+                    id="memberID"
+                    className="form-control"
+                    type="text"
+                    value={username}
+                    placeholder="姓名"
+                    onChange={(event) => {
+                      console.log(event.target.value)
+                      setUser(event.target.value)
+                    }}
+                  />
+                </div>
+
+                <div class="md-form pb-3">
+                  <textarea
+                    id="todoInput"
+                    className="form-control"
+                    type="text"
+                    value={text}
+                    placeholder="有什麼想說的嗎？"
+                    onChange={(event) => {
+                      setText(event.target.value)
+                    }}
+                    required
+                  />
+                  <div class="form-group mt-4">
+                    <Form name="form1">
+                      <input
+                        id="avatar"
+                        name="avatar"
+                        type="file"
+                        className="form-control-file"
+                        onChange={(event) => {
+                          let img2 = event.target.value.substr(12)
+                          console.log(img2)
+                          setImg(img2)
+                        }}
+                      />
+                    </Form>
+                  </div>
+                </div>
+
+                {/* Grid row */}
+                <div class="row d-flex align-items-center mb-4">
+                  {/* Grid column */}
+                  <div class="text-center mb-3 col-md-12">
+                    <button
+                      type="button"
+                      class="btn btn-success btn-block btn-rounded z-depth-1"
+                      onClick={(event) => {
+                        // 處理按下 Enter鍵
+                        if (text !== '') {
+                          const newComItem = {
+                            id: +new Date(),
+                            username: username,
+                            text: text,
+                            edited: 0,
+                            completed: 0,
+                            heart: 0,
+                            parentReply: null,
+                            commentImg: img,
+                          }
+
+                          setCom([newComItem, ...com])
+
+                          addNewTodoItemToSever(newComItem)
+                          console.log(event)
+                          handleImgToDirectory(event)
+
+                          setUser('')
+                          setText('')
+                        }
+                      }}
+                    >
+                      Post
+                    </button>
+                  </div>
+                  {/* Grid column */}
+                </div>
+                {/* Grid row */}
+
+                {/* Grid row */}
+                <div class="row">
+                  {/* Grid column */}
+                  <div class="col-md-12">
+                    <p class="font-small white-text d-flex justify-content-end">
+                      一起互動吧！{' '}
+                      <a href="#" class="green-text ml-1 font-weight-bold">
+                        Log in
+                      </a>
+                    </p>
+                  </div>
+                  {/* Grid column */}
+                </div>
+                {/* Grid row */}
+              </div>
+            </div>
+          </div>
+          {/* Content */}
+        </div>
+      </div>
+      {/* Modal */}
+
+      <div class="text-center">
+        <a
+          href=""
+          class="btn btn-default btn-rounded"
+          data-toggle="modal"
+          data-target="#darkModalForm"
+        >
+          一起互動吧！
+        </a>
+      </div>
     </div>
   )
 }

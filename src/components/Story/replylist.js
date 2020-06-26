@@ -15,7 +15,7 @@ function List(props) {
     handleEditedSave,
     addNewTodoItemToSever,
     handleCompleted,
-    handleEditedHeartPlus
+    handleEditedHeartPlus,
   } = props
   //   const [replyCom, setReplyCom] = useState([])
   //   const [replyText, setReplyText] = useState('')
@@ -23,29 +23,34 @@ function List(props) {
   //console.log(com.rows)
   const cssClasses =
     'list-group-item justify-content-between align-items-center list-group-item-light'
+  const cssCard = {
+    width: '300',
+  }
   return (
-    <li className={cssClasses}>
-      {replyCom.map((value, index) => {
-        {
-          /* if (value.edited) { */
-        }
-        return (
-          <>
-            {/* <EditForm
+    <div className="col mb-4">
+      {/* Card */}
+      <div class="card" style={cssCard}>
+        {replyCom.map((value, index) => {
+          {
+            /* if (value.edited) { */
+          }
+          return (
+            <>
+              {/* <EditForm
                     key={value.id}
                     value={value}
                     handleEditSave={handleEditedSave}
                   /> */}
-            <ItemC
-              key={value.id}
-              value={value}
-              handleReplyToggle={handleReplyToggle}
-              handleEditedToggle={handleEditedToggle}
-              handleDelete={handleDelete}
-              handleCompleted={handleCompleted}
-              handleEditedHeartPlus={handleEditedHeartPlus}
-            />
-            {/* <ReplyForm
+              <ItemC
+                key={value.id}
+                value={value}
+                handleReplyToggle={handleReplyToggle}
+                handleEditedToggle={handleEditedToggle}
+                handleDelete={handleDelete}
+                handleCompleted={handleCompleted}
+                handleEditedHeartPlus={handleEditedHeartPlus}
+              />
+              {/* <ReplyForm
                 key={value.id}
                 value={value}
                 replyUser={replyUser}
@@ -56,11 +61,11 @@ function List(props) {
                 setReplyCom={setReplyCom}
                 handleEditSave={handleEditedSave}
               /> */}
-          </>
-        )
+            </>
+          )
 
-        {
-          /* return (
+          {
+            /* return (
           <ItemC
             key={value.id}
             value={value}
@@ -70,9 +75,10 @@ function List(props) {
             handleCompleted={handleCompleted}
           />
         ) */
-        }
-      })}
-    </li>
+          }
+        })}
+      </div>
+    </div>
   )
 }
 
