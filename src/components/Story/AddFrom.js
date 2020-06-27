@@ -21,8 +21,8 @@ function AddForm(props) {
   // console.log(setCom)
 
   return (
-    <div className="form-group">
-      <label htmlFor="todoInput">留言</label>
+    <div className="container">
+      {/* <label htmlFor="todoInput">留言</label>
       <input
         id="memberID"
         className="form-control"
@@ -88,7 +88,7 @@ function AddForm(props) {
         }}
       >
         Post
-      </Button>
+      </Button> */}
       {/* Modal */}
       <div
         class="modal fade"
@@ -102,7 +102,7 @@ function AddForm(props) {
           {/* Content */}
           <div
             class="modal-content card card-image"
-            style={{ backgroundImage: '/picture/leaves.jpg'}}
+            style={{ backgroundImage: '/picture/leaves.jpg' }}
           >
             <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
               {/* Header */}
@@ -154,19 +154,24 @@ function AddForm(props) {
                     }}
                     required
                   />
+
                   <div class="form-group mt-4">
                     <Form name="form1">
-                      <input
-                        id="avatar"
-                        name="avatar"
-                        type="file"
-                        className="form-control-file"
-                        onChange={(event) => {
-                          let img2 = event.target.value.substr(12)
-                          console.log(img2)
-                          setImg(img2)
-                        }}
-                      />
+                      <label for="avatar">
+                        上傳圖片
+                        <input
+                          id="avatar"
+                          name="avatar"
+                          type="file"
+                          className="form-control-file"
+                          onChange={(event) => {
+                            let img2 = event.target.value.substr(12)
+                            console.log(img2)
+                            setImg(img2)
+                          }}
+                        />
+                        <i class="fas fa-paperclip" aria-hidden="true"></i>
+                      </label>
                     </Form>
                   </div>
                 </div>
@@ -239,7 +244,7 @@ function AddForm(props) {
           data-toggle="modal"
           data-target="#darkModalForm"
         >
-          一起互動吧！
+          一起互動吧！<i class="far fa-comment-dots"></i>
         </a>
       </div>
     </div>

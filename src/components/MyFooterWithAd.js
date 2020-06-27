@@ -8,13 +8,13 @@ function MyFooter(props) {
   }, [])
   //document.body.style.background ='#5C6447'
   const cssSocial = {
-    height: '100px',
+    height: '150px',
     lineHeight: 'center',
     borderTop: '1px solid #5C6447',
     borderBottom: '1px solid #5C6447',
   }
   const cssSvg = {
-    fontSize: '20pt',
+    fontSize:'26pt',
     margin: '10px',
     color: '#5C6447',
   }
@@ -26,7 +26,7 @@ function MyFooter(props) {
     <>
       <footer className="footer mt-auto py-3 text-center ">
         <div className="container mb-2">
-          {/* <h3> 最新活動 </h3>
+          <h3> 最新活動 </h3>
           <div className="d-flex row" style={{ backgroundColor: '#D4AE5C' }}>
             <img
               className="col-8"
@@ -40,9 +40,9 @@ function MyFooter(props) {
               <h5 style={{ color: '#FFFFFF' }}>屬於大人的手作課程</h5>
               <Button variant="outline-light">給自己的練習課</Button>
             </div>
-          </div> */}
-          {/* <div style={{ marginTop: '10px' }}></div> */}
-          <h5>抹の</h5>
+          </div>
+          <div style={{ marginTop: '40px' }}></div>
+          <img className="m-2 p-2" src="/picture/mano_logo_dark-01.svg"></img>
 
           <div className="d-flex row" style={cssSocial}>
             <div className="col-lg align-self-center">
@@ -81,13 +81,13 @@ function MyFooter(props) {
             </div>
             <div className="col-lg align-self-center justify-content-between">
               <a>
-                <i style={cssSvg} className="fab fa-facebook-square"></i>
+              <i style={cssSvg} className="fab fa-facebook-square"></i>
               </a>
               <a>
-                <i style={cssSvg} className="fab fa-instagram"></i>
+              <i style={cssSvg} className="fab fa-instagram"></i>
               </a>
               <a>
-                <i style={cssSvg} className="fab fa-line"></i>
+              <i style={cssSvg} className="fab fa-line"></i>
               </a>
             </div>
             <div className="col-lg align-self-center">
@@ -111,9 +111,7 @@ function MyFooter(props) {
               </a>
             </div>
           </div>
-          <span className="text-muted" style={{ fontSize: '10pt' }}>
-            2020 © MANO copyright
-          </span>
+          <span className="text-muted">2020 © MANO copyright</span>
         </div>
       </footer>
     </>

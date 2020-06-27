@@ -54,24 +54,59 @@ function ItemC(props) {
                 {date.toLocaleString()}
               </li>
               <li class="list-inline-item pr-2">
+                {value.completed ? (
+                  <button
+                    style={{ width: '35px' }}
+                    type="button"
+                    className="btn btn-light"
+                    onClick={() => {
+                      handleCompleted(value.cid)
+                    }}
+                  >
+                    <i class="fas fa-heart"></i>
+                  </button>
+                ) : (
+                  <button
+                    style={{ width: '35px' }}
+                    type="button"
+                    className="btn btn-light"
+                    onClick={() => {
+                      handleCompleted(value.cid)
+                    }}
+                  >
+                    <i class="far fa-heart"></i>
+                  </button>
+                )}
+              </li>
+              <li class="list-inline-item pr-2">
                 <button
+                  style={{ width: '35px' }}
                   type="button"
                   className="btn btn-light"
                   onClick={() => {
-                    handleEditedToggle(value.cid)
+                    handleCompleted(value.cid)
                   }}
                 >
-                  <i class="far fa-comments pr-1"></i>12
+                  <i class="fas fa-share"></i>
                 </button>
               </li>
-              <li class="list-inline-item pr-2">
-                <a href="#" class="white-text">
-                  <i class="fab fa-facebook-f pr-1"></i>21
-                </a>
-              </li>
               <li class="list-inline-item">
-                <a href="#" class="white-text">
-                  <i class="fab fa-twitter pr-1"> </i>5
+                <a
+                  href={`http://localhost:3002/img-uploads/${value.commentImg}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                >
+                  <button
+                    style={{ width: '35px' }}
+                    type="button"
+                    className="btn btn-light"
+                    onClick={() => {
+                      handleCompleted(value.cid)
+                    }}
+                  >
+                    <i class="fas fa-chevron-down"></i>
+                  </button>
                 </a>
               </li>
             </ul>
