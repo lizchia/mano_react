@@ -4,35 +4,35 @@ import { Link, NavLink, withRouter } from 'react-router-dom'
 import { MdShoppingCart, MdKeyboardArrowRight } from 'react-icons/md'
 
 function MyNavbar(props) {
-
-
   const loginButton = (
     <>
       <Button
         variant="outline-light"
         onClick={() => {
           const path = props.history.location.pathname
-          if(path.includes("/mall")) props.history.push("/mall/login")
-          else props.history.push("/life/login")
-
+          if (path.includes('/mall')) props.history.push('/mall/login')
+          else props.history.push('/life/login')
         }}
       >
         登入
       </Button>
     </>
   )
-  const member = JSON.parse(localStorage.getItem('member')) || [{ memberName: '' }]
+  const member = JSON.parse(localStorage.getItem('member')) || [
+    { memberName: '' },
+  ]
 
   const logoutButton = (
     <>
-      <span style={{ color: '#ffffff' }} className="mr-3">{member[0].memberName} , 您好</span>
+      <span style={{ color: '#ffffff' }} className="mr-3">
+        {member[0].memberName} , 您好
+      </span>
       <Button
         variant="outline-light"
         onClick={() => {
           const path = props.history.location.pathname
-          if(path.includes("/mall")) props.history.push("/mall/welcome")
-          else props.history.push("/life/welcome")
-
+          if (path.includes('/mall')) props.history.push('/mall/welcome')
+          else props.history.push('/life/welcome')
         }}
       >
         登出
@@ -42,39 +42,30 @@ function MyNavbar(props) {
 
   const displayButton = member[0].memberName !== '' ? logoutButton : loginButton
   const pathlist = [
-    "/login",
-    "/about",
-    "/membercenter",
-    "/404",
-    "/life",
-    "/mall"
+    '/login',
+    '/about',
+    '/membercenter',
+    '/404',
+    '/life',
+    '/mall',
   ]
-  const themenames = [
-    "dark",
-    "dark",
-    "dark",
-    "dark",
-    "light",
-    "light",
-    "light",
-  ]
-
+  const themenames = ['dark', 'dark', 'dark', 'dark', 'light', 'light', 'light']
 
   // 先找出對應的主題
   let locationPathname = props.location.pathname
   // `/product/xxxx` 轉為 `/product`
-  if (locationPathname.includes("/login")) locationPathname = "/login"
-  if (locationPathname.includes("/register")) locationPathname = "/login"
-  if (locationPathname.includes("/welcome")) locationPathname = "/login"
-  if (locationPathname.includes("/forgetpwd")) locationPathname = "/login"
-  if (locationPathname.includes("/about")) locationPathname = "/about"
-  if (locationPathname.includes("/membercenter")) locationPathname = "/membercenter"
-  if (locationPathname.includes("/coupon")) locationPathname = "/membercenter"
+  if (locationPathname.includes('/login')) locationPathname = '/login'
+  if (locationPathname.includes('/register')) locationPathname = '/login'
+  if (locationPathname.includes('/welcome')) locationPathname = '/login'
+  if (locationPathname.includes('/forgetpwd')) locationPathname = '/login'
+  if (locationPathname.includes('/about')) locationPathname = '/about'
+  if (locationPathname.includes('/membercenter'))
+    locationPathname = '/membercenter'
+  if (locationPathname.includes('/coupon')) locationPathname = '/membercenter'
 
-  if (locationPathname.includes("/mall")) locationPathname = "/mall"
-  if (locationPathname.includes("/life")) locationPathname = "/life"
+  if (locationPathname.includes('/mall')) locationPathname = '/mall'
+  if (locationPathname.includes('/life')) locationPathname = '/life'
 
-  
   const index = pathlist.findIndex((v) => v === locationPathname)
 
   const nav = (
@@ -135,7 +126,7 @@ function MyNavbar(props) {
 
           <Nav.Link as={NavLink} to="/life/cart">
             購物車
-          </Nav.Link>          
+          </Nav.Link>
         </Nav>
         <Form inline>{displayButton}</Form>
       </Navbar>
@@ -149,7 +140,11 @@ function MyNavbar(props) {
         <Nav className="mr-auto justify-content-end w-75 align-items-center">
           <Nav.Link
             as={NavLink}
-            to={props.history.location.pathname.includes("/mall") ? "/mall/cart" : "/life/cart"}
+            to={
+              props.history.location.pathname.includes('/mall')
+                ? '/mall/cart'
+                : '/life/cart'
+            }
             className="d-flex align-items-center"
             disabled
             exact
@@ -158,17 +153,41 @@ function MyNavbar(props) {
           </Nav.Link>
           <MdKeyboardArrowRight className="ml-1" />
           <MdKeyboardArrowRight className="mr-1" />
-          <Nav.Link as={NavLink} to={props.history.location.pathname.includes("/mall") ? "/mall/cart/comfirm" : "/life/cart/comfirm"} disabled>
+          <Nav.Link
+            as={NavLink}
+            to={
+              props.history.location.pathname.includes('/mall')
+                ? '/mall/cart/comfirm'
+                : '/life/cart/comfirm'
+            }
+            disabled
+          >
             確認訂單
           </Nav.Link>
           <MdKeyboardArrowRight className="ml-1" />
           <MdKeyboardArrowRight className="mr-1" />
-          <Nav.Link as={NavLink} to={props.history.location.pathname.includes("/mall") ? "/mall/cart/payment" : "/life/cart/payment"} disabled>
+          <Nav.Link
+            as={NavLink}
+            to={
+              props.history.location.pathname.includes('/mall')
+                ? '/mall/cart/payment'
+                : '/life/cart/payment'
+            }
+            disabled
+          >
             付款
           </Nav.Link>
           <MdKeyboardArrowRight className="ml-1" />
           <MdKeyboardArrowRight className="mr-1" />
-          <Nav.Link as={NavLink} to={props.history.location.pathname.includes("/mall") ? "/mall/cart/complete" : "/life/cart/complete"} disabled>
+          <Nav.Link
+            as={NavLink}
+            to={
+              props.history.location.pathname.includes('/mall')
+                ? '/mall/cart/complete'
+                : '/life/cart/complete'
+            }
+            disabled
+          >
             完成訂單
           </Nav.Link>
         </Nav>
@@ -179,26 +198,15 @@ function MyNavbar(props) {
   let displayNav
   let path = props.history.location.pathname
 
-  if (path.includes("/change")) path = "/change"
-  if (path.includes("/cart")) path = "/cart"
-  if (path.includes("/mall")) path = "/mall"
-  if (path.includes("/life")) path = "/life" 
+  if (path.includes('/change')) path = '/change'
+  if (path.includes('/cart')) path = '/cart'
+  if (path.includes('/mall')) path = '/mall'
+  if (path.includes('/life')) path = '/life'
 
-  if (
-    path === '/cart'
-  )
-    displayNav = cartNav
-  else if (
-    path === '/change' ||
-    path === '/' ||
-    path === '/404'
-  )
+  if (path === '/cart') displayNav = cartNav
+  else if (path === '/change' || path === '/' || path === '/404')
     displayNav = ''
-  else if (
-    path === '/life'
-  )
-
-   displayNav = lifeNav
+  else if (path === '/life') displayNav = lifeNav
   else displayNav = nav
 
   return <>{displayNav}</>

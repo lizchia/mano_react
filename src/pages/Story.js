@@ -172,31 +172,47 @@ function Story(props) {
   }
   return (
     <>
-      <MyBanner title="社群" lead="mano友" />
-      <hr />
-      <AddFrom
-        username={username}
-        text={text}
-        img={img}
-        com={com}
-        setUser={setUser}
-        setText={setText}
-        setImg={setImg}
-        setCom={setCom}
-        addNewTodoItemToSever={addNewTodoItemToSever}
-        doUpload={doUpload}
-        handleImgToDirectory={handleImgToDirectory}
-      />
-      <List
-        com={com}
-        handleCompleted={handleCompleted}
-        handleDelete={handleDelete}
-        handleReplyToggle={handleReplyToggle}
-        handleEditedToggle={handleEditedToggle}
-        handleEditedSave={handleEditedSave}
-        handleCompleted={handleCompleted}
-        handleEditedHeartPlus={handleEditedHeartPlus}
-      />
+      <div className="container">
+        <div className="row d-flex justify-content-end">
+          <div className="col-3">
+            <AddFrom
+              username={username}
+              text={text}
+              img={img}
+              com={com}
+              setUser={setUser}
+              setText={setText}
+              setImg={setImg}
+              setCom={setCom}
+              addNewTodoItemToSever={addNewTodoItemToSever}
+              doUpload={doUpload}
+              handleImgToDirectory={handleImgToDirectory}
+            />
+          </div>
+          <div className="col-3">
+            <input
+              type="search"
+              style={{ width: '150px', border: '1px solid grey' }}
+              //className="btn-success btn-block btn-rounded z-depth-1 text-center"
+              onChange={(event) => {
+                console.log(event.target.value)
+                //com.filter().includes(event.target.value)
+              }}
+            ></input>
+          </div>
+        </div>
+        <div style={{ height: '50px' }}></div>
+        <List
+          com={com}
+          handleCompleted={handleCompleted}
+          handleDelete={handleDelete}
+          handleReplyToggle={handleReplyToggle}
+          handleEditedToggle={handleEditedToggle}
+          handleEditedSave={handleEditedSave}
+          handleCompleted={handleCompleted}
+          handleEditedHeartPlus={handleEditedHeartPlus}
+        />
+      </div>
     </>
   )
 }

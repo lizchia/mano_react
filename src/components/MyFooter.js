@@ -8,7 +8,7 @@ function MyFooter(props) {
   }, [])
   //document.body.style.background ='#5C6447'
   const cssSocial = {
-    height: '100px',
+    //height: '100px',
     lineHeight: 'center',
     borderTop: '1px solid #5C6447',
     borderBottom: '1px solid #5C6447',
