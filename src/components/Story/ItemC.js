@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Card from 'react-bootstrap/Card'
+import './item.css'
 
 function ItemC(props) {
   // 先解構賦值，直接套用由props得到的變數值
@@ -14,10 +15,16 @@ function ItemC(props) {
   } = props
   //console.log(value)
 
-  const date = new Date(value.id)
+  const date = new Date(value.cid)
+  const day = `${date.getFullYear()} 年 ${date.getMonth()} 月 ${date.getDate()} 日`
 
   const cssCard = {
     width: '300',
+  }
+  const cssIcon = {
+    fontSize: '10pt',
+    margin: '2px',
+    color: '#5C6447',
   }
 
   return (
@@ -50,63 +57,105 @@ function ItemC(props) {
           <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
             <ul class="list-unstyled list-inline font-small">
               <li class="list-inline-item pr-2 white-text">
-                <i class="far fa-clock pr-1"></i>
-                {date.toLocaleString()}
+                <p style={{ color: '#5C6447', fontSize:'10pt' }}>{day}</p>
               </li>
-              <li class="list-inline-item pr-2">
+              <li class="list-inline-item pr-1">
                 {value.completed ? (
-                  <button
-                    style={{ width: '35px' }}
-                    type="button"
-                    className="btn btn-light"
+                  <a
                     onClick={() => {
                       handleCompleted(value.cid)
                     }}
                   >
-                    <i class="fas fa-heart"></i>
-                  </button>
+                    <i style={cssIcon} class="fas fa-heart"></i>
+                  </a>
                 ) : (
-                  <button
-                    style={{ width: '35px' }}
-                    type="button"
-                    className="btn btn-light"
+                  <a
                     onClick={() => {
                       handleCompleted(value.cid)
                     }}
                   >
-                    <i class="far fa-heart"></i>
-                  </button>
+                    <i style={cssIcon} class="far fa-heart"></i>
+                  </a>
                 )}
               </li>
-              <li class="list-inline-item pr-2">
-                <button
-                  style={{ width: '35px' }}
+              <li class="list-inline-item pr-1">
+                {/* <button
+                  style={{ width: '30px' }}
                   type="button"
                   className="btn btn-light"
                   onClick={() => {
-                    handleCompleted(value.cid)
+                              
                   }}
                 >
                   <i class="fas fa-share"></i>
-                </button>
+                </button> */}
+
+                <a data-toggle="modal" data-target="#modalSocial">
+                  <i style={cssIcon} class="fas fa-share"></i>
+                </a>
+
+                <div
+                  class="modal fade"
+                  id="modalSocial"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="myModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog cascading-modal" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header light-blue darken-3 white-text text-center">
+                        <h4 class="title cssIcon">Spreed the word!</h4>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                      <div class="modal-body mb-0 text-center cssIcon">
+                        <a type="button" class="btn-floating btn-fb">
+                          <i class="fab fa-facebook-f"></i>
+                        </a>
+
+                        <a type="button" class="btn-floating btn-gplus">
+                          <i class="fab fa-google-plus-g"></i>
+                        </a>
+
+                        <a type="button" class="btn-floating btn-ins">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <a type="button" class="btn-floating btn-pin">
+                          <i class="fab fa-pinterest"></i>
+                        </a>
+
+                        <a type="button" class="btn-floating btn-yt">
+                          <i class="fab fa-youtube"></i>
+                        </a>
+
+                        <a type="button" class="btn-floating btn-comm">
+                          <i class="fas fa-comments"></i>
+                        </a>
+
+                        <a type="button" class="btn-floating btn-email">
+                          <i class="fas fa-envelope"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
               <li class="list-inline-item">
                 <a
                   href={`http://localhost:3002/img-uploads/${value.commentImg}`}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  download
+                  doenload
                 >
-                  <button
-                    style={{ width: '35px' }}
-                    type="button"
-                    className="btn btn-light"
-                    onClick={() => {
-                      handleCompleted(value.cid)
-                    }}
-                  >
-                    <i class="fas fa-chevron-down"></i>
-                  </button>
+                  <i style={cssIcon} class="fas fa-chevron-down"></i>
                 </a>
               </li>
             </ul>

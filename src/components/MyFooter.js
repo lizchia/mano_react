@@ -42,7 +42,7 @@ function MyFooter(props) {
             </div>
           </div> */}
           {/* <div style={{ marginTop: '10px' }}></div> */}
-          <h5>抹の</h5>
+          
 
           <div className="d-flex row" style={cssSocial}>
             <div className="col-lg align-self-center">

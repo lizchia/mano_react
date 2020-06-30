@@ -10,7 +10,7 @@ function List(props) {
     com,
     handleDelete,
     handleReplyToggle,
-    handleReplySave,
+    handleSearch,
     handleEditedToggle,
     handleEditedSave,
     addNewTodoItemToSever,

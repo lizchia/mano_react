@@ -6,20 +6,18 @@ import FormFileInput from 'react-bootstrap/FormFileInput'
 
 function AddForm(props) {
   const {
-    username,
+    member,
     text,
     img,
     com,
     setCom,
     setText,
-    setUser,
+    setMember,
     setImg,
     addNewTodoItemToSever,
     handleImgToDirectory,
   } = props
   // console.log(com)
-  // console.log(setCom)
-
   return (
     <div className="container">
       {/* <label htmlFor="todoInput">留言</label>
@@ -99,7 +97,7 @@ function AddForm(props) {
           {/* Content */}
           <div
             class="modal-content card card-image"
-            style={{ backgroundImage: '/picture/leaves.jpg' }}
+            style={{ backgroundImage: 'url(/picture/leaves.jpg)' }}
           >
             <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
               {/* Header */}
@@ -130,12 +128,13 @@ function AddForm(props) {
                     id="memberID"
                     className="form-control"
                     type="text"
-                    value={username}
-                    placeholder="姓名"
+                    value={member}
+                    placeholder="請先登入會員喔"
                     onChange={(event) => {
+                      console.log(member)
                       console.log(event.target.value)
-                      setUser(event.target.value)
                     }}
+                    disabled
                   />
                 </div>
 
@@ -154,20 +153,20 @@ function AddForm(props) {
 
                   <div class="form-group mt-4">
                     <Form name="form1">
-                      <label for="avatar">
+                      <label for="avatar" style={{ color: '#D4AE5C' }}>
+                        <i class="fas fa-paperclip" aria-hidden="true"></i>
                         上傳圖片
                         <input
                           id="avatar"
                           name="avatar"
                           type="file"
-                          className="form-control-file"
+                          className="form-control-file d-none"
                           onChange={(event) => {
                             let img2 = event.target.value.substr(12)
                             console.log(img2)
                             setImg(img2)
                           }}
                         />
-                        <i class="fas fa-paperclip" aria-hidden="true"></i>
                       </label>
                     </Form>
                   </div>
@@ -182,26 +181,24 @@ function AddForm(props) {
                       class="btn btn-success btn-block btn-rounded z-depth-1"
                       onClick={(event) => {
                         // 處理按下 Enter鍵
-                        if (text !== '') {
+                        if (member !== '' && img !== '') {
                           const newComItem = {
-                            id: +new Date(),
-                            username: username,
+                            cid: +new Date(),
+                            username: member,
                             text: text,
                             edited: 0,
                             completed: 0,
-                            heart: 0,
-                            parentReply: null,
                             commentImg: img,
                           }
 
                           setCom([newComItem, ...com])
 
                           addNewTodoItemToSever(newComItem)
-                          console.log(event)
                           handleImgToDirectory(event)
 
-                          setUser('')
                           setText('')
+                        } else {
+                          alert('請賜給我們一張美照吧')
                         }
                       }}
                     >
@@ -218,7 +215,7 @@ function AddForm(props) {
                   <div class="col-md-12">
                     <p class="font-small white-text d-flex justify-content-end">
                       一起互動吧！{' '}
-                      <a href="#" class="green-text ml-1 font-weight-bold">
+                      <a href="/life/login" class="green-text ml-1 font-weight-bold">
                         Log in
                       </a>
                     </p>
@@ -234,10 +231,11 @@ function AddForm(props) {
       </div>
       {/* Modal */}
 
-      <div class="text-center">
+      <div >
         <a
           href=""
-          class="btn btn-default btn-rounded"
+          // class="btn btn-default btn-rounded"
+          style={{ width: '150px'}}
           data-toggle="modal"
           data-target="#darkModalForm"
         >
