@@ -11,7 +11,7 @@ import './marketing.css'
 
 function Marketing(props) {
   useEffect(() => {
-    //props.changeBackgroundColorLight()
+    props.changeBackgroundColorWhite();
   }, [])
 
   const cssImg = {

@@ -9,8 +9,13 @@ import LeftBg from '../../components/courses/LeftBg'
 
 function CourseList(props) {
 
+  const [width, setWidth] = useState(window.innerWidth)
   useEffect(()=> {
     props.changeBackgroundColorLight()
+    window.addEventListener('resize', () => {
+      let width = window.innerWidth
+      setWidth(width)
+    })
   },[])
   const loading = (
     <>
@@ -21,6 +26,9 @@ function CourseList(props) {
       </div>
     </>
   )
+ 
+
+  
 
 
 
@@ -32,7 +40,8 @@ function CourseList(props) {
       </div>
       
       <div className="d-flex align-items-start product-list">
-        <CsCategoryBar />
+
+       {width <= 900 ? '' : <CsCategoryBar />}
         <Courses />
       </div> 
     </>

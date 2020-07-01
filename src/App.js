@@ -197,7 +197,7 @@ function App(props) {
             </Route>
 
             <Route path="/mall" exact>
-                <MallPage />
+                <MallPage changeBackgroundColorWhite={changeBackgroundColorWhite}/>
             </Route>
 
 
@@ -292,7 +292,7 @@ function App(props) {
             </Route>
             <Route exact path="/life/story">
               <Story 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              changeBackgroundColorWhite={changeBackgroundColorWhite}/>
             </Route>
 
 

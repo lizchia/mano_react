@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import Leaflet from 'leaflet'
 import { Icon } from "leaflet";
@@ -89,6 +89,8 @@ export default function MApPage() {
 
 function handleChange(event){
 
+
+  
 setSearchValue(event.target.value);
 
 
