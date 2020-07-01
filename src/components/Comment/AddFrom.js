@@ -2,23 +2,61 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 
 function AddForm(props) {
-  console.log(props)
+  //console.log(props)
   // 先解構賦值，直接套用由props得到的變數值
   const {
     username,
     text,
+    heart,
     com,
     setCom,
     setText,
+    setHeart,
     setUser,
     addNewTodoItemToSever,
   } = props
-  console.log(com)
-  console.log(setCom)
+  // console.log(com)
+  // console.log(setCom)
+  // 星星组件
+  function Star({ marked, starId }) {
+    return (
+      <span
+        star-id={starId}
+        style={{ fontSize: '25pt', color: '#D4AE5C' }}
+        role="button"
+      >
+        {marked ? '\u2605' : '\u2606'}
+      </span>
+    )
+  }
+  const [selection, setSelection] = React.useState(0)
+  const hoverOver = (event) => {
+    let val = 0
+    if (event && event.target && event.target.getAttribute('star-id'))
+      val = event.target.getAttribute('star-id')
+    setSelection(val)
+  }
 
   return (
     <div className="form-group">
       <label htmlFor="todoInput">留言</label>
+      <div
+        onMouseOut={() => hoverOver(null)}
+        value={heart}
+        onClick={(event) => {
+          console.log(event.target.getAttribute('star-id'))
+          setHeart(event.target.getAttribute('star-id') || 0)
+        }}
+        onMouseOver={hoverOver}
+      >
+        {Array.from({ length: 5 }, (v, i) => (
+          <Star
+            starId={i + 1}
+            key={`star_${i + 1} `}
+            marked={selection ? selection >= i + 1 : heart >= i + 1}
+          />
+        ))}
+      </div>
       <input
         id="memberID"
         className="form-control"
@@ -54,8 +92,9 @@ function AddForm(props) {
               text: text,
               edited: 0,
               completed: 0,
-              heart: 0,
+              heart: heart,
               parentReply: null,
+              commentImg: '',
             }
 
             // 建立新的todos陣列

@@ -215,7 +215,10 @@ function AddForm(props) {
                   <div class="col-md-12">
                     <p class="font-small white-text d-flex justify-content-end">
                       一起互動吧！{' '}
-                      <a href="/life/login" class="green-text ml-1 font-weight-bold">
+                      <a
+                        href="/life/login"
+                        class="green-text ml-1 font-weight-bold"
+                      >
                         Log in
                       </a>
                     </p>
@@ -231,11 +234,11 @@ function AddForm(props) {
       </div>
       {/* Modal */}
 
-      <div >
+      <div>
         <a
           href=""
           // class="btn btn-default btn-rounded"
-          style={{ width: '150px'}}
+          style={{ width: '150px' }}
           data-toggle="modal"
           data-target="#darkModalForm"
         >

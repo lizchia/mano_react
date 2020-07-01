@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
+import Comment from '../Comment.js'
 
 import {
   Modal,
@@ -350,6 +351,8 @@ class CourseDetail extends Component {
 
           </Row>
         </div>
+        <hr/>
+        <Comment />
       </>
     )
   }
