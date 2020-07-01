@@ -38,9 +38,11 @@ function CartPayment(props) {
   function handleKeyPress(event) {
     let nameInput = document.getElementById('name'),
       cardInput = document.getElementById('card')
-
-    if (event.keyCode === 13 && nameInput.value !== '') {
-      cardInput.focus()
+    
+    if(nameInput) {
+        if (event.keyCode === 13 && nameInput.value !== '') {
+          cardInput.focus()
+        }
     }
   }
 
@@ -49,15 +51,19 @@ function CartPayment(props) {
       closingDateInput = document.getElementById('closingDate'),
       cvvInput = document.getElementById('cvv'),
       addressInput = document.getElementById('address')
+      
+    if(cardInput) {
 
-    if (cardInput.value.match(/^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/)) {
-      closingDateInput.focus()
-    }
-    if (closingDateInput.value.match(/^[0-9]{2}\/[0-9]{2}$/)) {
-      cvvInput.focus()
-    }
-    if (cvvInput.value.match(/^[0-9]{3}$/)) {
-      addressInput.focus()
+        if (cardInput.value.match(/^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/)) {
+          closingDateInput.focus()
+        }
+        if (closingDateInput.value.match(/^[0-9]{2}\/[0-9]{2}$/)) {
+          cvvInput.focus()
+        }
+        if (cvvInput.value.match(/^[0-9]{3}$/)) {
+          addressInput.focus()
+        }
+
     }
 
 
@@ -524,7 +530,7 @@ function CartPayment(props) {
           ''
         )}
         {paymentMethod !== '' && paymentMethod !== '信用卡' ? (
-          <div className="d-flex justify-content-center pt-3 pb-3 mb-5">
+          <div className="d-flex justify-content-center pt-3 pb-3 mb-5 btn-trans">
             <Button
               className="mt-2 mb-2 nextBtn"
               variant="outline-primary"
