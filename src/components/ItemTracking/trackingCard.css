@@ -3,17 +3,25 @@
     width: 200px;
     height: 350px; 
     margin: 10px;
+    background-color: white;
 }
 .track-photo{
     position: absolute;
     left: 0px;
     top: 0px;
+    width: 200px;
+    height: 250px;
+    overflow: hidden;
+}
+.track-photo:hover{
+    opacity: .9;
 }
 .track-card-body{
     position: absolute;
     bottom: 0px;
     left: 0px;
     padding: 10px;
+    background-color: white;
 }
 .trackingCard-item-name{
     max-width: 200px;
@@ -30,3 +38,15 @@
     right: 0;
     top: 0;
 } 
+
+
+@media  (max-width: 768px) {
+   .track-card{
+    position: relative;
+    width: 200px;
+    height: 350px; 
+    margin: 5px;
+    background-color: white;
+} 
+
+}

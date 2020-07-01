@@ -1,6 +1,12 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { Table, Container, Row, Col, Image, Button } from 'react-bootstrap'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import { toggleCartHidden } from "../../redux/cart/cartAction";
+
+import { connect } from "react-redux";
+import { selectCartItems, selectCourseCartItems } from "../../redux/cart/cartSelector";
+import { clearItem, clearCourseItem } from "../../redux/cart/cartAction";
+
 import { GrFormSubtract, GrFormAdd } from 'react-icons/gr'
 import { FaUndo } from 'react-icons/fa'
 import { BsFillPlayFill, BsX } from 'react-icons/bs'
@@ -9,88 +15,13 @@ import "../../styles/cart.scss"
 
 
 function CartToggle(props) {
-    const [mycart, setMycart] = useState([])
-    const [mycartDisplay, setMycartDisplay] = useState([])
   
-    const [myCourseCart, setMyCourseCart] = useState([])
-    const [myCourseCartDisplay, setMyCourseCartDisplay] = useState([])
-  
-    useEffect(() => {
-  
-      const initCart = localStorage.getItem('cart') || '[]'
-      const cartJson = JSON.parse(initCart)
-      const initCourseCart = localStorage.getItem('coursecart') || '[]'
-      const courseCartJson = JSON.parse(initCourseCart)
-  
-      setMycart(cartJson)
-      setMyCourseCart(courseCartJson)
-    }, [])
-  
-    useEffect(() => {
-      let newMycartDisplay = []
-  
-      console.log('mycart', mycart)
-  
-      for (let i = 0; i < mycart.length; i++) {
-        const index = newMycartDisplay.findIndex(
-          (value) => value.id === mycart[i].id
-        )
-  
-        if (index !== -1) {
-          newMycartDisplay[index].amount += mycart[i].amount
-        } else {
-          const newItem = { ...mycart[i] }
-          newMycartDisplay = [...newMycartDisplay, newItem]
-        }
-      }
-  
-      setMycartDisplay(newMycartDisplay)
-    }, [mycart])
-  
-    useEffect(() => {
-      let newMyCourseCartDisplay = []
-  
-      for (let i = 0; i < myCourseCart.length; i++) {
-        const index = newMyCourseCartDisplay.findIndex(
-          (value) => value.id === myCourseCart[i].id
-        )
-  
-        if (index !== -1) {
-          newMyCourseCartDisplay[index].amount += myCourseCart[i].amount
-        } else {
-          const newCourseItem = { ...myCourseCart[i] }
-          newMyCourseCartDisplay = [...newMyCourseCartDisplay, newCourseItem]
-        }
-      }
-  
-      setMyCourseCartDisplay(newMyCourseCartDisplay)
-    }, [myCourseCart])
-  
-    function removeCourseCartToLocalStorage(value) {
-        let foundObj = value
-        let filtered = myCourseCart.filter((el) => el.id != foundObj.id)
-        const newCart = filtered
-        localStorage.setItem('coursecart', JSON.stringify(newCart))
     
-        setMyCourseCart(newCart)
-      }
-    
-      function removeCartToLocalStorage(value) {
-        let foundObj = value
-        let filtered = mycart.filter((el) => el.id != foundObj.id)
-        const newCart = filtered
-        localStorage.setItem('cart', JSON.stringify(newCart))
-    
-        setMycart(newCart)
-      }
-    
-    
-
     return(
         <>
         <div className="trans-5s" style={{position: "relative",zIndex: "1001"}}>
             <div className="cartToggle-box">
-            {mycartDisplay.length > 0 ? (
+            {props.cartItems.length > 0 ? (
         <Container>
           <p>
             <BsFillPlayFill />
@@ -114,9 +45,9 @@ function CartToggle(props) {
                   </tr>
                 </thead>
               </Table>
-              {mycartDisplay.map((value) => (
-                  <Row className="mb-2">
-                    <div className="w-25 ml-3 mr-4">
+              {props.cartItems.map((value) => (
+                  <Row className="mb-2 d-flex align-items-center">
+                    <div className="ml-3">
                       <Image
                         width={50}
                         height={50}
@@ -124,26 +55,27 @@ function CartToggle(props) {
                         alt={value.img}
                       />
                       </div>
-                        <p className="cardPrice">
+                      <div className="d-flex align-items-center" style={{width: "72%", position: "relative"}}>
+                        <p className="ml-3">
                           ${value.price}
                         </p>
-                        <p className="cardNumber">
-                          {value.amount}
+                        <p className="ml-4 mr-2">
+                          {value.quantity}
                         </p>
-                        <p className="text-right cardTotal">
-                          ${value.price * value.amount}
+                        <p className="w-25 ml-4">
+                          ${value.price * value.quantity}
                         </p>
                         <p
-                          className="text-right cross"
+                          style={{position: "absolute", right: "-17px", top: "-3px", color: "red", fontSize: "20px"}}
                           onClick={() =>
-                            removeCartToLocalStorage({
+                            props.clearItem({
                               id: value.id,
                             })
                           }
                         >
                           <BsX type="button"></BsX>
                         </p>                    
-                    
+                    </div>
                   </Row>
               ))}
             </Col>
@@ -151,8 +83,8 @@ function CartToggle(props) {
           </Container>
             ) : "" }
 
-            {myCourseCartDisplay.length > 0 ? (
-        <Container className="mt-2">
+            {props.courseCartItems.length > 0 ? (
+        <Container className="mt-3">
           <p>
             <BsFillPlayFill />
             購買的課程
@@ -174,9 +106,9 @@ function CartToggle(props) {
                   </tr>
                 </thead>
               </Table>
-              {myCourseCartDisplay.map((value) => (
-                  <Row className="mb-2">
-                    <div className="w-25 ml-3 mr-4">
+              {props.courseCartItems.map((value) => (
+                  <Row className="mb-2 d-flex align-items-center">
+                    <div className="ml-3">
                       <Image
                         width={50}
                         height={50}
@@ -184,29 +116,27 @@ function CartToggle(props) {
                         alt={value.img}
                       />
                     </div>
-                        <p className="cardPrice">
+                    <div className="d-flex align-items-center" style={{width: "72%", position: "relative"}}>
+                        <p className="ml-3">
                           ${value.price}
                         </p>
-                        <p className="cardNumber">
-                          {value.amount}
+                        <p className="ml-4 mr-2">
+                          {value.quantity}
                         </p>
-                        <p className="text-right cardTotal">
-                          ${value.price * value.amount}
+                        <p className="ml-4 w-25">
+                          ${value.price * value.quantity}
                         </p>
                         <p
-                          className="text-right cross"
+                          style={{position: "absolute", right: "-20px", top: "-3px", color: "red", fontSize: "20px"}}
                           onClick={() =>
-                            removeCourseCartToLocalStorage({
-                              id: value.id,
-                              img: value.img,
-                              name: value.name,
-                              amount: 1,
-                              price: value.price,
+                            props.clearCourseItem({
+                              id: value.id
                             })
                           }
                         >
                           <BsX type="button"></BsX>
                         </p>
+                        </div>
                       </Row>
               ))}
             </Col>
@@ -214,7 +144,7 @@ function CartToggle(props) {
           </Container>
             ) : "" }
 
-            {mycartDisplay.length <= 0 && myCourseCartDisplay.length <= 0 ? (
+            {props.cartItems.length <= 0 && props.courseCartItems.length <= 0 ? (
         <div className="d-flex justify-content-center">
           <h4 className="cartMargin">購物車沒有東西</h4>
         </div>
@@ -222,14 +152,14 @@ function CartToggle(props) {
         ''
       )}
 
-      {mycartDisplay.length > 0 || myCourseCartDisplay.length > 0 ? (
+      {props.cartItems.length > 0 || props.courseCartItems.length > 0 ? (
         <Container>
           <Row className="d-flex justify-content-center pt-3 pb-3">
             <Button
               className="mt-2 cartToggle-btn"
               variant="outline-primary"
               onClick={() => {
-
+                  props.toggleCartHidden()
                   const path = props.history.location.pathname
                   if (path.includes('/mall'))
                     props.history.push('/mall/cart')
@@ -252,4 +182,18 @@ function CartToggle(props) {
 }
 
 
-export default withRouter(CartToggle)
+const mapStateToProps = state => ({
+  cartItems: selectCartItems(state),
+  courseCartItems: selectCourseCartItems(state)
+
+});
+
+const mapDispatchToProps = dispatch => ({
+  clearItem: item => dispatch(clearItem(item)),
+  clearCourseItem: item => dispatch(clearCourseItem(item)),
+  toggleCartHidden: () => dispatch(toggleCartHidden())
+
+});
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CartToggle));

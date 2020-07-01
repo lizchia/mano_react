@@ -25,3 +25,12 @@
     width: 100%;
     margin: 10px;
 }
+
+@media  (max-width: 768px) {
+    .track-title{
+        text-align: center;
+    }
+    .icon-display-none{
+        display: none;
+    }
+  }

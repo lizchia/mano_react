@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
+import { connect } from "react-redux";
+import { addItem } from "../redux/cart/cartAction";
+
 import Item from './Item'
 
 import SearchBar from '../components/courses/SearchBar'
@@ -10,8 +13,8 @@ import '../styles/Items-style.css'
 import { Modal, Button, Pagination } from 'react-bootstrap'
 
 class Items extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       data: [],
       totalPages: '',
@@ -33,27 +36,6 @@ class Items extends Component {
   handleWishClose = () => this.setState({ wishShow: false })
   handleWishShow = () => this.setState({ wishShow: true })
 
-  updateCartToLocalStorage = (value) => {
-    // 開啟載入指示
-    //setDataLoading(true)
-
-    const currentCart = JSON.parse(localStorage.getItem('cart')) || []
-
-    console.log('currentCart', currentCart)
-
-    const newCart = [...currentCart, value]
-    localStorage.setItem('cart', JSON.stringify(newCart))
-
-    console.log('newCart', newCart)
-    // 設定資料
-
-    this.setState({
-      mycart: newCart,
-      productName: value.name,
-    })
-    this.handleShow()
-    //alert('已成功加入購物車')
-  }
 
   insertWishListToDb = async (wishList) => {
     const request = new Request(`http://localhost:3002/itemTracking/add`, {
@@ -340,16 +322,22 @@ class Items extends Component {
               itemDescription={item.itemDescription}
               itemPrice={item.itemPrice}
               handleClick={() => {
-                this.updateCartToLocalStorage({
+                this.props.addItem({
                   id: item.itemId,
                   img: item.itemImg,
                   name: item.itemName,
-                  amount: 1,
                   price: item.itemPrice,
                   shippingId: item.shippingId,
                 })
+                this.setState({
+                  productName: item.itemName,
+                })
+                this.handleShow()
               }}
-              handleWishListClick={() => {
+              getWishData={async ()=> {
+                await this.getWishData(this.state.username)
+              }}
+              handleWishListClick={async () => {
 
               if(this.state.username === "") {
                 this.props.history.push("/mall/login")
@@ -363,7 +351,7 @@ class Items extends Component {
                 itemPrice: item.itemPrice,
               })
               this.setState({ productName: item.itemName })
-              this.getWishData(this.state.username)
+              await this.getWishData(this.state.username)
 
               }
               }}
@@ -415,4 +403,8 @@ class Items extends Component {
   }
 }
 
-export default withRouter(Items)
+const mapDispatchToProps = dispatch => ({
+  addItem: item => dispatch(addItem(item))
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(Items));

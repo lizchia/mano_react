@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { connect } from "react-redux";
+import { addItem } from "../../redux/cart/cartAction";
 
 import DetailBreadcrumb from '../../components/DetailBreadcrumb'
 import CategoryBar from '../../components/CategoryBar'
@@ -42,6 +44,9 @@ class ItemDetail extends Component {
       related3: [],
       amount: 1,
       width: window.innerWidth,
+      username: "",
+      wishData: [],
+
     }
   }
 
@@ -52,28 +57,7 @@ class ItemDetail extends Component {
   handleWishClose = () => this.setState({ wishShow: false })
   handleWishShow = () => this.setState({ wishShow: true })
 
-  updateCartToLocalStorage = (value) => {
-    // 開啟載入指示
-    //setDataLoading(true)
 
-    const currentCart = JSON.parse(localStorage.getItem('cart')) || []
-
-    // console.log('currentCart', currentCart)
-
-    const newCart = [...currentCart, value]
-    localStorage.setItem('cart', JSON.stringify(newCart))
-
-    // console.log('newCart', newCart)
-    // 設定資料
-
-    this.setState({
-      mycart: newCart,
-      productName: value.name,
-    })
-    this.handleShow()
-    //alert('已成功加入購物車')
-  }
-  //加入購物車 end
 
   insertWishListToDb = async (wishList) => {
     const request = new Request(`http://localhost:3002/itemTracking/add`, {
@@ -119,6 +103,17 @@ class ItemDetail extends Component {
     console.log(this.state.data)
     return this.state.data
   }
+
+  getWishData = async (username) => {
+    const response = await fetch(`http://localhost:3002/itemTracking/${username}`);
+    const json = await response.json();
+    const items = json.rows;
+
+    this.setState({wishData: items})
+    
+    return this.state.wishData
+}
+
 
   //單一商品
   getItemsDetail = async () => {
@@ -171,6 +166,10 @@ class ItemDetail extends Component {
 
     await this.getItemsData()
     await this.getItemsDetail()
+    const username = JSON.parse(localStorage.getItem('member')) || [{memberName: ""}]
+    this.getWishData(username[0].memberName)
+    this.setState({username: username[0].memberName})
+
   }
 
   render() {
@@ -403,15 +402,18 @@ class ItemDetail extends Component {
                             className="cart"
                             onClick={() => {
                               for (let i = 0; i < this.state.amount; i++) {
-                                this.updateCartToLocalStorage({
+                                this.props.addItem({
                                   id: this.state.single.itemId,
                                   img: this.state.single.itemImg,
                                   name: this.state.single.itemName,
-                                  amount: 1,
                                   price: this.state.single.itemPrice,
                                   shippingId: this.state.single.shippingId,
                                 })
                               }
+                              this.setState({
+                                  productName: this.state.single.itemName
+                                })
+                              this.handleShow()
                             }}
                           >
                             add to cart
@@ -424,18 +426,25 @@ class ItemDetail extends Component {
                           <Button
                             className="fav"
                             style={{ color: '#5E6248' }}
-                            onClick={() => {
-                              for (let i = 0; i < this.state.amount; i++) {
-                                this.insertWishListToDb({
-                                  id: this.state.single.itemId,
-                                  img: this.state.single.itemImg,
-                                  name: this.state.single.itemName,
-                                  amount: 1,
-                                  price: this.state.single.itemPrice,
-                                  shippingId: this.state.single.shippingId,
-                                })
+                            onMouseDown={async () => await this.getWishData(this.state.username)}
+                            onClick={async () => {
+                              // alert("alert")
+                              if(this.state.username === "") {
+                                this.props.history.push("/mall/login")
+                              }else if (this.state.wishData.find(x => x.itemId === this.state.single.itemId)){
+                                alert('already in wishlist')
+                
+                              }else {
+                              this.insertWishListToDb({ 
+                                username: this.state.username,
+                                itemId: this.state.single.itemId,
+                                itemPrice: this.state.single.itemPrice,
+                              })
+                              this.setState({ productName: this.state.single.itemName })        
                               }
-                            }}
+                              await this.getWishData(this.state.username)
+
+                              }}
                           >
                             add to favtorite
                           </Button>
@@ -598,4 +607,8 @@ class ItemDetail extends Component {
   }
 }
 
-export default withRouter(ItemDetail)
+const mapDispatchToProps = dispatch => ({
+  addItem: item => dispatch(addItem(item))
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(ItemDetail));

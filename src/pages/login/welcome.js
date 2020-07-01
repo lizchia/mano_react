@@ -26,7 +26,10 @@ function MyWelcome(props) {
   const logoutSuccessCallback = () => {
     //alert('登出成功，跳回上一頁')
     localStorage.removeItem('member')
-    props.history.push("/")
+    const path = props.history.location.pathname
+    if (path.includes('/mall'))
+      props.history.push('/mall/login')
+    else props.history.push('/life/login')
 
   }
 

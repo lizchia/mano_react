@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import {
   Table,
   Container,
@@ -10,8 +10,11 @@ import {
   Col,
 } from 'react-bootstrap'
 
+import { connect } from "react-redux";
+import { selectCartItems, selectCourseCartItems, selectOrderInfo } from "../../redux/cart/cartSelector";
+import { setOrderInfo, clearAll } from "../../redux/cart/cartAction";
+
 import { withRouter } from 'react-router-dom'
-import { func } from 'prop-types'
 import '../../styles/carPayment.scss'
 
 function CartPayment(props) {
@@ -30,6 +33,7 @@ function CartPayment(props) {
   const [shopDiscountUpdate, setShopDiscountUpdate] = useState('')
 
   const [paymentMethod, setPaymentMedthod] = useState('')
+  const [member, setMember] = useState([])
 
   function handleKeyPress(event) {
     let nameInput = document.getElementById('name'),
@@ -55,29 +59,26 @@ function CartPayment(props) {
     if (cvvInput.value.match(/^[0-9]{3}$/)) {
       addressInput.focus()
     }
+
+
   }
 
   useEffect(() => {
     props.changeBackgroundColorLight()
 
-    const finalCart = JSON.parse(localStorage.getItem('finalCart'))
-    const finalCourseCart = JSON.parse(localStorage.getItem('finalCourseCart'))
 
-    const discount = localStorage.getItem('discount')
-    const shipTotal = localStorage.getItem('shipTotal')
-    const total = localStorage.getItem('total')
     const member = JSON.parse(localStorage.getItem('member'))
-    const note = localStorage.getItem('note') || ''
+    setMember(member)
 
     const relCourseCouponId = localStorage.getItem('relCourseCouponId')
     const relShopCouponId = localStorage.getItem('relShopCouponId')
 
-    if (relCourseCouponId)
+    if (relCourseCouponId !== 0)
       setCourseDiscountUpdate({
         relCouponId: Number(relCourseCouponId),
       })
 
-    if (relShopCouponId)
+    if (relShopCouponId !== 0)
       setShopDiscountUpdate({
         relCouponId: Number(relShopCouponId),
       })
@@ -90,33 +91,33 @@ function CartPayment(props) {
       shipCity: member[0].paymentCity,
       shipDistrict: member[0].paymentDistrict,
       shipAddress: member[0].shipAddress,
-      shiptotalMoney: Number(shipTotal),
-      shopDiscount: Number(discount),
-      totalPrice: Number(total),
+      shiptotalMoney: Number(props.orderInfo.shipTotal),
+      shopDiscount: Number(props.orderInfo.discount),
+      totalPrice: Number(props.orderInfo.total),
       paymentStatus: '已付款',
       shipStatus: '未出貨',
-      note: note,
+      note: props.orderInfo.note,
     })
 
     let newOrderList = []
 
-    for (let i = 0; i < finalCart.length; i++) {
+    for (let i = 0; i < props.cartItems.length; i++) {
       newOrderList.push({
-        itemId: finalCart[i].id,
-        itemName: finalCart[i].name,
-        checkPrice: finalCart[i].price,
-        checkQuantity: finalCart[i].amount,
-        checkSubtotal: finalCart[i].price * finalCart[i].amount,
+        itemId: props.cartItems[i].id,
+        itemName: props.cartItems[i].name,
+        checkPrice: props.cartItems[i].price,
+        checkQuantity: props.cartItems[i].quantity,
+        checkSubtotal: props.cartItems[i].price * props.cartItems[i].quantity,
       })
     }
 
-    for (let i = 0; i < finalCourseCart.length; i++) {
+    for (let i = 0; i < props.courseCartItems.length; i++) {
       newOrderList.push({
-        courseId: finalCourseCart[i].id,
-        courseName: finalCourseCart[i].name,
-        checkPrice: finalCourseCart[i].price,
-        checkQuantity: finalCourseCart[i].amount,
-        checkSubtotal: finalCourseCart[i].price * finalCourseCart[i].amount,
+        courseId: props.courseCartItems[i].id,
+        courseName: props.courseCartItems[i].name,
+        checkPrice: props.courseCartItems[i].price,
+        checkQuantity: props.courseCartItems[i].quantity,
+        checkSubtotal: props.courseCartItems[i].price * props.courseCartItems[i].quantity,
       })
     }
 
@@ -198,8 +199,8 @@ function CartPayment(props) {
   }
 
   async function insertOrderPaymentToSever(item, item2, item3) {
-    const member = JSON.parse(localStorage.getItem('member'))
-    const email = member[0].email
+    let email = ""
+    if (member.length > 0) email = member[0].email
 
     const request = new Request(
       'http://localhost:3002/order/insertOrderPaymentAndSendMail',
@@ -225,8 +226,8 @@ function CartPayment(props) {
   }
 
   async function insertOrderToSever(item, item2) {
-    const member = JSON.parse(localStorage.getItem('member'))
-    const email = member[0].email
+    let email = ""
+    if (member.length > 0) email = member[0].email
 
     const request = new Request(
       'http://localhost:3002/order/insertOrderAndSendMail',
@@ -338,6 +339,7 @@ function CartPayment(props) {
                 } else {
                   setOrder({
                     ...order,
+                    paymentStatus: '已付款',
                     paymentMethod: event.target.value,
                   })
                 }
@@ -510,17 +512,7 @@ function CartPayment(props) {
                       props.history.push('/mall/cart/complete')
                     else props.history.push('/life/cart/complete')
 
-                    localStorage.removeItem('shipTotal')
-                    localStorage.removeItem('discount')
-                    localStorage.removeItem('finalCourseCart')
-                    localStorage.removeItem('shopTotal')
-                    localStorage.removeItem('total')
-                    localStorage.removeItem('coursecart')
-                    localStorage.removeItem('cart')
-                    localStorage.removeItem('finalCart')
-                    localStorage.removeItem('courseTotal')
-                    localStorage.removeItem('relCourseCouponId')
-                    localStorage.removeItem('relShopCouponId')
+                    props.clearAll()
                   }
                 }}
               >
@@ -552,17 +544,8 @@ function CartPayment(props) {
                   props.history.push('/mall/cart/complete')
                 else props.history.push('/life/cart/complete')
 
-                localStorage.removeItem('shipTotal')
-                localStorage.removeItem('discount')
-                localStorage.removeItem('finalCourseCart')
-                localStorage.removeItem('shopTotal')
-                localStorage.removeItem('total')
-                localStorage.removeItem('coursecart')
-                localStorage.removeItem('cart')
-                localStorage.removeItem('finalCart')
-                localStorage.removeItem('courseTotal')
-                localStorage.removeItem('relCourseCouponId')
-                localStorage.removeItem('relShopCouponId')
+                props.clearAll()
+
               }}
             >
               前往付款
@@ -576,4 +559,16 @@ function CartPayment(props) {
   )
 }
 
-export default withRouter(CartPayment)
+const mapStateToProps = state => ({
+  cartItems: selectCartItems(state),
+  courseCartItems: selectCourseCartItems(state),
+  orderInfo: selectOrderInfo(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  setOrderInfo: item => dispatch(setOrderInfo(item)),
+  clearAll: () => dispatch(clearAll())
+});
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CartPayment));

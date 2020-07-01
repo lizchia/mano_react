@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
 import BurderBar from "./burgerBar";
+
+import { connect } from "react-redux";
+import { selectCartHidden } from "../redux/cart/cartSelector";
+import { toggleCartHidden } from "../redux/cart/cartAction";
+import CartToggle from "./Cart/CartToggle"
+
 import { Navbar, Nav, Form, FormControl, Button, Image } from 'react-bootstrap'
 import { Link, NavLink, withRouter } from 'react-router-dom'
 
@@ -47,35 +53,39 @@ function SmallNav (props) {
             )}
 
 
-            <Nav.Link as={NavLink} to={locationPathname.includes("/mall") ? "/mall/cart" : "/life/cart"} style={{width: "32px" }}>
-                    {locationPathname === "/membercenter" ? (
-                      <MdShoppingCart className="cWhite hover-op" style={{fontSize: "24px" }} />
-                    ) : (
-                      <MdShoppingCart className="cGreen hover-op" style={{fontSize: "24px" }} />
-                    )}
-            </Nav.Link>
-            <Nav.Link className="mr-2" as={NavLink} to={member[0].memberName !== '' ? "/mall/ItemTracking" : "/mall/login"} style={{paddingRight: "0" }}>
+            <Nav.Link as={NavLink} to={member[0].memberName !== '' ? "/mall/ItemTracking" : "/mall/login"} style={{paddingRight: "0" }}>
             {locationPathname === "/membercenter" ? (
               <GoHeart className="cWhite hover-op" style={{fontSize: "24px" }} />
             ):(
               <GoHeart className="cGreen hover-op" style={{fontSize: "24px" }} />
             )}
             </Nav.Link>  
+            <Nav.Link style={{width: "32px" }} onClick={()=> props.toggleCartHidden()}>
+                    {locationPathname === "/membercenter" ? (
+                      <MdShoppingCart className="cWhite hover-op" style={{fontSize: "24px" }} />
+                    ) : (
+                      <MdShoppingCart className="cGreen hover-op" style={{fontSize: "24px" }} />
+                    )}
+            </Nav.Link>
+            {props.hidden ? "" : (<CartToggle />)}
+
             {member[0].memberName !== '' ? (
                 <>
                 {locationPathname === "/membercenter" ? (
-                    <Nav.Link className="hover-op" as={NavLink} to={locationPathname.includes("/mall") ? "/mall/welcome" : "/life/welcome"} style={{width: "42px", paddingLeft: "0", paddingRight: "0", fontWeight: "400", opacity: "0.7", color: "#FFFFFF" }}>
+                    <Nav.Link className="hover-op ml-1" as={NavLink} to={locationPathname.includes("/mall") ? "/mall/welcome" : "/life/welcome"} style={{width: "40px", paddingLeft: "4px", paddingRight: "0", fontWeight: "400", opacity: "0.7", color: "#FFFFFF" }}>
                         登出
                     </Nav.Link>
                 ) : (
                     <>
-                <Nav.Link className="hover-op" as={NavLink} to={locationPathname.includes("/mall") ? "/mall/welcome" : "/life/welcome"} style={{width: "42px", paddingLeft: "0", paddingRight: "0", fontWeight: "600", opacity: "0.7"}}>
+                <Nav.Link className="hover-op ml-1" as={NavLink} to={locationPathname.includes("/mall") ? "/mall/welcome" : "/life/welcome"} style={{width: "40px", paddingLeft: "4px", paddingRight: "0", fontWeight: "600", opacity: "0.7"}}>
                         登出
                 </Nav.Link>
                 </>
                 )}
                 </>
             ) : "" }
+
+            
         </Form>
         </Nav>       
       </Navbar>
@@ -108,4 +118,15 @@ function SmallNav (props) {
     )
 }
 
-export default withRouter(SmallNav)
+const mapStateToProps = state => ({
+  hidden: selectCartHidden(state)
+
+});
+
+const mapDispatchToProps = dispatch => ({
+  toggleCartHidden: () => dispatch(toggleCartHidden())
+
+});
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SmallNav));

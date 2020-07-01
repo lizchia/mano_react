@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import $ from 'jquery'
+import { connect } from "react-redux";
+import { addCourseItem } from "../../redux/cart/cartAction";
 
 import {
   Modal,
@@ -59,28 +60,6 @@ class CourseDetail extends Component {
   handleClose = () => this.setState({ show: false })
   handleShow = () => this.setState({ show: true })
 
-  updateCartToLocalStorage = (value) => {
-    // 開啟載入指示
-    //setDataLoading(true)
-
-    const currentCart = JSON.parse(localStorage.getItem('coursecart')) || []
-
-    // console.log('currentCart', currentCart)
-
-    const newCart = [...currentCart, value]
-    localStorage.setItem('coursecart', JSON.stringify(newCart))
-
-    // console.log('newCart', newCart)
-    // 設定資料
-
-    this.setState({
-      mycart: newCart,
-      productName: value.name,
-    })
-    this.handleShow()
-    //alert('已成功加入購物車')
-  }
-  //加入購物車 end
 
   //單一商品
   getItemsDetail = async () => {
@@ -248,15 +227,18 @@ class CourseDetail extends Component {
                           className="course-add-cart course-btn"
                           id="btns1"
                           onClick={() => {
-                            for (let i = 0; i < this.state.amount; i++) {
-                              this.updateCartToLocalStorage({
+                            for(let i=0; i < this.state.amount; i++){
+                              this.props.addCourseItem({
                                 id: this.state.single.courseId,
                                 img: this.state.single.courseImg,
                                 name: this.state.single.courseName,
-                                amount: 1,
                                 price: this.state.single.coursePrice,
+                              })}
+                              this.setState({
+                                productName: this.state.single.courseName,
                               })
-                            }
+                              this.handleShow()
+
                           }}
                         >
                           add to cart
@@ -364,4 +346,8 @@ class CourseDetail extends Component {
   }
 }
 
-export default withRouter(CourseDetail)
+const mapDispatchToProps = dispatch => ({
+  addCourseItem: item => dispatch(addCourseItem(item))
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(CourseDetail));

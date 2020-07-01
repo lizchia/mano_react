@@ -167,3 +167,11 @@
 .cartMargin {
   margin: 150px auto;
 }
+
+.cart-img-hover {
+    transition: .4s;
+    cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
+}

@@ -445,9 +445,9 @@ function App(props) {
             </Route>
 
             <Route exact path="/404">
-              <NotFoundPage />
+              <NotFoundPage changeBackgroundColorWhite={changeBackgroundColorWhite}/>
             </Route>
-            {/* <Redirect to="/404" /> */}
+            <Redirect to="/404" />
           </Switch>
         </MainContent>
         <MyFooter />

@@ -49,6 +49,7 @@ function Item(props) {
             </button>
             <button
               className="add-fav cardLink"
+              onMouseDown={props.getWishData}
               onClick={props.handleWishListClick}
             >
               add to favtorite

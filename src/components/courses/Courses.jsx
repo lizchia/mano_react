@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Modal, Button, Pagination } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
+import { connect } from "react-redux";
+import { addCourseItem } from "../../redux/cart/cartAction";
+
 import Course from '../Course/Course'
 import './courses-style.css'
 import SearchBar from './SearchBar'
@@ -32,28 +35,6 @@ class Courses extends Component {
   handleClose = () => this.setState({ show: false })
   handleShow = () => this.setState({ show: true })
 
-  updateCartToLocalStorage = (value) => {
-    // 開啟載入指示
-    //setDataLoading(true)
-
-    const currentCart = JSON.parse(localStorage.getItem('coursecart')) || []
-
-    // console.log('currentCart', currentCart)
-
-    const newCart = [...currentCart, value]
-    localStorage.setItem('coursecart', JSON.stringify(newCart))
-
-    // console.log('newCart', newCart)
-    // 設定資料
-
-    this.setState({
-      mycart: newCart,
-      productName: value.name,
-    })
-    this.handleShow()
-    //alert('已成功加入購物車')
-  }
-  //加入購物車 end
 
   //fetch 種類
   getCatData = async (categoryParentId) => {
@@ -352,13 +333,18 @@ class Courses extends Component {
               coursePrice={course.coursePrice}
               courseQty={course.courseQty}
               handleClick={() => {
-                this.updateCartToLocalStorage({
+                this.props.addCourseItem({
                   id: course.courseId,
                   img: course.courseImg,
                   name: course.courseName,
-                  amount: 1,
                   price: course.coursePrice,
                 })
+
+                this.setState({
+                  productName: course.courseName,
+                })
+                this.handleShow()
+
               }}
               // getDetail={this.getItemsDetail}
             />
@@ -389,4 +375,8 @@ class Courses extends Component {
     )
   }
 }
-export default withRouter(Courses)
+const mapDispatchToProps = dispatch => ({
+  addCourseItem: item => dispatch(addCourseItem(item))
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(Courses));

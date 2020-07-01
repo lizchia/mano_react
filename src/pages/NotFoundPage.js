@@ -1,11 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 // import MyBanner from '../components/MyBanner'
 import { Image } from 'react-bootstrap'
 import ErrDown from '../components/ErrDown.svg'
 import ErrUp from '../components/ErrUp.svg'
 
-function NotFoundPage() {
+function NotFoundPage(props) {
+
+  useEffect(()=> {
+    props.changeBackgroundColorWhite()
+  },[])
   return (
     <>
       {/* <MyBanner title="找不到網頁" lead="找不到網頁頁面" /> */}
@@ -14,7 +18,7 @@ function NotFoundPage() {
           <div className="row">
             <div
               className="col-2"
-              style={{ margin: '50px auto', marginBottom: '20px' }}
+              style={{ margin: '80px auto', marginBottom: '20px' }}
             >
               <Image src={ErrDown} className="down" />
             </div>

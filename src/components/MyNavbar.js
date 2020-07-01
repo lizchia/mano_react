@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Navbar, Nav, Form, FormControl, Button, Image } from 'react-bootstrap'
 import { Link, NavLink, withRouter } from 'react-router-dom'
-import { MdShoppingCart, MdKeyboardArrowRight } from 'react-icons/md'
-import { GoHeart } from "react-icons/go"
+
+import { connect } from "react-redux";
+import { selectCartHidden } from "../redux/cart/cartSelector";
+import { toggleCartHidden } from "../redux/cart/cartAction";
 import CartToggle from "./Cart/CartToggle"
+
+
+import { MdShoppingCart } from 'react-icons/md'
+import { GoHeart } from "react-icons/go"
 import "../styles/nav.scss"
  
 function MyNavbar(props) {
@@ -141,13 +147,14 @@ function MyNavbar(props) {
             )}
 
 
-            <Nav.Link as={NavLink} to="/mall/cart" style={{width: "32px" }}>
+            <Nav.Link style={{width: "32px" }} onClick={()=> props.toggleCartHidden()}>
                     {locationPathname === "/membercenter" ? (
-                      <MdShoppingCart className="cWhite hover-op" style={{fontSize: "24px" }} />
+                      <MdShoppingCart className="cWhite hover-op" style={{fontSize: "24px" }} /> 
                     ) : (
                       <MdShoppingCart className="cGreen hover-op" style={{fontSize: "24px" }} />
                     )}
             </Nav.Link>
+            {props.hidden ? "" : (<CartToggle />)}
             <Nav.Link className="mr-2" as={NavLink} to={member[0].memberName !== '' ? "/mall/ItemTracking" : "/mall/login"}>
             {locationPathname === "/membercenter" ? (
               <GoHeart className="cWhite hover-op" style={{fontSize: "24px" }} />
@@ -247,20 +254,21 @@ function MyNavbar(props) {
             )}
 
 
-            <Nav.Link className="mr-2" as={NavLink} to="/life/cart" style={{width: "32px" }}>
+            <Nav.Link style={{width: "32px" }} onClick={()=> props.toggleCartHidden()}>
                     {locationPathname === "/membercenter" ? (
                       <MdShoppingCart className="cWhite hover-op" style={{fontSize: "24px" }} />
                     ) : (
                       <MdShoppingCart className="cGreen hover-op" style={{fontSize: "24px" }} />
                     )}
             </Nav.Link>
-            {/* <Nav.Link as={NavLink} to="/mall/ItemTracking">
+            {props.hidden ? "" : (<CartToggle />)}
+            <Nav.Link as={NavLink} to={member[0].memberName !== '' ? "/mall/ItemTracking" : "/mall/login"}>
             {locationPathname === "/membercenter" ? (
               <GoHeart className="cWhite hover-op" style={{fontSize: "24px" }} />
             ):(
               <GoHeart className="cGreen hover-op" style={{fontSize: "24px" }} />
             )}
-            </Nav.Link>   */}
+            </Nav.Link>  
         </Form>
         </Nav>
       </Navbar>
@@ -324,8 +332,7 @@ function MyNavbar(props) {
     displayNav = cartNav
   else if (
     path === '/change' ||
-    path === '/' ||
-    path === '/404'
+    path === '/' 
   )
     displayNav = ''
   else if (
@@ -338,4 +345,15 @@ function MyNavbar(props) {
   return <>{displayNav}</>
 }
 
-export default withRouter(MyNavbar)
+const mapStateToProps = state => ({
+  hidden: selectCartHidden(state)
+
+});
+
+const mapDispatchToProps = dispatch => ({
+  toggleCartHidden: () => dispatch(toggleCartHidden())
+
+});
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyNavbar));
