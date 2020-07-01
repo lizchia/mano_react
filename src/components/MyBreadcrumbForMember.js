@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import { Form, FormControl, Button, Container, Col, Row } from 'react-bootstrap'
 
 function MyBreadcrumb(props) {
+  const { handleChangeSearch, handleClickSearch, searchTerm } = props
   const pathlist = [
     '/',
     '/membercenter',

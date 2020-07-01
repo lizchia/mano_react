@@ -29,7 +29,6 @@ function Cart(props) {
   const [relCourseCouponId, setRelCourseCouponId] = useState(0)
   const [relShopCouponId, setRelShopCouponId] = useState(0)
 
-
   async function getShopCouponData(memberId) {
     const request = new Request(
       `http://localhost:3002/order/shopCoupon/${memberId}`,
@@ -124,7 +123,7 @@ function Cart(props) {
             {finalCart.map((value) => (
               <Container className="mb-3">
                 <Row>
-                  <Col xs={2}>
+                  <Col xs={4} md={2}>
                     <Image
                       width={64}
                       height={64}
@@ -134,7 +133,8 @@ function Cart(props) {
                     />
                   </Col>
                   <Col
-                    xs={10}
+                    xs={8}
+                    md={10}
                     className="d-flex align-items-center cfproductCard"
                   >
                     <p className="w-25 cfproductName">{value.name}</p>
@@ -182,7 +182,12 @@ function Cart(props) {
             <Row className="d-flex discount">
               <Col xs={7} className="item-content-left m-4 pt-4 discountLeft">
                 {shopCoupon.length > 0 ? (
-                  <Table variant="success" bordered hover>
+                  <Table
+                    variant="success"
+                    bordered
+                    hover
+                    className="discountTable"
+                  >
                     <thead>
                       <tr>
                         <th></th>
@@ -233,7 +238,8 @@ function Cart(props) {
                 )}
               </Col>
               <Col
-                xs={4}
+                xs={12}
+                md={4}
                 className="d-flex fd-col text-right p-5 discountRight"
               >
                 <p className="">商品總金額：${shopTotal}</p>
@@ -272,7 +278,7 @@ function Cart(props) {
             {finalCourseCart.map((value) => (
               <Container className="mb-3">
                 <Row>
-                  <Col xs={2}>
+                  <Col xs={4} md={2}>
                     <Image
                       width={64}
                       height={64}
@@ -282,7 +288,8 @@ function Cart(props) {
                     />
                   </Col>
                   <Col
-                    xs={10}
+                    xs={8}
+                    md={10}
                     className="d-flex align-items-center cfproductCard"
                   >
                     <p className="w-25 cfproductName">{value.name}</p>
@@ -299,7 +306,12 @@ function Cart(props) {
             <Row className="d-flex discount1">
               <Col xs={7} className="item-content-left m-4 pt-4 discountLeft">
                 {courseCoupon.length > 0 ? (
-                  <Table variant="success" bordered hover>
+                  <Table
+                    variant="success"
+                    bordered
+                    hover
+                    className="discountTable"
+                  >
                     <thead>
                       <tr>
                         <th></th>
@@ -316,7 +328,7 @@ function Cart(props) {
                         }}
                       >
                         <td>
-                          <input name="courseradio" type="radio"/>
+                          <input name="courseradio" type="radio" />
                         </td>
                         <td colSpan="3">本次消費暫不使用優惠卷</td>
                       </tr>
@@ -350,7 +362,8 @@ function Cart(props) {
                 )}
               </Col>
               <Col
-                xs={4}
+                xs={12}
+                md={4}
                 className="d-flex fd-col text-right p-5 discountRight"
               >
                 <p className="">課程總金額：${courseTotal}</p>
@@ -370,8 +383,7 @@ function Cart(props) {
         )}
 
         <Row className="mr-5">
-          <Col className="w-25">
-          </Col>
+          <Col className="w-25"></Col>
           <Col className="text-right">
             <p className="orderTotal">
               訂單總金額：$

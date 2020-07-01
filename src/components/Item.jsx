@@ -38,7 +38,7 @@ function Item(props) {
             <h2 className="name">{props.itemName}</h2>
             商品介紹 : {props.itemDescription}
           </div>
-          <div className="item-price">$ {props.itemPrice}</div>
+          <div className="item-price">${props.itemPrice}</div>
           <div className="add-btn">
             <button
               className="item-add-cart cardLink btn-left"

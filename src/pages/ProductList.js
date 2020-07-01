@@ -6,20 +6,27 @@ import CategoryBar from '../components/CategoryBar'
 import '../components/courses/courses-style.css'
 
 import bgSvg from '../components/bg-pattern.svg'
-import ProductListBg from './ProductListBg'
 import { func } from 'prop-types'
 
 function ProductList(props) {
-
-  useEffect(()=> {
+  useEffect(() => {
     props.changeBackgroundColorLight()
-  },[])
+  }, [])
 
   return (
     <>
-      <div style={{ backgroundImage: `url(${bgSvg})` }} className="bgSvg">
-        <ProductListBg />
-      </div>
+      <div
+        style={{
+          background: 'url(/bg-pattern.svg) repeat',
+          position: ' fixed',
+          left: '0',
+          top: '0',
+          width: '30vw',
+          height: '100vh',
+          opacity: '0.2',
+          zIndex: '-1',
+        }}
+      ></div>
       <Container className="d-flex justify-content-center mt-5">
         <CategoryBar className="w-25" />
         <Items />

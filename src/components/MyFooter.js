@@ -21,10 +21,21 @@ function MyFooter(props) {
   const cssImg = {
     transform: '90',
   }
-
+  const showTextColor = props.history.location.pathname.includes(
+    '/membercenter'
+  )
+    ? {
+      color: '#929684',
+    }
+    : {
+      color: '#5C6447',
+    }
+    const bgchangecolor = props.history.location.pathname.includes(
+      '/membercenter'
+    )?"footer-dark":"footer"
   const footer = (
     <>
-      <footer className="footer mt-auto py-3 text-center ">
+      <footer className={` mt-auto py-3 text-center ${bgchangecolor}`} >
         <div className="container mb-2">
           {/* <h3> 最新活動 </h3>
           <div className="d-flex row" style={{ backgroundColor: '#D4AE5C' }}>
@@ -47,7 +58,7 @@ function MyFooter(props) {
           <div className="d-flex row" style={cssSocial}>
             <div className="col-lg align-self-center">
               <a
-                style={{ color: '#5C6447' }}
+                style={showTextColor}
                 href={
                   props.history.location.pathname.includes('/mall')
                     ? '/mall/about'
@@ -58,7 +69,7 @@ function MyFooter(props) {
               </a>
               <br />
               <a
-                style={{ color: '#5C6447' }}
+                style={showTextColor}
                 href={
                   props.history.location.pathname.includes('/mall')
                     ? '/mall/faq'
@@ -69,7 +80,7 @@ function MyFooter(props) {
               </a>
               <br />
               <a
-                style={{ color: '#5C6447' }}
+                style={showTextColor}
                 href={
                   props.history.location.pathname.includes('/mall')
                     ? '/mall/membercenter'
@@ -91,16 +102,16 @@ function MyFooter(props) {
               </a>
             </div>
             <div className="col-lg align-self-center">
-              <a style={{ color: '#5C6447' }} href="/mall">
+              <a style={showTextColor} href="/mall">
                 Shop
               </a>
               <br />
-              <a style={{ color: '#5C6447' }} href="/life">
+              <a style={showTextColor} href="/life">
                 Life Style
               </a>
               <br />
               <a
-                style={{ color: '#5C6447' }}
+                style={showTextColor}
                 href={
                   props.history.location.pathname.includes('/mall')
                     ? '/mall/contact'
@@ -111,7 +122,7 @@ function MyFooter(props) {
               </a>
             </div>
           </div>
-          <span className="text-muted" style={{ fontSize: '10pt' }}>
+          <span className="" style={Object.assign({ fontSize: '10pt' },showTextColor)}>
             2020 © MANO copyright
           </span>
         </div>
@@ -125,14 +136,9 @@ function MyFooter(props) {
   if (
     path === '/mall/login' ||
     path === '/mall/welcome' ||
-    path === '/mall/forgetpwd' ||
-    path === '/mall/register' ||
     path === '/' ||
-    path === '/404' ||
     path === '/life/welcome' ||
-    path === '/life/login' ||
-    path === '/life/forgetpwd' ||
-    path === '/life/register'
+    path === 'life/login'
   )
     displayFooter = ''
   else displayFooter = footer

@@ -1,3 +1,44 @@
+@media (max-width: 768px) {
+  .cfproductName {
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+  }
+  .shipping {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .cfcardTotal {
+    left: -5px !important;
+  }
+  .cfcardPrice {
+    left: -35px !important;
+  }
+  .cfcardNumber {
+    left: -15px !important;
+  }
+  .cfproductName {
+    position: relative !important;
+    left: -20px !important;
+  }
+  .orderTotal {
+    width: 200px !important;
+  }
+  .discountTable {
+    position: relative !important;
+    left: -15px !important;
+    top: 0 !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .cfproductName {
+    left: -35px !important;
+  }
+  .cfcardPrice {
+    left: -25px !important;
+  }
+}
 .cfthDetail {
   position: relative;
 }

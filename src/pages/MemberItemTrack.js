@@ -15,7 +15,7 @@ function MemberItemtrack(props) {
     <>
     <MyBreadcrumb />
       <MemberSideLink>
-        <Col md={10}>
+        <Col md={10} className="mb-5">
         <ItemTracking changeBackgroundColorLight={changeBackgroundColorLight}/>
         </Col>
       </MemberSideLink>

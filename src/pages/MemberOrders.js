@@ -24,6 +24,23 @@ function MemberOrders(props) {
   const [coursedetail, setCoursedetail] = useState([])
   const [detailshow, setDetailshow] = useState(false)
   const [orderindex, setOrderindex] = useState(0)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [searchResults, setSearchResults] = useState([])
+  const handleChangeSearch = (event) => {
+    setSearchTerm(event.target.value)
+  }
+  const handleClickSearch = (searchTerm) => {
+    const results = searchResults.filter((oneorder) =>
+      JSON.stringify(oneorder).includes(searchTerm)
+    )
+    results.length === 0 ? console.log('沒有資料', results) : setOrder(results)
+    const finalpage = Math.ceil(results.length / 5)
+    const arr = []
+    for (let i = 1; i <= finalpage; i++) {
+      arr.push(i)
+    }
+    setPagearr(arr)
+  }
 
   const active = { borderBottom: '2px solid #C5895A' }
   const localMember = JSON.parse(localStorage.getItem('member')) || [
@@ -47,6 +64,7 @@ function MemberOrders(props) {
     console.log('主要的資料', data)
     // 設定資料
     setOrder(data)
+    setSearchResults(data)
   }
   async function getPageData(memberId) {
     const request = new Request(
@@ -190,11 +208,25 @@ function MemberOrders(props) {
 
   return (
     <>
-      <MyBreadcrumb />
+      <MyBreadcrumb
+        searchTerm={searchTerm}
+        handleChangeSearch={handleChangeSearch}
+        handleClickSearch={handleClickSearch}
+      />
 
       <MemberSideLink>
         {/* <Table id="maintable" className="d-none"></Table> */}
-        <Col md={10} xs={12} style={{ background: 'white', padding: '0' }}>
+        <Col
+          md={10}
+          xs={12}
+          className="mb-5"
+          style={{
+            background: 'white',
+            padding: '0',
+            borderRadius: '5px',
+            overflow: 'hidden',
+          }}
+        >
           <div
             style={{
               width: '100%',

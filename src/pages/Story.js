@@ -91,6 +91,7 @@ function Story(props) {
   }
   // 一開始就會開始載入資料
   useEffect(() => {
+    props.changeBackgroundColorLight()
     getComFromServer()
     const member = JSON.parse(localStorage.getItem('member')) || [
       { memberName: '', memberId: '' },

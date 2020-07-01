@@ -76,17 +76,17 @@ h3{
     width: 90vw;
     margin: 0 auto;
 }
-.card-field{
+.card-field2{
     width: 608px;
 }
 
 .card-horizon{
-    width: 578px;
+    width: 606px;
     height: 299px;
     position: relative;
     border-radius: 20px;
     overflow: hidden;
-    margin: 15px;
+    margin: 10px;
 
 }
 .c-h-button{
@@ -111,8 +111,7 @@ h3{
     position: relative;
     border-radius: 20px;
     overflow: hidden;
-
-    margin: 15px;
+    margin: 10px;
 }
 .c-v-button{
     width: 132px;

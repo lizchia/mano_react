@@ -129,6 +129,10 @@ function Marketing(props) {
         <ToastsContainer store={ToastsStore} lightBackground />
         <div style={{ height: '250px' }}></div>
       </div>
+
+      <ToastsContainer store={ToastsStore} lightBackground />
+      <div style={{ height: '250px' }}></div>
+
       <hr />
       <NewSite />
     </>

@@ -42,6 +42,8 @@ import MyRegister from './pages/login/register'
 import MyForgetPwd from './pages/login/forgetPwd'
 import Faq from './pages/Faq'
 
+import SmallNav from "./components/SmallNav"
+
 import WithSpinner from "./utils/WithSpinner/WithSpinner"
 import ProtectedRoute from './utils/ProtectedRoute'
 var sha1 = require('sha1');
@@ -64,6 +66,17 @@ function App(props) {
   // 錯誤訊息陣列
   const [loginErrors, setLoginErrors] = useState([])
 
+  const [width, setWidth] = useState(window.innerWidth)
+
+
+  useEffect(()=>{
+
+    window.addEventListener("resize", ()=>{
+      let width = window.innerWidth;
+      setWidth(width)
+    })
+
+  },[])
 
   //更改背景顏色
   function changeBackgroundColorLight(){
@@ -165,7 +178,11 @@ function App(props) {
   return (
     <Router>
       <>
-        <MyNavbar />
+        {width <= 900 ? (
+          <SmallNav style={{zIndex: "10"}} />
+        ) : (
+          <MyNavbar style={{zIndex: "10"}} />
+        )}
         <MainContent>
           <Switch>
             <Route path="/life" exact>
@@ -263,7 +280,7 @@ function App(props) {
 
             <Route exact path="/life/marketing">
               <Marketing 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              changeBackgroundColorWhite={changeBackgroundColorWhite}/>
             </Route>
             <Route exact path="/life/comment">
               <Comment 
@@ -404,10 +421,6 @@ function App(props) {
               <Faq 
               changeBackgroundColorLight={changeBackgroundColorLight}/>
             </Route>
-
-
-
-
             <Route exact path="/">
               <Home 
               changeBackgroundColorWhite={changeBackgroundColorWhite}/>
@@ -415,7 +428,7 @@ function App(props) {
             <Route exact path="/404">
               <NotFoundPage />
             </Route>
-            <Redirect to="/404" />
+            {/* <Redirect to="/404" /> */}
           </Switch>
         </MainContent>
         <MyFooter />

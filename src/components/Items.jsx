@@ -6,7 +6,8 @@ import Item from './Item'
 import SearchBar from '../components/courses/SearchBar'
 import MyBreadcrumb from './MyBreadcrumb'
 
-import { Modal, Button } from 'react-bootstrap'
+import '../styles/Items-style.css'
+import { Modal, Button, Pagination } from 'react-bootstrap'
 
 class Items extends Component {
   constructor() {
@@ -131,12 +132,12 @@ class Items extends Component {
     await this.getItemsData()
   }
 
-  handleChange = async (event) => {
+  handleChange = async (value) => {
     let params = new URLSearchParams(this.props.location.search)
     let catIdParams = params.get('categoryId')
 
     await this.setState({
-      page: event.target.value,
+      page: value,
     })
 
     localStorage.setItem('page', this.state.page)
@@ -173,35 +174,97 @@ class Items extends Component {
   }
 
   render() {
-    const lists = []
+    const lists1 = []
 
-    for (let i = 1; i <= this.state.totalPages; i++) {
-      if (i < 10) {
-        lists.push(
-          <Button
-            size="sm"
-            className="m-1 p-1"
-            key={i}
-            value={i}
-            onClick={this.handleChange}
-          >
-            0{i}
-          </Button>
-        )
-      } else {
-        lists.push(
-          <Button
-            size="sm"
-            className="m-1 p-1"
-            key={i}
-            value={i}
-            onClick={this.handleChange}
-          >
-            {i}
-          </Button>
-        )
-      }
+    for (let i = 1; i <= 6; i++) {
+      lists1.push(
+        <Pagination.Item
+          // size="sm"
+          // className="m-1 p-1"
+          key={i}
+          value={i}
+          onClick={() => {
+            this.handleChange(i)
+            this.setState({ page: i })
+          }}
+          active={i === this.state.page}
+        >
+          0{i}
+        </Pagination.Item>
+      )
     }
+    const lists2 = []
+    for (let i = 15; i <= 20; i++) {
+      lists2.push(
+        <Pagination.Item
+          // size="sm"
+          // className="m-1 p-1"
+          key={i}
+          value={i}
+          onClick={() => {
+            this.handleChange(i)
+            this.setState({ page: i })
+          }}
+          active={i === this.state.page}
+        >
+          {i}
+        </Pagination.Item>
+      )
+    }
+    const lists3 = []
+    for (let i = 27; i <= this.state.totalPages; i++) {
+      lists3.push(
+        <Pagination.Item
+          // size="sm"
+          // className="m-1 p-1"
+          key={i}
+          value={i}
+          onClick={() => {
+            this.handleChange(i)
+            this.setState({ page: i })
+          }}
+          active={i === this.state.page}
+        >
+          {i}
+        </Pagination.Item>
+      )
+    }
+
+    // for (let i = 1; i <= this.state.totalPages; i++) {
+    //   if (i < 10) {
+    //     lists.push(
+    //       <Pagination.Item
+    //         // size="sm"
+    //         // className="m-1 p-1"
+    //         key={i}
+    //         value={i}
+    //         onClick={() => {
+    //           this.handleChange(i)
+    //           this.setState({ page: i })
+    //         }}
+    //         active={i === this.state.page}
+    //       >
+    //         0{i}
+    //       </Pagination.Item>
+    //     )
+    //   } else {
+    //     lists.push(
+    //       <Pagination.Item
+    //         // size="sm"
+    //         // className="m-1 p-1"
+    //         key={i}
+    //         value={i}
+    //         onClick={() => {
+    //           this.handleChange(i)
+    //           this.setState({ page: i })
+    //         }}
+    //         active={i === this.state.page}
+    //       >
+    //         {i}
+    //       </Pagination.Item>
+    //     )
+    //   }
+    // }
 
     const messageModal = (
       <Modal
@@ -287,7 +350,7 @@ class Items extends Component {
       <div className="container">
         {wishListModal}
         {messageModal}
-        <div className="tools">
+        <div className="tools" style={{ marginLeft: '60px' }}>
           <MyBreadcrumb />
           {result}
           <SearchBar onChange={this.onChange} />
@@ -330,8 +393,16 @@ class Items extends Component {
             />
           ))}
 
-        <ul style={{ visibility: this.state.showPage ? 'visible' : 'hidden' }}>
-          {lists}
+        <ul
+          className="page-btn"
+          style={{
+            visibility: this.state.showPage ? 'visible' : 'hidden',
+            margin: '0 auto',
+          }}
+        >
+          {lists1} <Pagination.Ellipsis /> {lists2}
+          <Pagination.Ellipsis />
+          {lists3}
         </ul>
       </div>
     )

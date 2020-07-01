@@ -10,6 +10,16 @@ import img2 from '../homeImages/shop.svg'
 
 export default function Slider() {
   const [posx, setPosx] = useState(`${window.innerWidth * 0.5}`)
+  const [width, setWidth] = useState(window.innerWidth)
+  const [height, setHeight] = useState(window.innerHeight)
+
+  window.addEventListener('resize', () => {
+    const width = window.innerWidth
+    const height = window.innerHeight
+    console.log(`width=${width},height=${height}`)
+    setWidth(width)
+    setHeight(height)
+  })
 
   useEffect(() => {
     console.log(window.innerHeight)
@@ -44,9 +54,9 @@ export default function Slider() {
   )
 
   let display
-  if (posx >= window.innerWidth * 0.5) {
+  if (posx >= width * 0.5) {
     display = life
-  } else if (posx <= window.innerWidth * 0.5) {
+  } else if (posx <= width * 0.5) {
     display = shop
   }
 
@@ -55,8 +65,8 @@ export default function Slider() {
       <div className="Slider">
         <div
           style={{
-            width: window.innerWidth,
-            height: window.innerHeight,
+            width: width,
+            height: height,
           }}
         >
           <ReactCompareImage

@@ -1,8 +1,18 @@
 import React, { Component, Fragment, useState, useEffect } from 'react'
-import { Table, Container, Alert, Button, Form, Figure } from 'react-bootstrap'
+import {
+  Table,
+  Container,
+  Alert,
+  Button,
+  Form,
+  Figure,
+  Row,
+  Col,
+} from 'react-bootstrap'
 
 import { withRouter } from 'react-router-dom'
 import { func } from 'prop-types'
+import '../../styles/carPayment.scss'
 
 function CartPayment(props) {
   const [order, setOrder] = useState('')
@@ -21,37 +31,30 @@ function CartPayment(props) {
 
   const [paymentMethod, setPaymentMedthod] = useState('')
 
-
   function handleKeyPress(event) {
-    
-    let nameInput = document.getElementById("name"),
-    cardInput = document.getElementById("card");
+    let nameInput = document.getElementById('name'),
+      cardInput = document.getElementById('card')
 
-    if (event.keyCode === 13 && nameInput.value !== "" ) {
-      cardInput.focus();
+    if (event.keyCode === 13 && nameInput.value !== '') {
+      cardInput.focus()
     }
-
-
   }
 
   function handleKeyUp(event) {
+    let cardInput = document.getElementById('card'),
+      closingDateInput = document.getElementById('closingDate'),
+      cvvInput = document.getElementById('cvv'),
+      addressInput = document.getElementById('address')
 
-    let cardInput = document.getElementById("card"),
-    closingDateInput = document.getElementById("closingDate"),
-    cvvInput = document.getElementById("cvv"),
-    addressInput = document.getElementById("address");
-
-    if ( cardInput.value.match(/^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/) ) {
-      closingDateInput.focus();
+    if (cardInput.value.match(/^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/)) {
+      closingDateInput.focus()
     }
-    if ( closingDateInput.value.match(/^[0-9]{2}\/[0-9]{2}$/) ) {
-      cvvInput.focus();
+    if (closingDateInput.value.match(/^[0-9]{2}\/[0-9]{2}$/)) {
+      cvvInput.focus()
     }
-    if ( cvvInput.value.match(/^[0-9]{3}$/) ) {
-      addressInput.focus();
+    if (cvvInput.value.match(/^[0-9]{3}$/)) {
+      addressInput.focus()
     }
-
-    
   }
 
   useEffect(() => {
@@ -119,16 +122,13 @@ function CartPayment(props) {
 
     setOrderList(newOrderList)
 
-    document.addEventListener("keypress", handleKeyPress)
-    document.addEventListener("keyup", handleKeyUp)
+    document.addEventListener('keypress', handleKeyPress)
+    document.addEventListener('keyup', handleKeyUp)
     return () => {
       document.removeEventListener('keypress', handleKeyPress)
       document.removeEventListener('keyup', handleKeyUp)
-
     }
-
   }, [])
-
 
   async function orderSuccessCallback() {
     console.log('callback')
@@ -198,7 +198,6 @@ function CartPayment(props) {
   }
 
   async function insertOrderPaymentToSever(item, item2, item3) {
-
     const member = JSON.parse(localStorage.getItem('member'))
     const email = member[0].email
 
@@ -226,22 +225,24 @@ function CartPayment(props) {
   }
 
   async function insertOrderToSever(item, item2) {
-
     const member = JSON.parse(localStorage.getItem('member'))
     const email = member[0].email
 
-    const request = new Request('http://localhost:3002/order/insertOrderAndSendMail', {
-      method: 'POST',
-      body: JSON.stringify({
-        item: item,
-        item2: item2,
-        email: email,
-      }),
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
-    })
+    const request = new Request(
+      'http://localhost:3002/order/insertOrderAndSendMail',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          item: item,
+          item2: item2,
+          email: email,
+        }),
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+      }
+    )
 
     console.log('After JSON: ', JSON.stringify(item))
     console.log('After JSON: ', JSON.stringify(item2))
@@ -314,13 +315,15 @@ function CartPayment(props) {
         </div>
         <div className="d-flex align-items-center justify-content-center mt-5">
           <Form.Group
+            style={{transform: "translateX(-27px)"}}
             className="text-center w-50"
             controlId="exampleForm.ControlSelect1"
           >
             <Form.Label className="labelTxt labelSize">
-             請選擇付款方式
+              請選擇付款方式
             </Form.Label>
             <Form.Control
+              style={{transform: "translateX(-4px)"}}
               className="paymentOption w-40"
               as="select"
               onChange={(event) => {
@@ -353,113 +356,121 @@ function CartPayment(props) {
       <Container className="w-75">
         {paymentMethod === '信用卡' ? (
           <>
-            <div className="text-center">
-              <h3>付款資訊</h3>
-            </div>
-
             <Fragment>
-              <Container
-                className="w-100 formBg"
-                style={{ padding: '50px 100px' }}
-              >
-                <div className="form-group">
-                  <label className="labelTxt" htmlFor="example3">
-                    持卡人姓名：
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    value={name}
-                    className="form-control form-control-sm inputBg"
-                    placeholder="請輸入姓名"
-                    onChange={(event) => {
-                      setName(event.target.value)
-                      setOrderPayment({
-                        ...orderPayment,
-                        orderPaymentName: event.target.value,
-                      })
-                    }}
-                  />
-                </div>
-                <div className="form-group">
-                  <label className="labelTxt" htmlFor="example3">
-                    卡號：
-                  </label>
-                  <input
-                    type="text"
-                    id="card"
-                    value={card}
-                    className="form-control form-control-sm inputBg"
-                    placeholder="請輸入格式 xxxx-xxxx-xxxx-xxxx"
-                    onChange={(event) => {
-                      setCard(event.target.value)
-                      setOrderPayment({
-                        ...orderPayment,
-                        orderPaymentCard: event.target.value,
-                      })
-                    }}
-                  />
-                </div>
-                <div className="d-flex justify-content-between">
-                  <div className="form-group w-40">
-                    <label className="labelTxt" htmlFor="example3">
-                      到期日：
-                    </label>
-                    <input
-                      type="text"
-                      id="closingDate"
-                      value={closingDate}
-                      className="form-control form-control-sm inputBg"
-                      placeholder="請輸入格式 xx/xx"
-                      onChange={(event) => {
-                        setClosingDate(event.target.value)
-                        setOrderPayment({
-                          ...orderPayment,
-                          closingDate: event.target.value,
-                        })
-                      }}
-                    />
+              <Row>
+                <Container
+                  className="w-100 paymentFormBg mt-0 mb-0"
+                  style={{ padding: '50px 100px' }}
+                >
+                  <Col xs="12">
+                    <div className="form-group">
+                      <label className="labelTxt" htmlFor="example3">
+                        持卡人姓名：
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        value={name}
+                        className="form-control form-control-sm inputBg"
+                        placeholder="請輸入姓名"
+                        onChange={(event) => {
+                          setName(event.target.value)
+                          setOrderPayment({
+                            ...orderPayment,
+                            orderPaymentName: event.target.value,
+                          })
+                        }}
+                      />
+                    </div>
+                  </Col>
+                  <Col xs="12">
+                    <div className="form-group">
+                      <label className="labelTxt" htmlFor="example3">
+                        卡號：
+                      </label>
+                      <input
+                        type="text"
+                        id="card"
+                        value={card}
+                        className="form-control form-control-sm inputBg"
+                        placeholder="請輸入格式 xxxx-xxxx-xxxx-xxxx"
+                        onChange={(event) => {
+                          setCard(event.target.value)
+                          setOrderPayment({
+                            ...orderPayment,
+                            orderPaymentCard: event.target.value,
+                          })
+                        }}
+                      />
+                    </div>
+                  </Col>
+                  <div className="cvv d-flex justify-content-between">
+                    <Col xs="12" md="6">
+                      <div className="form-group w-40">
+                        <label className="labelTxt" htmlFor="example3">
+                          到期日：
+                        </label>
+                        <input
+                          type="text"
+                          id="closingDate"
+                          value={closingDate}
+                          className="form-control form-control-sm inputBg"
+                          placeholder="請輸入格式 xx/xx"
+                          onChange={(event) => {
+                            setClosingDate(event.target.value)
+                            setOrderPayment({
+                              ...orderPayment,
+                              closingDate: event.target.value,
+                            })
+                          }}
+                        />
+                      </div>
+                    </Col>
+                    <Col xs="12" md="6">
+                      <div className="form-group w-40">
+                        <label className="labelTxt" htmlFor="example3">
+                          CVV：
+                        </label>
+                        <input
+                          type="text"
+                          id="cvv"
+                          value={cvv}
+                          className="form-control form-control-sm inputBg"
+                          placeholder="請輸入格式 xxx"
+                          onChange={(event) => {
+                            setCvv(event.target.value)
+                            setOrderPayment({
+                              ...orderPayment,
+                              cvv: event.target.value,
+                            })
+                          }}
+                        />
+                      </div>
+                    </Col>
                   </div>
-                  <div className="form-group w-40">
-                    <label className="labelTxt" htmlFor="example3">
-                      CVV：
-                    </label>
-                    <input
-                      type="text"
-                      id="cvv"
-                      value={cvv}
-                      className="form-control form-control-sm inputBg"
-                      placeholder="請輸入格式 xxx"
-                      onChange={(event) => {
-                        setCvv(event.target.value)
-                        setOrderPayment({
-                          ...orderPayment,
-                          cvv: event.target.value,
-                        })
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="form-group w-100">
-                  <label className="labelTxt" htmlFor="example3">
-                    帳單地址：
-                  </label>
-                  <input
-                    type="text"
-                    id="address"
-                    value={address}
-                    className="form-control form-control-sm inputBg"
-                    placeholder="請輸入帳單地址"
-                    onChange={(event) => {
-                      setAddress(event.target.value)
-                      setOrderPayment({
-                        ...orderPayment,
-                        checkAddress: event.target.value,
-                      })
-                    }}
-                  />
-                </div>
-              </Container>
+                  <Col xs="12">
+                    <div className="form-group w-100">
+                      <label className="labelTxt" htmlFor="example3">
+                        帳單地址：
+                      </label>
+                      <input
+                        type="text"
+                        id="address"
+                        value={address}
+                        className="form-control form-control-sm inputBg"
+                        placeholder="請輸入帳單地址"
+                        onChange={(event) => {
+                          setAddress(event.target.value)
+                          setOrderPayment({
+                            ...orderPayment,
+                            checkAddress: event.target.value,
+                          })
+                        }}
+                      />
+                    </div>
+                  </Col>
+                </Container>
+              </Row>
             </Fragment>
 
             {orderErrors.length > 0 ? (
@@ -499,17 +510,17 @@ function CartPayment(props) {
                       props.history.push('/mall/cart/complete')
                     else props.history.push('/life/cart/complete')
 
-                      localStorage.removeItem("shipTotal")
-                      localStorage.removeItem("discount")
-                      localStorage.removeItem("finalCourseCart")
-                      localStorage.removeItem("shopTotal")
-                      localStorage.removeItem("total")
-                      localStorage.removeItem("coursecart")
-                      localStorage.removeItem("cart")
-                      localStorage.removeItem("finalCart")
-                      localStorage.removeItem("courseTotal")
-                      localStorage.removeItem("relCourseCouponId")
-                      localStorage.removeItem("relShopCouponId")
+                    localStorage.removeItem('shipTotal')
+                    localStorage.removeItem('discount')
+                    localStorage.removeItem('finalCourseCart')
+                    localStorage.removeItem('shopTotal')
+                    localStorage.removeItem('total')
+                    localStorage.removeItem('coursecart')
+                    localStorage.removeItem('cart')
+                    localStorage.removeItem('finalCart')
+                    localStorage.removeItem('courseTotal')
+                    localStorage.removeItem('relCourseCouponId')
+                    localStorage.removeItem('relShopCouponId')
                   }
                 }}
               >
@@ -541,19 +552,17 @@ function CartPayment(props) {
                   props.history.push('/mall/cart/complete')
                 else props.history.push('/life/cart/complete')
 
-                
-                      localStorage.removeItem("shipTotal")
-                      localStorage.removeItem("discount")
-                      localStorage.removeItem("finalCourseCart")
-                      localStorage.removeItem("shopTotal")
-                      localStorage.removeItem("total")
-                      localStorage.removeItem("coursecart")
-                      localStorage.removeItem("cart")
-                      localStorage.removeItem("finalCart")
-                      localStorage.removeItem("courseTotal")
-                      localStorage.removeItem("relCourseCouponId")
-                      localStorage.removeItem("relShopCouponId") 
-                
+                localStorage.removeItem('shipTotal')
+                localStorage.removeItem('discount')
+                localStorage.removeItem('finalCourseCart')
+                localStorage.removeItem('shopTotal')
+                localStorage.removeItem('total')
+                localStorage.removeItem('coursecart')
+                localStorage.removeItem('cart')
+                localStorage.removeItem('finalCart')
+                localStorage.removeItem('courseTotal')
+                localStorage.removeItem('relCourseCouponId')
+                localStorage.removeItem('relShopCouponId')
               }}
             >
               前往付款

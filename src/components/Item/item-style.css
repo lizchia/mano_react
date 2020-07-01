@@ -12,10 +12,11 @@
 .title-desc {
   margin-top: 10px;
   margin-left: 10px;
+  /* text-align: center; */
 }
 
 .add-btn {
-  margin-left: 50px;
+  text-align: center;
   margin-top: 30px;
 }
 
@@ -24,7 +25,7 @@
 }
 
 .item-price {
-  color:  #bf8c60;
+  color: #bf8c60;
   text-align: right;
   margin-right: 10px;
   font-size: 40px;
@@ -67,7 +68,7 @@
     padding-top: 10px;
     padding-right: 10px;
   }
-  
+
   .add-btn {
     padding-bottom: 10px;
   }

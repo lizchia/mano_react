@@ -94,15 +94,15 @@ function CartComfirmChange(props) {
         }}
       ></div>
       <Container
-        className="w-75 formBg"
+        className="w-100 formBg"
         style={{ padding: '5px 100px 0 100px' }}
       >
         <div className="text-center">
           <h3>配送資訊</h3>
         </div>
         <Fragment>
-          <div className="d-flex justify-content-between mt-5">
-            <div className="form-group w-50">
+          <div className="d-flex justify-content-between mt-5 confirmChange">
+            <div className="form-group w-40 colWidth">
               <label className="labelTxt" htmlFor="example3">
                 收件人姓名：
               </label>
@@ -119,7 +119,7 @@ function CartComfirmChange(props) {
                 }
               />
             </div>
-            <div className="form-group w-50 ml-5">
+            <div className="form-group w-40 colWidth">
               <label className="labelTxt" htmlFor="example3">
                 收件人電話：
               </label>
@@ -137,11 +137,10 @@ function CartComfirmChange(props) {
               />
             </div>
           </div>
-
           <label className="labelTxt" htmlFor="example3">
             收件地址：
           </label>
-          <div className="d-flex align-items-center justify-content-between">
+          <div className="d-flex align-items-center justify-content-between shipAddress">
             <div className="form-group">
               <select
                 id="pid"
@@ -157,7 +156,7 @@ function CartComfirmChange(props) {
                 {city}
               </select>
               <select
-                className="ml-4"
+                className=""
                 value={isSame ? member.paymentDistrict : ''}
                 onChange={(event) => {
                   setMember({
@@ -169,12 +168,12 @@ function CartComfirmChange(props) {
                 {district[indexstatus]}
               </select>
             </div>
-            <div className="form-group w-75 ml-3">
+            <div className="form-group w-75">
               {/* <label htmlFor="example3">收件地址：</label> */}
               <input
                 type="text"
                 id="example3"
-                className="form-control form-control-sm inputBg"
+                className="form-control form-control-sm  inputBg"
                 value={isSame ? member.shipAddress : ''}
                 onChange={(event) =>
                   setMember({

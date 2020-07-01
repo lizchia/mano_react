@@ -26,3 +26,75 @@
 .courseDetail-img{
     width:60%;
 }
+
+.course-desc-detail{
+    font-size:.8rem;
+    color:#5C6447;
+    width:80%;
+    margin:8% 5% 5% 5%;
+    height:10%;
+}
+
+.img-wrap{
+    height:80%;
+    width:100%;
+}
+
+.course-img-detail{
+    overflow: hidden;
+    object-fit:cover;
+    height:50%;
+    width:100%;
+}
+
+.course-recom-cardBody{
+    padding:0;
+}
+.recom-name{
+    margin-top:5%;
+    padding:5%;
+    font-size: .8rem;
+    text-align: center;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+
+.name{
+    display:flex;
+    justify-content: center;
+}
+.more{
+    font-size: .8rem;
+    text-decoration: underline;
+    text-align: center;
+    margin-right:5%;
+}
+.course-add-cart{
+    width:100%;
+}
+
+.course-price-detail{
+    display:flex;
+    justify-content: center;
+    width:100%;
+    color:#bf8c60;
+    font-size: 40px;
+    
+}
+.people{
+    font-size:.8rem;
+    margin-top:-10px;
+    margin-bottom:20%;
+    display:flex;
+    justify-content: space-evenly;
+    color:#97a887b7;
+    
+}
+.course-btn{
+    background:#D4AE5C;
+}
+
+@media screen and (max-width: 1000px) {
+  
+}

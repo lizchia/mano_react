@@ -154,49 +154,50 @@ class CourseDetail extends Component {
       <>
         <div className="container">
           {messageModal}
-          <div className="tools" style={{ paddingTop: '12px' }}>
+          <div className="tools" style={{ paddingTop: '12px', justifyContent:"center" }}>
             <CsMyBreadcrumb />
           </div>
           <Row>
-            <Col xs={0} md={2}>
-              <CsCategoryBar />
-            </Col>
-            <Col xs={0} md={1}>
-            </Col>
-            <Col xs={12} md={9}>
+          <Col xs={12} md={12}>
               <Row>
+              <Col xs={0} md={2} style={{ marginTop:"-8%", marginRight:"5%" }}>
+              <CsCategoryBar />
+                </Col>
                 <Col xs={12} md={6}>
+                <div style={{ height:"60%" }}>
                   <img
-                    style={{ width: '90%' }}
+                    style={{ width: '95%', objectFit:'contain', overflow:'hidden' }}
                     src={`/courses/${this.state.single.courseImg}`}
                     alt={this.state.single.courseImg}
                   />
+                  </div>
+                   <p className="course-desc-detail">{this.state.single.courseDesc}</p>
+                 
                 </Col>
-                <Col xs={12} md={6}>
-                  <Card style={{ width: '350px', height: '400px' }}>
+                <Col xs={12} md={3}>
+                  <Card style={{ width: '350px', height: '80%' }}>
                     <Card.Body>
                       <Card.Title>
                         <h3 className="name">{this.state.single.courseName}</h3>
                       </Card.Title>
                       <Card.Text>
-                        <p>{this.state.single.courseDesc}</p>
                         <div className="people">
                           <p>人數上限：{this.state.single.courseQty}</p>
-                          <p>日期:{this.state.single.coursePeriod}</p>
+                          <p>日期 : {this.state.single.coursePeriod}</p>
                         </div>
                       </Card.Text>
                     </Card.Body>
 
                     <ListGroup>
                       <ListGroupItem>
-                        <h1 className="price">$ {this.state.single.coursePrice}</h1>
+                        <h1 className="course-price-detail">$ {this.state.single.coursePrice}</h1>
                       </ListGroupItem>
 
                       <ListGroupItem>
                         <InputGroup className="mb-3">
                           <InputGroup.Append>
                             <Button
-                              className="sub"
+                              className="course-btn"
                               onClick={() =>
                                 this.setState({
                                   amount: this.state.amount - 1
@@ -204,7 +205,7 @@ class CourseDetail extends Component {
                               }
                             >
                               -
-                    </Button>
+                            </Button>
                           </InputGroup.Append>
                           <FormControl
                             style={{
@@ -217,6 +218,7 @@ class CourseDetail extends Component {
                           />
                           <InputGroup.Append>
                             <Button
+                              className="course-btn"
                               onClick={() =>
                                 this.setState({ amount: this.state.amount + 1 })
                               }
@@ -231,7 +233,7 @@ class CourseDetail extends Component {
                     <Card.Body className="cart">
                       <Card.Link>
                         <Button
-                          className="add-cart"
+                          className="course-add-cart course-btn"
                           id="btns1"
                           onClick={() => {
                             for (let i = 0; i < this.state.amount; i++) {
@@ -246,12 +248,13 @@ class CourseDetail extends Component {
                           }}
                         >
                           add to cart
+                          <i class="fas fa-shopping-cart" style={{ marginLeft: '8px' }}></i>
                 </Button>
                       </Card.Link>
                     </Card.Body>
                   </Card>
                 </Col>
-                <Col xs={12} md={12} style={{ margin: '15px 0' }}>
+                <Col xs={12} md={12} style={{ margin: '2.5% 0' }}>
                   <h4 style={{ width: '100%' }}><BsFillPlayFill />課程內容</h4>
                   <Card body>
                   從抹茶的淵源歷史到抹茶的品種栽種、製作，到抹茶的沖刷、品嘗方法，三日月茶空間(抹茶體驗課程)，將帶領您體驗抹茶的美妙世界。<br/>
@@ -261,66 +264,78 @@ class CourseDetail extends Component {
                     3，搭配當季上生菓子一份(口味、造型由茶師決定)。<br/>
                     </Card>
                 </Col>
-                <Col xs={12} md={12} style={{ margin: '15px 0' }}>
+                <Col xs={12} md={12} style={{ margin: '2.5% 0' }}>
                   <h4 style={{ width: '100%' }}><BsFillPlayFill />報名方法</h4>
                   <Card body>
                   可電話02-28760995報名，或是粉絲頁私訊報名，或是三日月茶空間現場報名。報名後必須繳清1200元費用，即可完成報名。
                   </Card>
                 </Col>
-                <Col xs={12} md={12} style={{ margin: '15px 0' }}>
+                <Col xs={12} md={12} style={{ margin: '2.5% 0' }}>
                   <h4 style={{ width: '100%' }}><BsFillPlayFill />報名須知</h4>
                   <Card body>每班課程以6～8人為限，滿6人即確定開課，若報名人數未滿6人，則課程取消，費用無息退還；若您報名後臨時有事，上課當日不克前來上課，恕無法退還費用或更改日期，但可以轉讓于別人來上課。當日上課的同學在店內消費或外帶均有九折優惠。</Card>
                 </Col>
-                <Col xs={12} md={12}>
+                <Col xs={12} md={12} style={{ margin: '2.5% 0' }}>
                   <div>
-                    <div><h4><BsFillPlayFill />為您推薦</h4><h6>MANO Recommended</h6></div>
+                    <div ><h4><BsFillPlayFill />為您推薦</h4><h6>&nbsp;&nbsp;&nbsp;&nbsp;MANO Recommended</h6></div>
                     <div style={{ display: "flex" }}>
                       <Card
-                        style={{ height: '15rem', width: '10rem', margin: '10px' }}
+                        style={{ height: '12rem', width: '10rem', margin: '10px' }}
                       >
-                        <Card.Body>
+                        <Card.Body className="course-recom-cardBody">
                           <Card.Link
-                            href={`/courseDetail${this.state.related1.linkUrl}/categoryId=${this.state.related1.categoryId}?courseId=${this.state.related1.courseId}`}>
+                            href={`/life/courseDetail${this.state.related1.linkUrl}/categoryId=${this.state.related1.categoryId}?courseId=${this.state.related1.courseId}`}>
                             <img
-                              style={{ height: "120px", width: '120px', objectFit: "cover" }}
+                              className="course-img-detail"
+                              style={{ height: "50%", objectFit: "cover" }}
                               src={`/courses/${this.state.related1.courseImg}`}
                               alt={this.state.related1.courseImg}
                             />
                             <Card.Title>
-                              <h6 className="name">{this.state.related1.courseName}</h6>
+                              <h6 className="recom-name">{this.state.related1.courseName}</h6>
+                            </Card.Title>
+                            <Card.Title>
+                              <h6 className="more">learn more</h6>
                             </Card.Title>
                           </Card.Link>
                         </Card.Body>
                       </Card>
-                      <Card style={{ height: '15rem', width: '10rem', margin: '10px' }}>
-                        <Card.Body>
+                      <Card style={{ height: '12rem', width: '10rem', margin: '10px' }}>
+                        <Card.Body className="course-recom-cardBody">
                           <Card.Link
-                            href={`/courseDetail${this.state.related2.linkUrl}/categoryId=${this.state.related2.categoryId}?courseId=${this.state.related2.courseId}`}>
+                            href={`/life/courseDetail${this.state.related2.linkUrl}/categoryId=${this.state.related2.categoryId}?courseId=${this.state.related2.courseId}`}>
                             <img
-                              style={{ height: "120px", width: '120px', objectFit: "cover" }}
+                              className="course-img-detail"
+                              style={{ width: "100%", objectFit: "cover"  }}
                               src={`/courses/${this.state.related2.courseImg}`}
                               alt={this.state.related2.courseImg}
                             />
 
 
                             <Card.Title>
-                              <h6 className="name">{this.state.related2.courseName}</h6>
+                              <h6 className="recom-name">{this.state.related2.courseName}</h6>
+                            </Card.Title>
+                            <Card.Title>
+                              <h6 className="more">learn more</h6>
                             </Card.Title>
                           </Card.Link>
                         </Card.Body>
                       </Card>
-                      <Card style={{ height: '15rem', width: '10rem', margin: '10px' }}>
-                        <Card.Body>
+                      <Card style={{ height: '12rem', width: '10rem', margin: '10px' }}>
+                        <Card.Body className="course-recom-cardBody">
                           <Card.Link
-                            href={`/courseDetail${this.state.related3.linkUrl}/categoryId=${this.state.related3.categoryId}?courseId=${this.state.related3.courseId}`}>
+                            href={`/life/courseDetail${this.state.related3.linkUrl}/categoryId=${this.state.related3.categoryId}?courseId=${this.state.related3.courseId}`}>
                             <img
-                              style={{ height: "120px", width: '120px', objectFit: "cover" }}
+                              className="course-img-detail"
+                              style={{ width: "100%", objectFit: "cover"  }}
                               src={`/courses/${this.state.related3.courseImg}`}
                               alt={this.state.related3.courseImg}
                             />
 
                             <Card.Title>
-                              <h6 className="name">{this.state.related3.courseName}</h6>
+                              <h6 className="recom-name">{this.state.related3.courseName}</h6>
+                            </Card.Title>
+                            <Card.Title>
+                              <h6 className="more">learn more</h6>
                             </Card.Title>
                           </Card.Link>
                         </Card.Body>

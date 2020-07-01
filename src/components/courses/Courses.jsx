@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal, Button, Pagination } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
 import Course from '../Course/Course'
 import './courses-style.css'
 import SearchBar from './SearchBar'
 import CsMyBreadcrumb from '../CsMyBreadcrumb'
+import $ from 'jquery'
 
 class Courses extends Component {
   constructor() {
@@ -22,8 +23,8 @@ class Courses extends Component {
       catData: [],
       showPage: true,
       detailKey: '',
-      sorted:[],
-      isOldestFirst: true,
+      sorted: [],
+      isOldestFirst: false,
     }
   }
 
@@ -136,12 +137,12 @@ class Courses extends Component {
   }
 
   //頁碼
-  handleChange = async (event) => {
+  handleChange = async (value) => {
     let params = new URLSearchParams(this.props.location.search)
     let catIdParams = params.get('categoryId')
 
     await this.setState({
-      page: event.target.value,
+      page: value,
     })
 
     localStorage.setItem('page', this.state.page)
@@ -152,10 +153,15 @@ class Courses extends Component {
     const json = await response.json()
     const courses = json.rows
     const page = json.page
+   
+
 
     this.setState({
       data: courses,
+      page: page,
+     
     })
+    console.log(page)
 
     this.props.history.push(
       `${this.props.match.url}?categoryId=${catIdParams}&page=${this.state.page}`
@@ -180,24 +186,23 @@ class Courses extends Component {
   }
 
   priceToggle = (e) => {
-
-
-    
+ 
     const newData = this.state.data
     let sortedData = newData
-    this.setState({
-      isOldestFirst: !this.state.isOldestFirst,
-    })
 
-    if(this.state.isOldestFirst){
-      sortedData = newData.sort((a, b) => {
-        if(a.coursePrice > b.coursePrice) return 1;
-        if(a.coursePrice < b.coursePrice) return -1;
-      })
-    }else{
+    if(e.currentTarget.value == "highToLow"){
       sortedData = newData.sort((a, b) => {
         if(a.coursePrice < b.coursePrice) return 1;
         if(a.coursePrice > b.coursePrice) return -1;
+      })
+      this.setState({
+          isOldestFirst: !this.state.isOldestFirst,
+        })
+
+    }else{
+      sortedData = newData.sort((a, b) => {
+        if(a.coursePrice > b.coursePrice) return 1;
+        if(a.coursePrice < b.coursePrice) return -1;
     })
   }
 
@@ -212,32 +217,41 @@ class Courses extends Component {
 
   render() {
     const lists = []
-
+    // let active = this.state.page
+    
     for (let i = 1; i <= this.state.totalPages; i++) {
       if (i < 10) {
         lists.push(
-          <li
-            className="page-list"
+          <Pagination.Item
+           className="course-list-btn"
             key={i}
             value={i}
-            onClick={this.handleChange}
+            onClick={() => {
+              this.handleChange(i)
+              this.setState({ page: i })
+              }}
+            active={i === this.state.page}
+            
           >
             0{i}
-          </li>
+          </Pagination.Item>
         )
       } else {
         lists.push(
           <li
-            className="page-list"
             key={i}
             value={i}
-            onClick={this.handleChange}
+            onClick={() => {
+              this.handleChange(i)
+              this.setState({ page: i })
+              }}
+            active={i === this.state.page}
           >
             {i}
           </li>
         )
       }
-    }
+   }
 
     const messageModal = (
       <Modal
@@ -305,19 +319,19 @@ class Courses extends Component {
       <div className="container-course">
         {messageModal}
        
-        <div className="tools">
-          <CsMyBreadcrumb  />
-          <div className="result">
-          {result}
-          </div>
-          <div className="input-container">
-            <SearchBar onChange={this.onChange} />
-            <select className="sortor" onChange={this.priceToggle}>
-            <option value="highToLow">篩選</option>
-            <option value="highToLow">價格高至低</option>
-            <option value="lowtoHigh">價格低至高</option>
-          </select>
-        </div>
+        <div className="course-tools">
+          <CsMyBreadcrumb className="course-bread"/>
+            <div className="course-result">
+            {result}
+            
+              <div className="input-container">
+                <SearchBar onChange={this.onChange} />
+                <select className="sortor" onChange={this.priceToggle}>
+                  <option value="highToLow">篩選</option>
+                  <option value="highToLow">價格高至低</option>
+                  <option value="lowtoHigh">價格低至高</option>
+                </select>
+              </div></div>
         </div>
         {this.state.data
           .filter((course) => {

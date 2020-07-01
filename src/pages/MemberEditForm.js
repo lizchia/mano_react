@@ -235,7 +235,7 @@ function MemberEditForm(props) {
             SAVE
           </button>
           <button
-            className="btn btn-secondary"
+            className="btn btn-secondary mb-3"
             onClick={() => setIsedit(!isedit)}
           >
             取消編輯

@@ -3,11 +3,10 @@ import { Table, Container, Row, Col, Image, Button } from 'react-bootstrap'
 import { withRouter, Link } from 'react-router-dom'
 import { GrFormSubtract, GrFormAdd } from 'react-icons/gr'
 import { FaUndo } from 'react-icons/fa'
-import { BsFillPlayFill } from 'react-icons/bs'
+import { BsFillPlayFill, BsX } from 'react-icons/bs'
 import '../../styles/cart.scss'
 
 function Cart(props) {
-
   const [mycart, setMycart] = useState([])
   const [mycartDisplay, setMycartDisplay] = useState([])
 
@@ -214,7 +213,7 @@ function Cart(props) {
             購買的商品
           </h5>
           <Row>
-            <Col sm={9} className="d-flex fd-col">
+            <Col xs={12} md={9} className="d-flex fd-col">
               <Table responsive>
                 <thead
                   style={{
@@ -234,16 +233,15 @@ function Cart(props) {
               {mycartDisplay.map((value) => (
                 <Container className="mt-0 m-3">
                   <Row>
-                    <Col xs={3}>
+                    <Col xs={4} md={3}>
                       <Image
                         width={100}
                         height={100}
-                        className="mr-3"
                         src={`/items/${value.img}`}
                         alt={value.img}
                       />
                     </Col>
-                    <Col xs={9}>
+                    <Col xs={8} md={9}>
                       <Row className="d-flex justify-content-between productCard">
                         <p className="w-25 productName">{value.name}</p>
                         <p className="w-20 text-center cardPrice">
@@ -252,6 +250,7 @@ function Cart(props) {
                         <p className="w-20 text-center cardNumber">
                           <GrFormSubtract
                             type="button"
+                            className="countBtn"
                             onClick={() =>
                               substarctCartToLocalStorage({
                                 id: value.id,
@@ -266,6 +265,7 @@ function Cart(props) {
                           {value.amount}{' '}
                           <GrFormAdd
                             type="button"
+                            className="countBtn"
                             onClick={() =>
                               updateCartToLocalStorage({
                                 id: value.id,
@@ -289,7 +289,7 @@ function Cart(props) {
                             })
                           }
                         >
-                          <i type="button" class="fas fa-times"></i>
+                          <BsX type="button"></BsX>
                         </p>
                       </Row>
                     </Col>
@@ -298,7 +298,7 @@ function Cart(props) {
               ))}
             </Col>
 
-            <Col sm={3} className="d-flex fd-col p-3 pl-5">
+            <Col xs={12} md={3} className="d-flex fd-col pl-5">
               <Table>
                 <thead
                   style={{
@@ -336,7 +336,7 @@ function Cart(props) {
             購買的課程
           </h5>
           <Row>
-            <Col sm={9} className="d-flex fd-col">
+            <Col xs={12} md={9} className="d-flex fd-col">
               <Table responsive>
                 <thead
                   style={{
@@ -355,16 +355,15 @@ function Cart(props) {
               {myCourseCartDisplay.map((value) => (
                 <Container className="mt-0 m-3">
                   <Row>
-                    <Col xs={3}>
+                    <Col xs={4} md={3}>
                       <Image
                         width={100}
                         height={100}
-                        className="mr-3"
                         src={`/items/${value.img}`}
                         alt={value.img}
                       />
                     </Col>
-                    <Col xs={9}>
+                    <Col xs={8} md={9}>
                       <Row className="d-flex justify-content-between productCard">
                         <p className="w-25 productName">{value.name}</p>
                         <p className="w-20 text-center cardPrice">
@@ -373,6 +372,7 @@ function Cart(props) {
                         <p className="w-20 text-right cardNumber">
                           <GrFormSubtract
                             type="button"
+                            className="countBtn"
                             onClick={() =>
                               substarctCourseCartToLocalStorage({
                                 id: value.id,
@@ -386,6 +386,7 @@ function Cart(props) {
                           {value.amount}{' '}
                           <GrFormAdd
                             type="button"
+                            className="countBtn"
                             onClick={() =>
                               updateCourseCartToLocalStorage({
                                 id: value.id,
@@ -412,7 +413,7 @@ function Cart(props) {
                             })
                           }
                         >
-                          <i type="button" class="fas fa-times"></i>
+                          <BsX type="button"></BsX>
                         </p>
                       </Row>
                     </Col>
@@ -421,7 +422,7 @@ function Cart(props) {
               ))}
             </Col>
 
-            <Col sm={3} className="d-flex fd-col p-3 pl-5">
+            <Col xs={12} md={3} className="d-flex fd-col pl-5">
               <Table>
                 <thead
                   style={{

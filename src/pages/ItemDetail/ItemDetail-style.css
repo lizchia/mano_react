@@ -15,23 +15,87 @@
   height: 20%;
 }
 
-/* .item-img {
-  width: 100%;
-  height: 100%;
-} */
-
-.card-detail {
-  width: 200px;
-  height: 100px;
+.link1 {
+  text-align: end;
 }
 
-.item-price {
-  padding-bottom: 20px;
-  align-self: start;
+.link2 {
+  text-align: end;
+}
+
+.itemDetail-price {
+  color: #bf8c60;
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.main-btn {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .link-para {
   position: relative;
   bottom: 40vh;
   left: 20vh;
+}
+
+.item-img-detail {
+  overflow: hidden;
+  object-fit: cover;
+  height: 50%;
+  width: 100%;
+}
+
+.item-recom-cardBody {
+  padding: 0;
+}
+
+.item-recom-name {
+  margin-top: 5%;
+  padding: 5%;
+  font-size: 14px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.item-more {
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-align: center;
+  margin-right: 5%;
+}
+
+.cart-btn {
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.cart {
+  width: 250px;
+  margin: 0 auto;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  /* margin-right: 10px; */
+}
+
+.fav {
+  width: 250px;
+  margin: 0 auto;
+  border-radius: 20px;
+  background: white;
+  border: 1px solid #000;
+  /* margin-left: 10px; */
+}
+
+.fav:hover {
+  color: white !important;
+}
+
+@media screen and (max-width: 1000px) {
+  .tools {
+    display: none;
+  }
 }
