@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { addCourseItem } from "../../redux/cart/cartAction";
+import Comment from '../Comment.js'
+
 
 import {
   Modal,
@@ -341,6 +343,8 @@ class CourseDetail extends Component {
 
           </Row>
         </div>
+        <hr/>
+        <Comment />
       </>
     )
   }

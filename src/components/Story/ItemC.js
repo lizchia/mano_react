@@ -26,6 +26,10 @@ function ItemC(props) {
     margin: '2px',
     color: '#5C6447',
   }
+  const cssSocial = {
+    fontSize: '20pt',
+    margin: '5px',
+  }
 
   return (
     <>
@@ -116,33 +120,33 @@ function ItemC(props) {
                         </button>
                       </div>
 
-                      <div class="modal-body mb-0 text-center cssIcon">
+                      <div class="modal-body mb-1 text-center cssIcon">
                         <a type="button" class="btn-floating btn-fb">
-                          <i class="fab fa-facebook-f"></i>
+                          <i style={cssSocial} class="fab fa-facebook-f"></i>
                         </a>
 
                         <a type="button" class="btn-floating btn-gplus">
-                          <i class="fab fa-google-plus-g"></i>
+                          <i style={cssSocial} class="fab fa-google-plus-g"></i>
                         </a>
 
                         <a type="button" class="btn-floating btn-ins">
-                          <i class="fab fa-instagram"></i>
+                          <i style={cssSocial} class="fab fa-instagram"></i>
                         </a>
 
                         <a type="button" class="btn-floating btn-pin">
-                          <i class="fab fa-pinterest"></i>
+                          <i style={cssSocial} class="fab fa-pinterest"></i>
                         </a>
 
                         <a type="button" class="btn-floating btn-yt">
-                          <i class="fab fa-youtube"></i>
+                          <i style={cssSocial} class="fab fa-youtube"></i>
                         </a>
 
                         <a type="button" class="btn-floating btn-comm">
-                          <i class="fas fa-comments"></i>
+                          <i style={cssSocial} class="fas fa-comments"></i>
                         </a>
 
                         <a type="button" class="btn-floating btn-email">
-                          <i class="fas fa-envelope"></i>
+                          <i style={cssSocial} class="fas fa-envelope"></i>
                         </a>
                       </div>
                     </div>

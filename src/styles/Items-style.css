@@ -1,6 +1,7 @@
 .tool {
   display: flex;
   justify-content: space-evenly;
+  margin-right: 20px;
 }
 
 .page-btn {
@@ -27,7 +28,6 @@
   .page-btn-box {
     width: 100%;
     margin-left: -40px;
-  
   }
 
   .page-btn {
@@ -39,5 +39,4 @@
     margin: 5px;
     text-align: center;
   }
-  
 }

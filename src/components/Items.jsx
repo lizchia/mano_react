@@ -407,4 +407,4 @@ const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item))
 })
 
-export default withRouter(connect(null, mapDispatchToProps)(Items));
+export default withRouter(connect(null, mapDispatchToProps)(Items))

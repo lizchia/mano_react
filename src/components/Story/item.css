@@ -3,7 +3,7 @@
 } */
 .cssIcon {
     font-Size: 20pt;
-    margin: 5px;
+    margin: 10px;
     background: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
     color: transparent;
     -webkit-background-clip: text;

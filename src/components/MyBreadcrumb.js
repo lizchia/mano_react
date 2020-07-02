@@ -65,20 +65,43 @@ function MyBreadcrumb(props) {
   let fourthPathname = `/mall/shop/${props.match.params.second}/${props.match.params.third}/${props.match.params.fourth}/${props.match.params.fifth}`
   let fifthPathname = `/mall/shop/${props.match.params.second}/${props.match.params.third}/${props.match.params.fourth}/${props.match.params.fifth}/${props.match.params.sixth}`
 
+  let catId, catId1
+
+  if (locationPathname.includes('/clothes')) catId = '4'
+  if (locationPathname.includes('/cuisine')) catId = '3'
+  if (locationPathname.includes('/goods')) catId = '5'
+  if (fifthPathname.includes('/man')) catId1 = '8'
+  if (fifthPathname.includes('/woman')) catId1 = '9'
+
+  if (fifthPathname.includes('/beauty')) catId1 = '16'
+  if (fifthPathname.includes('/outdoor')) catId1 = '17'
+  if (fifthPathname.includes('/house')) catId1 = '18'
+  if (fifthPathname.includes('/makeup')) catId1 = '19'
+  if (fifthPathname.includes('/body')) catId1 = '20'
+  if (fifthPathname.includes('/fingernail')) catId1 = '21'
+  if (fifthPathname.includes('/hair')) catId1 = '22'
+  if (fifthPathname.includes('/furniture')) catId1 = '23'
+  if (fifthPathname.includes('/others')) catId1 = '24'
+  if (locationPathname.includes('/delivery-free')) catId = '25'
+
   //productList/shop/cuisine?categoryId=3
+  //let catUrl = `/mall/shop/${props.match.params.third}?${props.match.params.fifth}`
   let catUrl = `/mall/shop/${props.match.params.third}?${props.match.params.fifth}`
-  let catUrl2 = `${secondPathname}${props.location.search}`
+  let catUrl2 = `/mall/shop/${props.match.params.second}?categoryId=${catId}`
+  let catUrl3 = `/mall/shop/${props.match.params.second}/${props.match.params.third}?categoryId=${catId1}`
+
+  //productList/shop/cuisine?categoryId=3
 
   // `/product/xxxx` 轉為 `/product`
-  if (locationPathname.includes('/parentId=0')) locationPathname = '/mall/shop'
+  if (locationPathname.includes('/category=1')) locationPathname = '/mall/shop'
 
   if (locationPathname.includes('/food')) locationPathname = '/food'
   if (locationPathname.includes('/drinks')) locationPathname = '/drinks'
 
-  console.log(`second: ${secondPathname}`)
-  console.log(`third: ${thirdPathname}`)
-  console.log(`four: ${fourthPathname}`)
-  console.log(catUrl2)
+  // console.log(`second: ${secondPathname}`)
+  // console.log(`third: ${thirdPathname}`)
+  // console.log(`four: ${fourthPathname}`)
+  console.log(locationPathname)
   // if (locationPathname.includes('/clothes')) locationPathname = '/clothes'
 
   // if (locationPathname.includes('/goods')) locationPathname = '/goods'
@@ -99,7 +122,7 @@ function MyBreadcrumb(props) {
           <Link to="/">首頁</Link>
         </li>
         <li className="breadcrumb-item active" aria-current="page">
-          {pathnames[index]}
+          所有商品
         </li>
       </ol>
     </>
@@ -115,7 +138,7 @@ function MyBreadcrumb(props) {
           <a href="/mall/shop">所有商品</a>
         </li>
         <li className="breadcrumb-item active" aria-current="page">
-          {pathnames[secondIndex]}
+          {pathnames[index]}
         </li>
       </ol>
     </>
@@ -153,7 +176,7 @@ function MyBreadcrumb(props) {
           <a href={catUrl2}>{pathnames[index]}</a>
         </li>
         <li className="breadcrumb-item active" aria-current="page">
-          <a href={catUrl2}> {pathnames[secondIndex]}</a>
+          <a href={catUrl3}> {pathnames[secondIndex]}</a>
         </li>
         <li className="breadcrumb-item active" aria-current="page">
           {pathnames[thirdIndex]}
@@ -174,7 +197,7 @@ function MyBreadcrumb(props) {
           <a href={catUrl2}>{pathnames[secondIndex]}</a>
         </li>
         <li className="breadcrumb-item active" aria-current="page">
-          <a href={catUrl2}>{pathnames[thirdIndex]}</a>
+          <a href={catUrl3}>{pathnames[thirdIndex]}</a>
         </li>
         <li className="breadcrumb-item active" aria-current="page">
           {pathnames[fourthIndex]}
@@ -198,8 +221,8 @@ function MyBreadcrumb(props) {
 
   if (!props.match.params.fourth) display = third
 
-  if (!props.match.params.third) display = allcourse
-  if (props.match.params.third == 'parentId=0') display = allcourse
+  if (!props.match.params.third) display = two
+  if (!props.match.params.second) display = allcourse
 
   return (
     <>

@@ -11,7 +11,7 @@ import './marketing.css'
 
 function Marketing(props) {
   useEffect(() => {
-    props.changeBackgroundColorWhite();
+    props.changeBackgroundColorWhite()
   }, [])
 
   const cssImg = {
@@ -30,11 +30,12 @@ function Marketing(props) {
           style={{ width: '30vw' }}
           src="/picture/manoMem4.svg"
         />
+        
         <div class="card-group text-center">
           <div class="card" style={cssCard}>
             <Link
               onClick={() =>
-                ToastsStore.success(<Link to="/">快點我成為會員！</Link>)
+                ToastsStore.success(<Link to="/mall/login">快點我成為會員！</Link>)
               }
             >
               <img
@@ -68,7 +69,7 @@ function Marketing(props) {
           <div class="card" style={cssCard}>
             <Link
               onClick={() =>
-                ToastsStore.success(<Link to="/">快點我成為會員！</Link>)
+                ToastsStore.success(<Link to="/mall/login">快點我成為會員！</Link>)
               }
             >
               <img style={cssImg} src="/picture/manoMem2.svg"></img>
@@ -98,7 +99,7 @@ function Marketing(props) {
           <div class="card" style={cssCard}>
             <Link
               onClick={() =>
-                ToastsStore.success(<Link to="/">快點我成為會員！</Link>)
+                ToastsStore.success(<Link to="/mall/login">快點我成為會員！</Link>)
               }
             >
               <img style={cssImg} src="/picture/manoMem3.svg"></img>
@@ -127,8 +128,9 @@ function Marketing(props) {
         </div>
 
         <ToastsContainer store={ToastsStore} lightBackground />
-        <div style={{ height: '250px' }}></div>
       </div>
+      <div style={{ height: '250px' }}></div>
+
       <hr />
       <NewSite />
     </>

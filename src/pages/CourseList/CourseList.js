@@ -4,8 +4,6 @@ import CsCategoryBar from '../../components/CsCategoryBar'
 
 import './courseList-style.scss'
 
-import bgSvg from '../../components/bg-pattern.svg'
-import LeftBg from '../../components/courses/LeftBg'
 
 function CourseList(props) {
 
@@ -35,9 +33,18 @@ function CourseList(props) {
   const display = (
     <>
       {/* <img className="bgSvg" src={bgSvg} alt="bgLogo"></img> */}
-      <div style={{ backgroundImage: `url(${bgSvg})`}} className="bgSvg">
-        <LeftBg />
-      </div>
+      <div
+        style={{
+          background: 'url(/bg-pattern.svg) repeat',
+          position: ' fixed',
+          left: '0',
+          top: '0',
+          width: '50vw',
+          height: '100vh',
+          opacity: '0.3',
+          zIndex: '-1',
+        }}
+      ></div>
       
       <div className="d-flex align-items-start product-list">
 

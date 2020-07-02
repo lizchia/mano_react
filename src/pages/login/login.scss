@@ -1,3 +1,33 @@
+@media (max-width: 500px) {
+  .bg {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden !important;
+    .bgLeft {
+      margin: 0 auto !important;
+      background-color: transparent !important;
+    }
+    .bgRight-login,
+    .bgRight-register,
+    .bgRight-forgetPwd,
+    .bgRight-welcome {
+      position: absolute;
+      height: 100vh !important;
+      width: 100vw !important;
+      left: 150px !important;
+      top: -250px !important;
+      z-index: -1;
+      background-size: 30% 30% !important;
+    }
+    .loginBlock {
+      input,
+      button {
+        width: 200px !important;
+      }
+    }
+  }
+}
+
 .bg {
   width: 100vw;
   height: 100vh;

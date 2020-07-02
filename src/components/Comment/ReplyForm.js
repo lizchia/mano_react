@@ -7,9 +7,8 @@ function ReplyForm(props) {
 
   //console.log('EditForm',props)
   // 先解構賦值，直接套用由props得到的變數值
-  const { value, handleEditSave, updateComToServer } = props
-  //   console.log(addNewTodoItemToSever)
   const {
+    value,
     replyCom,
     setReplyCom,
     replyText,
@@ -19,9 +18,6 @@ function ReplyForm(props) {
   } = props
   console.log(value)
   const date = new Date()
-  const cssClasses =
-    'list-group-item justify-content-between align-items-center list-group-item-light'
-
   const addNewReplyItemToSever = async (item) => {
     const request = new Request('http://localhost:3002/comment', {
       method: 'POST',
@@ -57,28 +53,24 @@ function ReplyForm(props) {
           className="form-control"
           type="text"
           value={replyText}
-          placeholder="輸入完請按enter"
+          placeholder="想回覆什麼呢？"
           onChange={(event) => {
             setReplyText(event.target.value)
           }}
         />
-        <h1>
-          {' '}
-          {replyUser}
-          {replyText}{' '}
-        </h1>
         <Button
           variant="secondary"
           size="sm"
           onClick={(event) => {
             const newComItem = {
-              id: +new Date(),
+              id: 0,
               username: replyUser,
               text: replyText,
               edited: 0,
               completed: 0,
               heart: 0,
               parentReply: value.cid,
+              commentImg: '',
             }
             setReplyCom([newComItem, ...replyCom])
             addNewReplyItemToSever(newComItem)

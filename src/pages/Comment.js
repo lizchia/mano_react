@@ -12,10 +12,13 @@ import requestToServer from '../utils/requestToServer'
 import ReplyForm from '../components/Comment/ReplyForm'
 
 function Comment(props) {
+  const [heart, setHeart] = React.useState(
+    typeof props.heart == 'number' ? props.heart : 0
+  )
   const [com, setCom] = useState([])
   const [text, setText] = useState('')
   const [username, setUser] = useState('')
-  const [heart, setHeart] = useState(0)
+  //const [heart, setHeart] = useState(0)
   // const [page, setPage] = useState('')
   const {
     replyCom,
@@ -165,43 +168,35 @@ function Comment(props) {
     }
     handleEditedToggle(cid)
   }
-  const handleEditedHeartPlus = (cid, value) => {
-    const newHeart = heart + value
-    const comIndex = com.findIndex((v, i) => v.cid === cid)
-    if (comIndex !== -1) {
-      console.log(heart)
-      com[comIndex].heart = heart
-      updateComToServer(com[comIndex])
-      setHeart(newHeart)
-    }
-  }
   const handleDelete = (cid) => {
     const newCom = com.filter((v, i) => v.cid !== cid)
     setCom(newCom)
   }
   return (
     <>
-      <MyBanner title="社群" lead="mano友" />
-      <hr />
-      <AddFrom
-        username={username}
-        text={text}
-        com={com}
-        setUser={setUser}
-        setText={setText}
-        setCom={setCom}
-        addNewTodoItemToSever={addNewTodoItemToSever}
-      />
-      <List
-        com={com}
-        handleCompleted={handleCompleted}
-        handleDelete={handleDelete}
-        handleReplyToggle={handleReplyToggle}
-        handleEditedToggle={handleEditedToggle}
-        handleEditedSave={handleEditedSave}
-        handleCompleted={handleCompleted}
-        handleEditedHeartPlus={handleEditedHeartPlus}
-      />
+      <div className="container">
+        <AddFrom
+          heart={heart}
+          username={username}
+          text={text}
+          com={com}
+          setHeart={setHeart}
+          setUser={setUser}
+          setText={setText}
+          setCom={setCom}
+          addNewTodoItemToSever={addNewTodoItemToSever}
+        />
+        <List
+          com={com}
+          handleCompleted={handleCompleted}
+          handleDelete={handleDelete}
+          handleReplyToggle={handleReplyToggle}
+          handleEditedToggle={handleEditedToggle}
+          handleEditedSave={handleEditedSave}
+          handleCompleted={handleCompleted}
+          // handleEditedHeartPlus={handleEditedHeartPlus}
+        />
+      </div>
     </>
   )
 }
