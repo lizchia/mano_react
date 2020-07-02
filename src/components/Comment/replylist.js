@@ -15,7 +15,6 @@ function ReplyList(props) {
     handleEditedSave,
     addNewReplyItemToSever,
     handleCompleted,
-    handleEditedHeartPlus
   } = props
   //   const [replyCom, setReplyCom] = useState([])
   //   const [replyText, setReplyText] = useState('')
@@ -35,7 +34,6 @@ function ReplyList(props) {
               handleEditedToggle={handleEditedToggle}
               handleDelete={handleDelete}
               handleCompleted={handleCompleted}
-              handleEditedHeartPlus={handleEditedHeartPlus}
               addNewReplyItemToSever={addNewReplyItemToSever}
             />
           </>

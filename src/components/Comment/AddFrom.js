@@ -39,7 +39,10 @@ function AddForm(props) {
 
   return (
     <div className="form-group">
-      <label htmlFor="todoInput">留言</label>
+      <label style={{ fontSize: '13pt' }} htmlFor="todoInput">
+        {' '}
+        評價商品{' '}
+      </label>
       <div
         onMouseOut={() => hoverOver(null)}
         value={heart}
@@ -67,24 +70,26 @@ function AddForm(props) {
           console.log(event.target.value)
           setUser(event.target.value)
         }}
+        required
       />
       <textarea
         id="todoInput"
         className="form-control"
         type="text"
         value={text}
-        placeholder="輸入完請按enter"
+        placeholder="有什麼想法嗎？"
         onChange={(event) => {
           setText(event.target.value)
         }}
         required
       />
+      <br />
       <Button
         variant="secondary"
         size="sm"
         onClick={(event) => {
           // 處理按下 Enter鍵
-          if (text !== '') {
+          if (heart !== '' && username !== '' && text !== '') {
             // 建立一個新的todo項目
             const newComItem = {
               id: +new Date(),

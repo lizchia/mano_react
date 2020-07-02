@@ -86,7 +86,7 @@ function ItemC(props) {
         >
           reply
         </button>
-        <button
+        {/* <button
           type="button"
           className="btn btn-light"
           onClick={() => {
@@ -94,7 +94,7 @@ function ItemC(props) {
           }}
         >
           edit
-        </button>
+        </button> */}
         <button
           type="button"
           className="btn btn-light"

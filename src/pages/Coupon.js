@@ -33,6 +33,7 @@ function Coupon(props) {
     )
 
     const response = await fetch(request)
+    console.log(response)
     const data = await response.json()
     console.log('顯示的資料', data)
     // 設定資料
@@ -67,12 +68,10 @@ function Coupon(props) {
       <tr style={{ border: '2px solid #C5895A' }}>
         <td>{value.discountName}</td>
         <td style={{ color: ' #C5895A' }}>
-          {Number(value.discountMethod) < 1 && Number(value.discountMethod) > 0
-            ? `${value.discountMethod.substr(2, 3)}折`
-            : `折扣${value.discountMethod.substr(1, 4)}元`}
+          {`${value.discountMethod.substr(2, 3)}折`}
         </td>
         <td>{value.discountPeriod}</td>
-        <td>{value.created_at.substr(0, 10)}</td>
+        <td>{value.updated.substr(0, 10)}</td>
         <td>未使用</td>
       </tr>
     )

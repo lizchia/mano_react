@@ -168,16 +168,6 @@ function Comment(props) {
     }
     handleEditedToggle(cid)
   }
-  // const handleEditedHeartPlus = (cid, value) => {
-  //   const newHeart = heart + value
-  //   const comIndex = com.findIndex((v, i) => v.cid === cid)
-  //   if (comIndex !== -1) {
-  //     console.log(heart)
-  //     com[comIndex].heart = heart
-  //     updateComToServer(com[comIndex])
-  //     setHeart(newHeart)
-  //   }
-  // }
   const handleDelete = (cid) => {
     const newCom = com.filter((v, i) => v.cid !== cid)
     setCom(newCom)
