@@ -126,7 +126,10 @@ function MyChangePassword(props) {
                   console.log(data)
                 }}
                 onMouseUp={async () => {
-                  if (confirmNewpassword === newPassword) {
+                  if (
+                    confirmNewpassword === newPassword &&
+                    confirmNewpassword.length >= 8
+                  ) {
                     await updatepassword(
                       {
                         pwd: sha1(newPassword),
@@ -139,10 +142,14 @@ function MyChangePassword(props) {
                   }
                 }}
                 onClick={async () => {
-                  if (confirmNewpassword === newPassword) {
+                  if (
+                    confirmNewpassword === newPassword &&
+                    confirmNewpassword.length >= 8
+                  ) {
                     await alert('更改密碼成功！')
+                    props.history.push("/mall/login")
                   } else {
-                    alert('二次密碼輸入不符！')
+                    alert('二次密碼輸入不符或密碼少於八個字！')
                   }
                 }}
               />
