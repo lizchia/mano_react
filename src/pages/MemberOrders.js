@@ -237,7 +237,7 @@ function MemberOrders(props) {
           </tr>
           <tr className="text-primary">
             <td>收件資料</td>
-            <td colSpan={3}>
+            <td colSpan={2}>
               {detailshow ? order[orderindex].ship_name : ''}
               <br />
               {detailshow
@@ -245,6 +245,9 @@ function MemberOrders(props) {
                   order[orderindex].shipDistrict +
                   order[orderindex].shipAddress
                 : ''}
+            </td>
+            <td colSpan={1}>備註：
+            {detailshow ? order[orderindex].note : ''}
             </td>
           </tr>
         </tbody>
@@ -407,6 +410,7 @@ function MemberOrders(props) {
                       setPagenow(pageNow - 1)
                     }
                     getData(localMember[0].memberId, pageNow - 1)
+                    setDetailshow(false)
                   }}
                 />
                 {pageArr.map((value) => {
@@ -419,6 +423,7 @@ function MemberOrders(props) {
                         onClick={() => {
                           getData(localMember[0].memberId, value)
                           setPagenow(value)
+                          setDetailshow(false)
                         }}
                       >
                         {value}
@@ -436,8 +441,8 @@ function MemberOrders(props) {
                       nextnum = pageNow + 1
                       setPagenow(pageNow + 1)
                     }
-
                     getData(localMember[0].memberId, nextnum)
+                    setDetailshow(false)
                   }}
                 />
               </Pagination>

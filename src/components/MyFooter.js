@@ -20,15 +20,16 @@ function MyFooter(props) {
         borderBottom: '1px solid #5C6447',
       }
   const cssSvg = props.history.location.pathname.includes('/membercenter')
-  ? {
-    fontSize: '20pt',
-    margin: '10px',
-    color: '#929684',
-  }:{
-    fontSize: '20pt',
-    margin: '10px',
-    color: '#5C6447',
-  }
+    ? {
+        fontSize: '20pt',
+        margin: '10px',
+        color: '#929684',
+      }
+    : {
+        fontSize: '20pt',
+        margin: '10px',
+        color: '#5C6447',
+      }
   const cssImg = {
     transform: '90',
   }
@@ -36,17 +37,19 @@ function MyFooter(props) {
     '/membercenter'
   )
     ? {
-      color: '#929684',
-    }
+        color: '#929684',
+      }
     : {
-      color: '#5C6447',
-    }
-    const bgchangecolor = props.history.location.pathname.includes(
-      '/membercenter'
-    )?"footer-dark":"footer"
+        color: '#5C6447',
+      }
+  const bgchangecolor = props.history.location.pathname.includes(
+    '/membercenter'
+  )
+    ? 'footer-dark'
+    : 'footer'
   const footer = (
     <>
-      <footer className={` mt-auto py-3 text-center ${bgchangecolor}`} >
+      <footer className={` mt-auto py-3 text-center ${bgchangecolor}`}>
         <div className="container mb-2">
           {/* <h3> 最新活動 </h3>
           <div className="d-flex row" style={{ backgroundColor: '#D4AE5C' }}>
@@ -120,16 +123,16 @@ function MyFooter(props) {
                 Life Style
               </a>
               <br />
-              <a
-                style={showTextColor}
-                href='http://localhost:3000/#fourthPage'
-              >
+              <a style={showTextColor} href="http://localhost:3000/#fourthPage">
                 Contact Us
               </a>
             </div>
           </div>
-          <span className="" style={Object.assign({ fontSize: '10pt' },showTextColor)}>
-            2020 © MANO copyright
+          <span
+            className=""
+            style={Object.assign({ fontSize: '10pt' }, showTextColor)}
+          >
+            2020 © MANO copyright 歡迎致電 : (02)6618-1818
           </span>
         </div>
       </footer>

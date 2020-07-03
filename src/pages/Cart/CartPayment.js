@@ -51,7 +51,7 @@ function CartPayment(props) {
       closingDateInput = document.getElementById('closingDate'),
       cvvInput = document.getElementById('cvv'),
       addressInput = document.getElementById('address')
-      
+
     if(cardInput) {
 
         if (cardInput.value.match(/^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/)) {
@@ -76,8 +76,8 @@ function CartPayment(props) {
     const member = JSON.parse(localStorage.getItem('member'))
     setMember(member)
 
-    const relCourseCouponId = localStorage.getItem('relCourseCouponId')
-    const relShopCouponId = localStorage.getItem('relShopCouponId')
+    const relCourseCouponId = props.orderInfo.relCourseCouponId
+    const relShopCouponId = props.orderInfo.relShopCouponId
 
     if (relCourseCouponId !== 0)
       setCourseDiscountUpdate({

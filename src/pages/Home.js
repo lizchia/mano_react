@@ -3,6 +3,8 @@ import { Link, withRouter } from 'react-router-dom'
 import '../styles/home.scss'
 import Slider from './Slider'
 import AOS from 'aos'
+import { ToastsContainer, ToastsStore } from 'react-toasts'
+
 import '../styles/aos-master/dist/aos.css'
 import { useEffect } from 'react'
 
@@ -97,9 +99,14 @@ function Home(props) {
                 data-aos-duration="800"
                 data-aos-easing="ease-in-out"
               >
-                <a href="/life/about" className="more">
+              <Link
+                  onClick={() =>
+                    ToastsStore.success(<Link to="/mall/login">快點我成為會員！</Link>)
+                  }
+                >
                   MORE→
-                </a>
+                </Link>
+                <ToastsContainer store={ToastsStore} lightBackground />
               </div>
             </div>
           </div>

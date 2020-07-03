@@ -63,11 +63,12 @@ function Cart(props) {
         )}
       </div>
       {props.cartItems.length > 0 ? (
-        <Container>
+        <Container>       
           <h5>
             <BsFillPlayFill />
-            購買的商品
+            購買的商品 
           </h5>
+          <p>＊一般配送運費100，滿800免運。冷凍配送運費150，滿1200免運。</p>        
           <Row>
             <Col xs={12} md={9} className="d-flex fd-col">
               <Table responsive>

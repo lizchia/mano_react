@@ -66,7 +66,8 @@ function Coupon(props) {
               : `折扣${value.discountMethod.substr(1, 4)}元`}
           </td>
           <td>{value.discountPeriod}</td>
-          <td>{value.created_at.substr(0,10)}</td>
+          {/* <td>{value.created_at.substr(0,10)}</td> */}
+          <td>{value.updated.substr(0, 10)}</td>
           <td>未使用</td>
 
         </tr>
@@ -83,7 +84,8 @@ function Coupon(props) {
               : `折扣${value.discountMethod.substr(1, 4)}元`}
           </td>
           <td>{value.discountPeriod}</td>
-          <td>{value.created_at.substr(0,10)}</td>
+          {/* <td>{value.created_at.substr(0,10)}</td> */}
+          <td>{value.updated.substr(0, 10)}</td>
           <td>已使用</td>
         </tr>
       )
