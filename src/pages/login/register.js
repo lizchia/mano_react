@@ -139,7 +139,7 @@ function MyRegister(props) {
                     className="btn btn-primary mb2 loginBlock loginBtn"
                     type="submit"
                     value="Register"
-                    onMouseEnter={() => {
+                    onMouseDown={() => {
                       console.log(data)
                       getData(username)
                     }}

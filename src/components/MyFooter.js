@@ -132,7 +132,7 @@ function MyFooter(props) {
             className=""
             style={Object.assign({ fontSize: '10pt' }, showTextColor)}
           >
-            2020 © MANO copyright 歡迎致電 : (02)6618-1818
+            2020 © MANO copyright &nbsp;&nbsp; 歡迎致電 : (02)6618-1818
           </span>
         </div>
       </footer>
