@@ -161,6 +161,7 @@ function App(props) {
     } else {
       if (data.length !== 0) {
         errors.push('E-mail is exist')
+        alert('帳號已被註冊')
       } else if (matches === null)
         errors.push("E-mail doesn't match the pattern")
     }

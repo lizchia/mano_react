@@ -6,24 +6,26 @@ var sha1 = require('sha1')
 
 function MyRegister(props) {
   const [insertData, setInsertData] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
   const {
     setName,
     username,
     setUsername,
-    password,
-    setPassword,
+    // password,
+    // setPassword,
     loginErrors,
     registerProcess,
-    setConfirmpassword,
+    // setConfirmpassword,
+    // confirmpassword,
     data,
     setData,
   } = props
 
-  useEffect(()=>{
+  useEffect(() => {
     props.changeBackgroundColorBrown()
-  },[])
-
+  }, [])
 
   async function getData(username) {
     const response = await fetch(`http://localhost:3002/member/${username}`)
@@ -52,10 +54,10 @@ function MyRegister(props) {
 
   const registerSuccessCallback = () => {
     insertMemberToServer(insertData)
-    //alert('註冊成功，跳到login')
+    alert('註冊成功，跳到login')
     const path = props.history.location.pathname
-    if(path.includes("/mall")) props.history.push("/mall/login")
-    else props.history.push("/life/login")
+    if (path.includes('/mall')) props.history.push('/mall/login')
+    else props.history.push('/life/login')
   }
 
   const displayErrors = loginErrors.length ? (
@@ -113,11 +115,13 @@ function MyRegister(props) {
                   className="form-control mb2"
                   type="password"
                   required="required"
-                  placeholder="請輸入密碼"
+                  placeholder="請輸入8個以上英數字"
                   onChange={(event) => {
                     setPassword(event.target.value)
                     setInsertData({
                       ...insertData,
+                      memberImg: "20200503094045.jpg",
+                      memberId: +new Date(),
                       pwd: sha1(event.target.value),
                     })
                   }}
@@ -131,7 +135,7 @@ function MyRegister(props) {
                   required="required"
                   placeholder="再次確認密碼"
                   onChange={(event) => {
-                    setConfirmpassword(event.target.value)
+                    setConfirmPassword(event.target.value)
                   }}
                 />
                 <div className="loginBlock">
@@ -140,11 +144,26 @@ function MyRegister(props) {
                     type="submit"
                     value="Register"
                     onMouseDown={() => {
-                      console.log(data)
                       getData(username)
                     }}
-                    onClick={() => {
-                      registerProcess(registerSuccessCallback)
+                    onMouseUp={() => {
+                      if (
+                        confirmPassword === password &&
+                        confirmPassword.length >= 8
+                      ) {
+                        registerProcess(registerSuccessCallback)
+                      }
+                    }}
+                    onClick={async () => {
+                      if (
+                        confirmPassword === password &&
+                        confirmPassword.length >= 8 &&
+                        loginErrors.length === 0
+                      ) {
+                        console.log('註冊成功！')
+                      } else {
+                        alert('註冊失敗！請確認格式是否有誤或帳號是否已存在。')
+                      }
                     }}
                   />
                 </div>
