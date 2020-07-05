@@ -157,6 +157,7 @@ function MyWelcome(props) {
                     <div class="d-flex modal-footer flex-center">
                       <button
                         className="btn mb-1"
+                        data-dismiss="modal"
                         onClick={() => {
                           insertCouponToServer()
                           alert('折價卷已贈送，可在會員中心查看')

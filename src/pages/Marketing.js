@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
-import Table from 'react-bootstrap/Table'
 import { ToastsContainer, ToastsStore } from 'react-toasts'
 
-import MyBanner from '../components/MyBanner'
 import NewSite from '../components/NewSite'
+import MarketCoupon from '../components/marketing'
 
 import './marketing.css'
 
@@ -21,6 +20,7 @@ function Marketing(props) {
   const cssCard = {
     border: '1px solid transparent',
   }
+  
 
   return (
     <>
@@ -30,12 +30,14 @@ function Marketing(props) {
           style={{ width: '30vw' }}
           src="/picture/manoMem4.svg"
         />
-        
+
         <div class="card-group text-center">
           <div class="card" style={cssCard}>
             <Link
               onClick={() =>
-                ToastsStore.success(<Link to="/mall/login">快點我成為會員！</Link>)
+                ToastsStore.success(
+                  <Link to="/mall/login">快點我成為會員！</Link>
+                )
               }
             >
               <img
@@ -69,7 +71,9 @@ function Marketing(props) {
           <div class="card" style={cssCard}>
             <Link
               onClick={() =>
-                ToastsStore.success(<Link to="/mall/login">快點我成為會員！</Link>)
+                ToastsStore.success(
+                  <Link to="/mall/login">快點我成為會員！</Link>
+                )
               }
             >
               <img style={cssImg} src="/picture/manoMem2.svg"></img>
@@ -99,7 +103,9 @@ function Marketing(props) {
           <div class="card" style={cssCard}>
             <Link
               onClick={() =>
-                ToastsStore.success(<Link to="/mall/login">快點我成為會員！</Link>)
+                ToastsStore.success(
+                  <Link to="/mall/login">快點我成為會員！</Link>
+                )
               }
             >
               <img style={cssImg} src="/picture/manoMem3.svg"></img>
@@ -131,6 +137,8 @@ function Marketing(props) {
       </div>
       <div style={{ height: '250px' }}></div>
 
+      <hr />
+      <MarketCoupon />
       <hr />
       <NewSite />
     </>
