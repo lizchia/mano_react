@@ -173,53 +173,25 @@ function CartComfirm(props) {
             <Row className="d-flex discount">
               <Col xs={7} className="item-content-left m-4 pt-4 discountLeft">
                 {shopCoupon.length > 0 ? (
-                  <Table
-                    variant="success"
-                    bordered
-                    hover
-                    className="discountTable"
-                  >
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>折價券名稱</th>
-                        <th>折扣內容</th>
-                        <th>有效期限</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <input name="shopradio" type="radio" onClick={() => {
-                          setRelShopCouponId(0)
-                          setShopDiscount(0)
-                        }} />
-                        </td>
-                        <td colSpan="3">本次消費暫不使用優惠卷</td>
-                      </tr>
-
+                  <Form.Group>
+                    <Form.Control as="select" onChange={(event) => {
+                          let index = event.target.selectedIndex
+                          setRelShopCouponId(event.target.value)
+                          setShopDiscount(parseInt(event.target.childNodes[index].getAttribute('data_discount')))
+                        }}>
+                      <option value="0" data_discount="0">本次消費不使用優惠卷</option>
+                    
                       {shopCoupon.map((value, index) => {
                         return (
-                          <tr>
-                            <td>
-                              <input name="shopradio" type="radio"                             onClick={() => {
-                              setRelShopCouponId(value.rel_coupon_member_id)
-                              setShopDiscount(
-                                props.orderInfo.shopTotal -
+                          <option　value={value.rel_coupon_member_id} data_discount={
+                            props.orderInfo.shopTotal -
                                   parseInt(
                                     props.orderInfo.shopTotal * Number(value.discountMethod)
-                                  )
-                              )
-                            }} />
-                            </td>
-                            <td>{value.discountName}</td>
-                            <td>{value.discountMethod}</td>
-                            <td>{value.discountPeriod}</td>
-                          </tr>
+                                  )}>{value.discountName} 打{value.discountMethod.slice(2,4)}折</option>
                         )
                       })}
-                    </tbody>
-                  </Table>
+                      </Form.Control>
+                  </Form.Group>
                 ) : (
                   <p>目前沒有可使用的優惠</p>
                 )}
@@ -293,53 +265,26 @@ function CartComfirm(props) {
             <Row className="d-flex discount1">
               <Col xs={7} className="item-content-left m-4 pt-4 discountLeft">
                 {courseCoupon.length > 0 ? (
-                  <Table
-                    variant="success"
-                    bordered
-                    hover
-                    className="discountTable"
-                  >
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>折價券名稱</th>
-                        <th>折扣內容</th>
-                        <th>有效期限</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <input name="courseradio" type="radio" onClick={() => {
-                          setRelCourseCouponId(0)
-                          setCourseDiscount(0)
-                        }} />
-                        </td>
-                        <td colSpan="3">本次消費暫不使用優惠卷</td>
-                      </tr>
 
+                  <Form.Group>
+                    <Form.Control as="select" onChange={(event) => {
+                          let index = event.target.selectedIndex
+                          setRelCourseCouponId(event.target.value)
+                          setCourseDiscount(parseInt(event.target.childNodes[index].getAttribute('data_discount')))
+                        }}>
+                      <option value="0" data_discount="0">本次消費不使用優惠卷</option>
+                    
                       {courseCoupon.map((value, index) => {
                         return (
-                          <tr>
-                            <td>
-                              <input name="courseradio" type="radio"                             onClick={() => {
-                              setRelCourseCouponId(value.rel_coupon_member_id)
-                              setCourseDiscount(
-                                props.orderInfo.courseTotal -
+                          <option　value={value.rel_coupon_member_id} data_discount={
+                            props.orderInfo.courseTotal -
                                   parseInt(
                                     props.orderInfo.courseTotal * Number(value.discountMethod)
-                                  )
-                              )
-                            }} />
-                            </td>
-                            <td>{value.discountName}</td>
-                            <td>{value.discountMethod}</td>
-                            <td>{value.discountPeriod}</td>
-                          </tr>
+                                  )}>{value.discountName} 打{value.discountMethod.slice(2,4)}折</option>
                         )
                       })}
-                    </tbody>
-                  </Table>
+                      </Form.Control>
+                  </Form.Group>
                 ) : (
                   <p>目前沒有可使用的優惠</p>
                 )}
