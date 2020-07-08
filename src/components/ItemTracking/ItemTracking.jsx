@@ -43,28 +43,31 @@ function ItemTracking(props) {
 
   const { match, location, history } = props
   const messageModal = (
-    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
-      <Modal.Header closeButton>
-        <Modal.Title>加入購物車訊息</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>產品：{productName} 已成功加入購物車</Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          繼續購物
-                </Button>
-        <Button
-          variant="primary"
-          onClick={() => {
-            const path = props.history.location.pathname
-            if (path.includes("/mall")) props.history.push("/mall/cart")
-            else props.history.push("/life/cart")
-
-          }}
-        >
-          前往購物車結帳
-                </Button>
-      </Modal.Footer>
-    </Modal>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Body className="d-flex justify-content-center align-items-center fd-col pt-4 pb-3" style={{background: "#EFF3EC", border: "none"}}>
+          <h5 style={{color: "#C5895A"}}>{productName} </h5>
+          已成功加入購物車</Modal.Body>
+        <Modal.Footer className="d-flex justify-content-center pb-4" style={{background: "#EFF3EC", border: "none"}}>
+          <Button style={{background: "transparent", color: "#5C6447", borderRadius: "2px"}} variant="secondary" onClick={handleClose} className="addcart-button">
+            繼續購物
+          </Button>
+          <Button
+            style={{background: "transparent", color: "#C5895A", borderRadius: "2px"}}
+            variant="primary"
+            className="addcart-button"
+            onClick={() => {
+              props.history.push('/mall/cart')
+            }}
+          >
+            前往購物車結帳
+          </Button>
+        </Modal.Footer>
+      </Modal>
   )
 
   return (

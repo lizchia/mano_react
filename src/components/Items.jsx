@@ -220,16 +220,17 @@ class Items extends Component {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>加入購物車訊息</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>產品：{this.state.productName} 已成功加入購物車</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleClose}>
+        <Modal.Body className="d-flex justify-content-center align-items-center fd-col pt-4 pb-3" style={{background: "#EFF3EC", border: "none"}}>
+          <h5 style={{color: "#C5895A"}}>{this.state.productName} </h5>
+          已成功加入購物車</Modal.Body>
+        <Modal.Footer className="d-flex justify-content-center pb-4" style={{background: "#EFF3EC", border: "none"}}>
+          <Button style={{background: "transparent", color: "#5C6447", borderRadius: "2px"}} variant="secondary" onClick={this.handleClose} className="addcart-button">
             繼續購物
           </Button>
           <Button
+            style={{background: "transparent", color: "#C5895A", borderRadius: "2px"}}
             variant="primary"
+            className="addcart-button"
             onClick={() => {
               const path = this.props.history.location.pathname
               if (path.includes('/mall')) this.props.history.push('/mall/cart')
@@ -249,20 +250,19 @@ class Items extends Component {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>加入願望清單訊息</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          產品：{this.state.productName} 已成功加入願望清單
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleWishClose}>
+        <Modal.Body className="d-flex justify-content-center align-items-center fd-col pt-4 pb-3" style={{background: "#EFF3EC", border: "none"}}>
+          <h5 style={{color: "#C5895A"}}>{this.state.productName} </h5>
+          已成功願望清單</Modal.Body>
+        <Modal.Footer className="d-flex justify-content-center pb-4" style={{background: "#EFF3EC", border: "none"}}>
+          <Button style={{background: "transparent", color: "#5C6447", borderRadius: "2px"}} variant="secondary" onClick={this.handleWishClose} className="addcart-button">
             繼續購物
           </Button>
           <Button
+            style={{background: "transparent", color: "#C5895A", borderRadius: "2px"}}
             variant="primary"
+            className="addcart-button"
             onClick={() => {
-              this.props.history.push('/mall/ItemTracking')
+             　this.props.history.push('/mall/ItemTracking')
             }}
           >
             前往願望清單

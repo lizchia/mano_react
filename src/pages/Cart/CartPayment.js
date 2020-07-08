@@ -13,9 +13,11 @@ import {
 import { connect } from "react-redux";
 import { selectCartItems, selectCourseCartItems, selectOrderInfo } from "../../redux/cart/cartSelector";
 import { setOrderInfo, clearAll } from "../../redux/cart/cartAction";
+import Cards from 'react-credit-cards';
 
 import { withRouter } from 'react-router-dom'
 import '../../styles/carPayment.scss'
+import "react-credit-cards/lib/styles.scss"
 
 function CartPayment(props) {
   const [order, setOrder] = useState('')
@@ -23,10 +25,11 @@ function CartPayment(props) {
   const [orderPayment, setOrderPayment] = useState('')
 
   const [name, setName] = useState('')
-  const [card, setCard] = useState('')
-  const [closingDate, setClosingDate] = useState('')
-  const [cvv, setCvv] = useState('')
-  const [address, setAddress] = useState('')
+  const [number, setNumber] = useState('')
+  const [expiry, setExpiry] = useState('')
+  const [cvc, setCvc] = useState('')
+  const [focus, setFocus] = useState('')
+
   const [orderErrors, setOrderErrors] = useState([])
 
   const [courseDiscountUpdate, setCourseDiscountUpdate] = useState('')
@@ -35,39 +38,14 @@ function CartPayment(props) {
   const [paymentMethod, setPaymentMedthod] = useState('')
   const [member, setMember] = useState([])
 
-  function handleKeyPress(event) {
-    let nameInput = document.getElementById('name'),
-      cardInput = document.getElementById('card')
-    
-    if(nameInput) {
-        if (event.keyCode === 13 && nameInput.value !== '') {
-          cardInput.focus()
-        }
-    }
+
+ 
+  const handleInputFocus = (e) => {
+    setFocus(e.target.name)
   }
-
-  function handleKeyUp(event) {
-    let cardInput = document.getElementById('card'),
-      closingDateInput = document.getElementById('closingDate'),
-      cvvInput = document.getElementById('cvv'),
-      addressInput = document.getElementById('address')
-
-    if(cardInput) {
-
-        if (cardInput.value.match(/^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/)) {
-          closingDateInput.focus()
-        }
-        if (closingDateInput.value.match(/^[0-9]{2}\/[0-9]{2}$/)) {
-          cvvInput.focus()
-        }
-        if (cvvInput.value.match(/^[0-9]{3}$/)) {
-          addressInput.focus()
-        }
-
-    }
+  
 
 
-  }
 
   useEffect(() => {
     props.changeBackgroundColorLight()
@@ -129,12 +107,6 @@ function CartPayment(props) {
 
     setOrderList(newOrderList)
 
-    document.addEventListener('keypress', handleKeyPress)
-    document.addEventListener('keyup', handleKeyUp)
-    return () => {
-      document.removeEventListener('keypress', handleKeyPress)
-      document.removeEventListener('keyup', handleKeyUp)
-    }
   }, [])
 
   async function orderSuccessCallback() {
@@ -146,26 +118,24 @@ function CartPayment(props) {
 
   function validate() {
     let errors = []
-    let cardMatch = card.match(/^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/)
-    let closingDateMatch = closingDate.match(/^[0-9]{2}\/[0-9]{2}$/)
-    let cvvMatch = cvv.match(/^[0-9]{3}$/)
+    let cardMatch = number.match(/^[0-9]{4}\s[0-9]{4}\s[0-9]{4}\s[0-9]{4,9}$/)
+    let closingDateMatch = expiry.match(/^[0-9]{2}\/[0-9]{2}$/)
+    let cvvMatch = cvc.match(/^[0-9]{3}$/)
 
     if (
       name === '' ||
-      card === '' ||
-      closingDate === '' ||
-      cvv === '' ||
-      address === ''
+      number === '' ||
+      expiry === '' ||
+      cvc === ''
     ) {
       errors.push('您有尚未填寫的欄位')
     }
 
     if (
       name !== '' &&
-      card !== '' &&
-      closingDate !== '' &&
-      cvv !== '' &&
-      address !== ''
+      number !== '' &&
+      expiry !== '' &&
+      cvc !== ''
     ) {
       if (cardMatch === null) {
         errors.push('卡號格式有誤')
@@ -174,7 +144,7 @@ function CartPayment(props) {
           errors.push('到期日格式有誤')
         } else {
           if (cvvMatch === null) {
-            errors.push('CVV格式有誤')
+            errors.push('cvv格式有誤')
           }
         }
       }
@@ -185,7 +155,6 @@ function CartPayment(props) {
       return
     }
     setOrderErrors([])
-    orderSuccessCallback()
   }
 
   async function updateDiscountToSever(item) {
@@ -364,6 +333,16 @@ function CartPayment(props) {
       <Container className="w-75">
         {paymentMethod === '信用卡' ? (
           <>
+
+          <div id="PaymentForm">
+            <Cards
+              cvc={cvc}
+              expiry={expiry}
+              focused={focus}
+              name={name}
+              number={number}
+            />
+            <form className="mt-5">
             <Fragment>
               <Row>
                 <Container
@@ -377,10 +356,12 @@ function CartPayment(props) {
                       </label>
                       <input
                         type="text"
+                        name="name"
                         id="name"
                         value={name}
                         className="form-control form-control-sm inputBg"
                         placeholder="請輸入姓名"
+                        onFocus={handleInputFocus}
                         onChange={(event) => {
                           setName(event.target.value)
                           setOrderPayment({
@@ -397,13 +378,17 @@ function CartPayment(props) {
                         卡號：
                       </label>
                       <input
-                        type="text"
+                        type="tel"
+                        name="number"
                         id="card"
-                        value={card}
+                        value={number}
                         className="form-control form-control-sm inputBg"
-                        placeholder="請輸入格式 xxxx-xxxx-xxxx-xxxx"
+                        placeholder="請輸入格式 xxxx xxxx xxxx xxxx"
+                        onFocus={handleInputFocus}
+                        minLength="19"
+                        maxLength="21"
                         onChange={(event) => {
-                          setCard(event.target.value)
+                          setNumber(event.target.value)
                           setOrderPayment({
                             ...orderPayment,
                             orderPaymentCard: event.target.value,
@@ -419,13 +404,16 @@ function CartPayment(props) {
                           到期日：
                         </label>
                         <input
-                          type="text"
+                          type="tel"
+                          name="expiry"
                           id="closingDate"
-                          value={closingDate}
+                          value={expiry}
                           className="form-control form-control-sm inputBg"
                           placeholder="請輸入格式 xx/xx"
+                          onFocus={handleInputFocus}
+                          maxLength="5"
                           onChange={(event) => {
-                            setClosingDate(event.target.value)
+                            setExpiry(event.target.value)
                             setOrderPayment({
                               ...orderPayment,
                               closingDate: event.target.value,
@@ -437,16 +425,19 @@ function CartPayment(props) {
                     <Col xs="12" md="6">
                       <div className="form-group w-40">
                         <label className="labelTxt" htmlFor="example3">
-                          CVV：
+                          cvc / cvv：
                         </label>
                         <input
-                          type="text"
+                          type="tel"
+                          name="cvc"
                           id="cvv"
-                          value={cvv}
+                          value={cvc}
                           className="form-control form-control-sm inputBg"
                           placeholder="請輸入格式 xxx"
+                          onFocus={handleInputFocus}
+                          maxLength="3"
                           onChange={(event) => {
-                            setCvv(event.target.value)
+                            setCvc(event.target.value)
                             setOrderPayment({
                               ...orderPayment,
                               cvv: event.target.value,
@@ -456,36 +447,17 @@ function CartPayment(props) {
                       </div>
                     </Col>
                   </div>
-                  <Col xs="12">
-                    <div className="form-group w-100">
-                      <label className="labelTxt" htmlFor="example3">
-                        帳單地址：
-                      </label>
-                      <input
-                        type="text"
-                        id="address"
-                        value={address}
-                        className="form-control form-control-sm inputBg"
-                        placeholder="請輸入帳單地址"
-                        onChange={(event) => {
-                          setAddress(event.target.value)
-                          setOrderPayment({
-                            ...orderPayment,
-                            checkAddress: event.target.value,
-                          })
-                        }}
-                      />
-                    </div>
-                  </Col>
                 </Container>
               </Row>
             </Fragment>
+            </form>
+          </div>
 
-            {orderErrors.length > 0 ? (
+          {orderErrors.length > 0 ? (
               <>
                 {orderErrors.map((v, i) => (
                   <Alert
-                    className="d-flex justify-content-center"
+                    className="d-flex justify-content-center mt-3"
                     variant="danger"
                     key={i}
                   >
@@ -506,6 +478,7 @@ function CartPayment(props) {
                 }}
                 onMouseUp={async () => {
                   if (orderErrors.length === 0) {
+                    await orderSuccessCallback()
                     if (shopDiscountUpdate !== '') {
                       await updateDiscountToSever(shopDiscountUpdate)
                     }
@@ -529,6 +502,7 @@ function CartPayment(props) {
         ) : (
           ''
         )}
+
         {paymentMethod !== '' && paymentMethod !== '信用卡' ? (
           <div className="d-flex justify-content-center pt-3 pb-3 mb-5 btn-trans">
             <Button
