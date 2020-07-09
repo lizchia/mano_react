@@ -5,24 +5,22 @@ import { Link, withRouter } from 'react-router-dom'
 import MemberSideLink from './MemberSideLink'
 import MyBreadcrumb from '../components/MyBreadcrumbForMember'
 
-function Coupon(props) {
-  const { changeBackgroundColorDark } = props
+function MemberStory(props) {
+  const [story, setStory] = useState([])
+  const [storyusedlist, setStoryusedlist] = useState([])
 
-  const [coupon, setCoupon] = useState([])
-  const [couponusedlist, setCouponusedlist] = useState([])
-
-  const [couponshow, setCouponshow] = useState(true)
+  const [storyshow, setStoryshow] = useState(true)
   const localMember = JSON.parse(localStorage.getItem('member')) || [
     { memberName: '', memberId: '' },
   ]
 
-  function changeBackgroundColor() {
+  function changeBackgroundColorDark() {
     document.body.style.background = '#5C6447'
   }
 
-  async function getData(memberId) {
+  async function getData(memberName) {
     const request = new Request(
-      `http://localhost:3002/membercenter/coupon/${memberId}`,
+      `http://localhost:3002/membercenter/memberstory/${memberName}`,
       {
         method: 'GET',
         headers: new Headers({
@@ -36,11 +34,11 @@ function Coupon(props) {
     const data = await response.json()
     console.log('顯示的資料', data)
     // 設定資料
-    setCoupon(data)
+    setStory(data)
   }
-  async function getCouponUsedData(memberId) {
+  async function getlovedData() {
     const request = new Request(
-      `http://localhost:3002/membercenter/couponused/${memberId}`,
+      `http://localhost:3002/membercenter/memberstoryloved/`,
       {
         method: 'GET',
         headers: new Headers({
@@ -54,43 +52,84 @@ function Coupon(props) {
     const data = await response.json()
     console.log('顯示的資料', data)
     // 設定資料
-    setCouponusedlist(data)
+    setStoryusedlist(data)
   }
+  async function deleteComToServer(value) {
+    const request = new Request(
+      'http://localhost:3002/membercenter/memberstory/' + value.id,
+      {
+        method: 'Delete',
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+      }
+    )
+    const response = await fetch(request)
+    const data = await response.json()
+  }
+
   useEffect(() => {
-    getData(localMember[0].memberId)
+    getData(localMember[0].memberName)
     changeBackgroundColorDark()
     document.getElementById('maintable').classList.add('coupontable')
   }, [])
 
-  const couponnotused = coupon.map((value, index) => {
+  const handleDelet = (value) => {
+    const newCom = story.filter((v, i) => v.id !== value)
+    console.log(value)
+    setStory(newCom)
+  }
+
+  const storynotused = story.map((value, index) => {
     return (
       <tr style={{ border: '2px solid #C5895A' }}>
-        <td>{value.discountName}</td>
-        <td style={{ color: ' #C5895A' }}>
-          {Number(value.discountMethod) < 1 && Number(value.discountMethod) > 0
-            ? `${value.discountMethod.substr(2, 3)}折`
-            : `折扣${value.discountMethod.substr(1, 4)}元`}
+        <td>{value.username}</td>
+        <td style={{ color: ' #C5895A' }}>{value.text}</td>
+        <td>
+          <img
+            style={{ width: '100px', height: '100px' }}
+            src={`http://localhost:3002/img-uploads/${value.commentImg}`}
+            rounded
+          ></img>
         </td>
-        <td>{value.discountPeriod}</td>
-        {/* <td>{value.created_at.substr(0,10)}</td> */}
-        <td>{value.updated.substr(0, 10)}</td>
-        <td>未使用</td>
+        <td>
+          <a
+            onClick={() => {
+              alert(`確定要刪除「${value.text}」這篇文章嗎？`)
+              console.log(value.id)
+              handleDelet(value.id)
+            }}
+          >
+            <i className="fas fa-trash-alt"></i>
+          </a>
+        </td>
       </tr>
     )
   })
-  const couponused = couponusedlist.map((value, index) => {
+  const storyused = storyusedlist.map((value, index) => {
     return (
       <tr style={{ border: '2px solid #C5895A' }}>
-        <td>{value.discountName}</td>
-        <td style={{ color: ' #C5895A' }}>
-          {Number(value.discountMethod) < 1 && Number(value.discountMethod) > 0
-            ? `${value.discountMethod.substr(2, 3)}折`
-            : `折扣${value.discountMethod.substr(1, 4)}元`}
+        <td>{value.username}</td>
+        <td style={{ color: ' #C5895A' }}>{value.text}</td>
+        <td>
+          <img
+            style={{ width: '100px', height: '100px' }}
+            src={`http://localhost:3002/img-uploads/${value.commentImg}`}
+            rounded
+          ></img>
         </td>
-        <td>{value.discountPeriod}</td>
-        {/* <td>{value.created_at.substr(0,10)}</td> */}
-        <td>{value.updated.substr(0, 10)}</td>
-        <td>已使用</td>
+        <td>
+          <a
+            onClick={() => {
+              alert(`確定要刪除「${value.text}」這篇文章嗎？`)
+              console.log(value.id)
+              handleDelet(value.id)
+            }}
+          >
+            <i className="fas fa-heart"></i>
+          </a>
+        </td>
       </tr>
     )
   })
@@ -127,22 +166,22 @@ function Coupon(props) {
           >
             <button
               className="btn"
-              style={couponshow ? activebutton : normalbutton}
+              style={storyshow ? activebutton : normalbutton}
               onClick={() => {
-                setCouponshow(true)
+                setStoryshow(true)
               }}
             >
-              可用折價券
+              我的文章
             </button>
             <button
               className="btn"
-              style={couponshow ? normalbutton : activebutton}
+              style={storyshow ? normalbutton : activebutton}
               onClick={() => {
-                getCouponUsedData(localMember[0].memberId)
-                setCouponshow(false)
+                getlovedData()
+                setStoryshow(false)
               }}
             >
-              使用記錄
+              讚過的內容
             </button>
           </div>
           <Col md={{ span: 10, offset: 1 }}>
@@ -151,27 +190,25 @@ function Coupon(props) {
                 style={{ border: '2px solid #C5895A', borderBottom: '#C5895A' }}
               >
                 <tr className="bg-primary ">
-                  <th>折價券名稱</th>
-                  <th>折扣內容</th>
-                  <th>有效期限</th>
-                  <th>獲得日期</th>
-                  <th>狀態</th>
+                  <th>抹之友</th>
+                  <th>內容</th>
+                  <th>照片</th>
+                  <th>功能</th>
                 </tr>
               </thead>
               <tbody
                 style={{ border: '2px solid #C5895A', borderTop: '#C5895A' }}
               >
-                {couponshow ? couponnotused : couponused}
+                {storyshow ? storynotused : storyused}
               </tbody>
             </Table>
           </Col>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            升級會員，享有更多優惠，會員等級說明
-            <Link to="../../life/marketing">看這邊>></Link>
+            <Link to="../../life/story">回到故事牆</Link>
           </div>
         </Col>
       </MemberSideLink>
     </>
   )
 }
-export default Coupon
+export default MemberStory
