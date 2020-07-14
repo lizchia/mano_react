@@ -21,3 +21,4 @@ git技術: git (github / bitbucket)
 地圖定位系統 (react-leaflet)
 版本控制 (git)
 
+![image](https://github.com/lizchia/mano_react/commit/23e8678731877aa0efbdb21add92a451e57e3d72)
