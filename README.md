@@ -27,3 +27,6 @@ git技術: git (github / bitbucket)
 #final version - StoryWall_share post
 ![image](https://github.com/lizchia/mano_react/blob/master/share.png)
 
+#final version - Marketing_insert new coupon
+![image](https://github.com/lizchia/mano_react/blob/master/gift.png)
+
