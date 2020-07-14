@@ -2,7 +2,7 @@
 
 ## `npm start`
 
-
+(updated 7/9/2020 final/final/dev version)
 基礎技術支持: html5(websocket) + sass
 前端技術支持: react.js + redux + javaScript(ES6) + jquery + bootstrap
 後端技術支持: node.js + express.js + mysql + php
