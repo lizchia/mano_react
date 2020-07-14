@@ -21,4 +21,5 @@ git技術: git (github / bitbucket)
 地圖定位系統 (react-leaflet)
 版本控制 (git)
 
-![image](https://github.com/lizchia/mano_react/commit/23e8678731877aa0efbdb21add92a451e57e3d72)
+#1st version - StoryWall
+![image](https://github.com/lizchia/mano_react/blob/master/screencapture-localhost-3000-life-story-2020-06-25-16_26_34.png)
