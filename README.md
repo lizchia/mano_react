@@ -10,16 +10,20 @@
 git技術: git (github / bitbucket)
 編輯器技術: vscode
 功能說明：
-會員系統 (CRUD)
-賣家系統 (CRUD)
-購物車系統 (包括訂單系統)
-願望清單系統 (localstorage)
-比較系統 (localstorage)
+
 部落格系統 (CRUD)
-結帳系統 (CR)
-全站搜尋系統 (模糊搜尋)
-地圖定位系統 (react-leaflet)
+
 版本控制 (git)
 
 #1st version - StoryWall
 ![image](https://github.com/lizchia/mano_react/blob/master/screencapture-localhost-3000-life-story-2020-06-25-16_26_34.png)
+
+#final version - StoryWall
+![image](https://github.com/lizchia/mano_react/blob/master/story.png)
+
+#final version - StoryWall_add new post
+![image](https://github.com/lizchia/mano_react/blob/master/addnote.png)
+
+#final version - StoryWall_share post
+![image](https://github.com/lizchia/mano_react/blob/master/share.png)
+
