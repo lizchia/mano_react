@@ -30,3 +30,5 @@ git技術: git (github / bitbucket)
 #final version - Marketing_insert new coupon
 ![image](https://github.com/lizchia/mano_react/blob/master/gift.png)
 
+#final version - review_insert new comment_five stars review
+![image](https://github.com/lizchia/mano_react/blob/master/comment.png)
