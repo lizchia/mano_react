@@ -122,8 +122,7 @@ function MemberStory(props) {
         <td>
           <a
             onClick={() => {
-              alert(`確定要刪除「${value.text}」這篇文章嗎？`)
-              console.log(value.id)
+              alert(`確定要取消按讚「${value.text}」這篇文章嗎？`)
               handleDelet(value.id)
             }}
           >
