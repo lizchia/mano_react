@@ -31,6 +31,7 @@
     "react-bootstrap": "^1.0.1",
     "react-compare-image": "^2.0.4",
     "react-compare-slider": "^1.0.4",
+    "react-credit-cards": "^0.8.3",
     "react-dom": "^16.13.1",
     "react-filter-search": "^1.0.11",
     "react-icons": "^3.10.0",
