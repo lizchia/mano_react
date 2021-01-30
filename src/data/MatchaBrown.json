@@ -1,0 +1,233 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1010,
+        "FACILITYID": 28010,
+        "NAME": "Sweet Tooth",
+        "NAME_FR": "甜品店",
+        "ADDRESS": "110台北市信義區光復南路421巷9號",
+        "PHONE":"02 2758 9488",
+        "WEBSITE":"https://www.facebook.com/sweettooth.tp",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "熱門",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": "/mapImages/map021.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.558151, 25.036579]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1011,
+        "FACILITYID": 28011,
+        "NAME": "BABURU DRINK SHOP",
+        "NAME_FR": "冰品飲料店",
+        "ADDRESS": "10667台北市大安區大安路二段68號",
+        "PHONE":"02 2701 9633",
+        "WEBSITE":"https://www.facebook.com/baburu.tw",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "",
+        "DESCRIPT_1": "",
+        "PICTURE_LI": "/mapImages/map014.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.545829, 25.032300]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1013,
+        "FACILITYID": 28013,
+        "NAME": "CHANTEZ Pâtisserie 穿石",
+        "NAME_FR": "法式糕餅店",
+        "ADDRESS": "106台北市大安區濟南路三段31號",
+        "PHONE":"02 2778 6865",
+        "WEBSITE":"https://chantezpatisserie.com/",
+        "OPEN": null,
+        "NOTES": "限內用",
+        "FACILITY": "講座場地",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": "/mapImages/map023.jpg"
+      },
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [121.535543, 25.040319]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1021,
+        "FACILITYID": 28021,
+        "NAME": "Machikaka",
+        "NAME_FR": "咖啡廳",
+        "ADDRESS": "104台北市中山區南京東路三段216巷4號",
+        "PHONE":"02 2777 2777",
+        "WEBSITE":"http://www.facebook.com/machikaka.tw",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": "/mapImages/map024.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.543231, 25.051842]
+      }
+    }, {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1008,
+        "FACILITYID": 28008,
+        "NAME": "果果Guoguo",
+        "NAME_FR": "甜品餐廳",
+        "ADDRESS": "106台北市大安區瑞安街202號",
+        "PHONE": "0903 356 605",
+        "WEBSITE": "https://cutt.ly/du3Yd9c",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "WIFI",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "甜點訂製",
+        "PICTURE_LI": "/mapImages/map022.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.540813,
+          25.028569
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1030,
+        "FACILITYID": 28030,
+        "NAME": "京沺屋抹茶專門",
+        "NAME_FR": "冰品飲料店",
+        "ADDRESS": "108台北市萬華區中華路一段88-2號",
+        "PHONE":"02 2388 6662",
+        "WEBSITE":"https://cutt.ly/cu3TbJY",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "抹茶專門店",
+        "FACILITY_F": "茶道課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "專門店",
+        "PICTURE_LI": "/mapImages/map004.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.516367, 25.046334]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1021,
+        "FACILITYID": 28021,
+        "NAME": "Machikaka",
+        "NAME_FR": "咖啡廳",
+        "ADDRESS": "104台北市中山區南京東路三段216巷4號",
+        "PHONE":"02 2777 2777",
+        "WEBSITE":"http://www.facebook.com/machikaka.tw",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": "/mapImages/map024.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.543231, 25.051842]
+      }
+    }, {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1039,
+        "FACILITYID": 28039,
+        "NAME": "果果Guoguo",
+        "NAME_FR": "甜品餐廳",
+        "ADDRESS": "106台北市大安區瑞安街202號",
+        "PHONE": "0903 356 605",
+        "WEBSITE": "https://cutt.ly/du3Yd9c",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "WIFI",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "甜點訂製",
+        "PICTURE_LI": "/mapImages/map022.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.540813,
+          25.028569
+        ]
+      }
+    },{
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1040,
+        "FACILITYID": 28040,
+        "NAME": "LOUISA COFFEE 路易莎咖啡",
+        "NAME_FR": "咖啡店",
+        "ADDRESS": "100台北市中正區南福里",
+        "PHONE": "0903 356 605",
+        "WEBSITE": "https://cutt.ly/du3Yd9c",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "WIFI",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "甜點訂製",
+        "PICTURE_LI": "/mapImages/map022.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.518196,
+          25.029966
+        ]
+      }
+    }
+  ]
+}
+
+

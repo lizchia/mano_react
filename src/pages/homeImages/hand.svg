@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1440" height="900" viewBox="0 0 1440 900">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_109" data-name="Rectangle 109" width="1440" height="900" transform="translate(1490.094 0)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_312" data-name="Group 312" transform="translate(-1490.094 0)" clip-path="url(#clip-path)">
+    <g id="Group_311" data-name="Group 311">
+      <g id="Group_310" data-name="Group 310">
+        <path id="Path_4728" data-name="Path 4728" d="M2717.595,330.436c32.218,33.715,56.97,134.675,71.387,179.537,12.231,38.053,35.486,96.24,28.113,127.463" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_4729" data-name="Path 4729" d="M2726.595,77.436c-4.511,9.136-54.747,29.232-63.8,33.89-22.384,11.515-44.722,52.5-61.914,71.682-59.011,65.828-105.14,139.456-167.286,203.428" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4730" data-name="Path 4730" d="M1867.595,135.936c-20.941-2.838-48.489-26.754-72.723-31.9-32.844-6.969-67.687-9.507-99.829-19.436-68.227-21.077,15.126,154.568,28.02,175.851,23.088,38.113,91.455,85.17,99.245,125.94,5.321,27.868-31.752,86.132-40.685,112.05-16.007,46.449-29.15,94.2-40.528,141.99" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4731" data-name="Path 4731" d="M2855.595,36.186c17.638,4.853-24.925,130.77-26.845,147.269-5.34,45.858-68.26,73.01-88.621,110.77-46.52,86.272-141,154.347-215.376,215.211" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4732" data-name="Path 4732" d="M2398.595,591.936c-26.948,42.328,22.38,187.164,2.965,204.963-52.888,48.565-82.434-72.57-71.965-75.963" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4733" data-name="Path 4733" d="M1904.095,52.936c-10.377,36.94-9.5,115.767,7.407,142.06,19.016,29.572,85.029,181.083,130.073,173.818,40.042-6.462,96.689,21.454,102.775,71.185,3.753,30.676,79.492,25.18,89.745,60.437" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4734" data-name="Path 4734" d="M2423.595,633.936c16.918,39.487,8.327,132.054,9.069,178" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4735" data-name="Path 4735" d="M2069.095,597.936C2090.637,615.5,2058,707.3,2041.057,720.388c-19.916,15.384-15.471,50.585,5.49,61.143,30.033,15.131,37.582-20.633,52.548-35.6" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4736" data-name="Path 4736" d="M1823.595,390.436c47.74,31.83,89.262,79.383,121.376,126.585,1.9,2.794-16.271,48.165-15.483,57.924,2.12,26.277,41.851,31.525,59.341,42.309-23.288,36-98.4,203.662-64.737,226.054,57.573,38.3,82.159-61.778,79-93.372" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4737" data-name="Path 4737" d="M2033.095,370.436c-42.509,45.01-47.638,103.826-87,147" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4738" data-name="Path 4738" d="M2790.595,34.936c-30.116,12.463-125.007,39.929-144.138,62.886-35.332,42.433-9.428-76.863-11.862-60.886" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4739" data-name="Path 4739" d="M2047.595,420.936c-24.6,19.789-84.576,113.389-63.5,146.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4740" data-name="Path 4740" d="M2321.095,438.436c70.128-36.732,58.348-84.1,133.48-34.47,27.62,18.241,45.774,44.554,53.7,72.708,4.9,17.4,27.4,41.606,24.728,65.262-1.785,15.832-26.531,30.824-32.03,45.57-8.441,22.631-21.408,42.15-39.375,52.93" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4741" data-name="Path 4741" d="M2088.595,449.936c-24.755,41.265-95.385,61.406-98,119" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4742" data-name="Path 4742" d="M2458.595,715.436c-11.347,10.271-31.45,207.15-70,91.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4743" data-name="Path 4743" d="M2321.095,439.436c-20.646-23.69-81.536,44.157-88,54.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4744" data-name="Path 4744" d="M1737.595,640.186c77.1,7.679,156.485-4.742,233,4.25" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4745" data-name="Path 4745" d="M1600.595,33.936c-36.2,36.2,45.421,39.871,67,48.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4746" data-name="Path 4746" d="M1975.595,33.936c-21.086,1.7-63.695,24.982-81,13" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4747" data-name="Path 4747" d="M2459.8,627.162c27.916,12.1,89.148,13.322,92.8,13.325,40.271.032,80.546.383,120.816.646,93.845.613,187.756.357,281.588,2.079" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4748" data-name="Path 4748" d="M2068.095,784.936c-2.208,49.652-6.5,82.788-68.5,66.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4749" data-name="Path 4749" d="M2007.595,661.936c8.348,26.246,12.306,70.471-2,95.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4750" data-name="Path 4750" d="M2330.095,478.936c-.5,15.521-14,75.65-6,91.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4751" data-name="Path 4751" d="M2255.595,565.936c5.324,39.363,51.168,19.437,67,8" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4752" data-name="Path 4752" d="M2461.595,640.436c-9.775,5.612-11.33,75.854,1,75.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4753" data-name="Path 4753" d="M1703.595,71.936q15.981,2.148,32,4" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4754" data-name="Path 4754" d="M2816.595,635.936" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4755" data-name="Path 4755" d="M1855.595,132.936c.1,9.773,29.388,23.653,37.5,30.75" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4756" data-name="Path 4756" d="M1793.595,117.936a85.35,85.35,0,0,1,45,4" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4757" data-name="Path 4757" d="M2326.095,584.936c-7.693,6.651-6,93.5,3.5,136" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4758" data-name="Path 4758" d="M2243.095,523.936c.179,1.238.938,46.08,12.5,47" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4759" data-name="Path 4759" d="M1953.595,851.436l-17,1.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4760" data-name="Path 4760" d="M1992.595,833.936q13.02-.078,18,18" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4761" data-name="Path 4761" d="M1666.595,72.936a123.074,123.074,0,0,0-17-3" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4762" data-name="Path 4762" d="M1740.047,640.487c-11,0-242.047,5.449-253.047,5.449" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4763" data-name="Path 4763" d="M2031.595,853.936q-5.812-3.346-11,1" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4764" data-name="Path 4764" d="M2064.095,832.436c-5.2-1.02-8.53,1.86-11.5,5.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4765" data-name="Path 4765" d="M2726.095,79.936l8.5,1" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4766" data-name="Path 4766" d="M2077.595,614.936c-.022,3.646-2.925,4.41-5.5,5.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4767" data-name="Path 4767" d="M2411.595,380.436l7,4.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4768" data-name="Path 4768" d="M1996.095,820.936q6.347,7.548,1,14.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4769" data-name="Path 4769" d="M2058.595,785.436q.5,3.251,1,6.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4770" data-name="Path 4770" d="M2325.595,734.936q-.25,3-.5,6" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4771" data-name="Path 4771" d="M2000.095,832.936l4.5,4" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4772" data-name="Path 4772" d="M1967.095,650.936l-5.5-1" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4773" data-name="Path 4773" d="M2334.595,746.936c-.178,2.667,2.677,5.522-.5,8" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4774" data-name="Path 4774" d="M2161.595,458.436c-2.161,1.762-4.254,2.716-6-.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4775" data-name="Path 4775" d="M1725.595,84.936l-4,.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4776" data-name="Path 4776" d="M2320.095,678.436q.25,2.751.5,5.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4777" data-name="Path 4777" d="M2200.595,475.436l-4,.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4778" data-name="Path 4778" d="M1946.095,838.436l-3.5-.5" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4779" data-name="Path 4779" d="M2168.095,541.936c16.1,24.756-1.313,62.823-20.022,98.619-13.062,24.992-34.281,78.05-50.978,99.881" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4780" data-name="Path 4780" d="M2279,675c-36.793-24.6-89-9.363-117.951,20.542-23.963,24.755-38.989,101.36,13.016,63.949,17.741-12.761,91.542-94.216,88.046-28.2-1.517,28.642-25.591,71.909-47.384,90.488-27.752,23.66-100.528,41.108-110.347-6.4-8.528-41.263,15.427-92.219,36.328-126.533,24.737-40.613,55.694-77.834,108.093-73.834,39.974,3.052,51.238,42.244,56.335,78.644,7.786,55.614-21.457,137.046-80.26,154.293-33.1,9.707-61.723-4.571-92.678-13.7-12.02-3.543-27.5-2-27.2-17.256" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+        <path id="Path_4781" data-name="Path 4781" d="M2083,819c-10.744-37.9,12.511-97.372,32.509-130.356,18.573-30.633,49.717-62.781,77.444-85.7,60.989-50.406,110.129,9.575,126.151,70.989,9.5,36.437,14.141,71.883,16.334,109.5,1.322,22.671,5.777,41.857-7.915,61.246-15.58,22.064-38.1,19.843-63.509,20.465a728.3,728.3,0,0,1-125.085-8.092c-15.515-2.409-39.15-5.182-49.929-18.057" fill="none" stroke="#8ab048" stroke-miterlimit="10" stroke-width="4" fill-rule="evenodd"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -16,6 +16,7 @@ function List(props) {
     addNewTodoItemToSever,
     handleCompleted,
     handleEditedHeartPlus,
+    addNewReplyItemToSever,
   } = props
   const [replyCom, setReplyCom] = useState([])
   const [replyText, setReplyText] = useState('')
@@ -61,7 +62,7 @@ function List(props) {
                 setReplyUser={setReplyUser}
                 setReplyText={setReplyText}
                 setReplyCom={setReplyCom}
-                handleEditSave={handleEditedSave}
+                addNewReplyItemToSever={addNewReplyItemToSever}
               />
             </>
           )

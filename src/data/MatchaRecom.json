@@ -1,0 +1,131 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "markerColor": "#5c6447",
+        "PARK_ID": 1001,
+        "FACILITYID": 28001,
+        "NAME": "辻利茶舖",
+        "NAME_FR": "茶藝館",
+        "ADDRESS": "106台北市大安區忠孝東路四段45號B1",
+        "PHONE":"02 2721 6863",
+        "WEBSITE":"http://www.tsujiri.com.tw/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "抹茶專門店",
+        "FACILITY_F": "茶道課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": "/mapImages/map006.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.544912, 25.04203]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#5c6447",
+        "PARK_ID": 1007,
+        "FACILITYID": 28007,
+        "NAME": "Matcha One 永康店",
+        "NAME_FR": "甜品店",
+        "ADDRESS": "106台北市大安區永康街75巷16號",
+        "PHONE":"02 2351 0811",
+        "WEBSITE":"https://m.facebook.com/MatchaOne/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": "/mapImages/map023.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.531047, 25.028939]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#5c6447",
+        "PARK_ID": 1015,
+        "FACILITYID": 28015,
+        "NAME": "伊藤久右衛門",
+        "NAME_FR": "傳統茶館",
+        "ADDRESS": "10491台北市中山區中山北路一段132號",
+        "PHONE":"02 2567 5335",
+        "WEBSITE":"https://www.facebook.com/itohkyuemonTW",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "抹茶專門店",
+        "FACILITY_F": "環境舒適",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合親子",
+        "PICTURE_LI": "/mapImages/map004.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.522251, 25.051871]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#5c6447",
+        "PARK_ID": 1002,
+        "FACILITYID": 28002,
+        "NAME": "一〇八抹茶茶廊",
+        "NAME_FR": "甜品店",
+        "ADDRESS": "106台北市大安區忠孝東路三段300號B3",
+        "PHONE":"02 2772 2108",
+        "WEBSITE":"http://108matcha-saro.com/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "抹茶專門店",
+        "FACILITY_F": "茶道課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "提供下午茶",
+        "PICTURE_LI": "/mapImages/map001.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.543246, 25.040928]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#5c6447",
+        "PARK_ID": 1019,
+        "FACILITYID": 28019,
+        "NAME": "京沺屋抹茶專門",
+        "NAME_FR": "冰品飲料店",
+        "ADDRESS": "108台北市萬華區中華路一段88-2號",
+        "PHONE":"02 2388 6662",
+        "WEBSITE":"https://cutt.ly/cu3TbJY",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "抹茶專門店",
+        "FACILITY_F": "茶道課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "專門店",
+        "PICTURE_LI": "/mapImages/map005.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.508813, 25.045155]
+      }
+    }
+  ]
+}
+
+

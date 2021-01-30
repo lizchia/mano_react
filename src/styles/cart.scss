@@ -1,0 +1,169 @@
+@media (max-width: 1050px) {
+  h5 {
+    font-size: 18px !important;
+  }
+  .cardTotal,
+  .cardPrice,
+  .cardNumber {
+    font-size: 16px !important;
+  }
+  .cardPrice {
+    left: -15px !important;
+  }
+  .cardNumber {
+    left: 13px !important;
+  }
+  .cardTotal {
+    left: 35px !important;
+  }
+  .productName {
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+  }
+}
+@media (max-width: 768px) {
+  .cardTotal {
+    left: 20px !important;
+  }
+  .cross {
+    font-size: 36px !important;
+    left: 45px !important;
+  }
+  h5 {
+    font-size: 16px !important;
+  }
+  .cardPrice {
+    left: -30px !important;
+  }
+
+  .cardNumber {
+    left: 0px !important;
+  }
+
+  .cardTotal {
+    left: 30px !important;
+  }
+  .productName {
+    left: -30px !important;
+  }
+}
+
+@media (max-width: 385px) {
+  .cross {
+    // top: -30px !important;
+    // left: -280px !important;
+  }
+  .cardPrice {
+    left: -55px !important;
+    top: 25px !important;
+  }
+
+  .cardNumber {
+    left: -60px !important;
+    top: 25px !important;
+  }
+
+  .cardTotal {
+    left: 110px !important;
+    top: -25px !important;
+  }
+  .productName {
+    left: -40px !important;
+    top: 25px !important;
+  }
+  .cross {
+    top: -25px !important;
+    left: 60px;
+  }
+}
+
+.cross {
+  font-size: 24px;
+  color: rgb(207, 87, 87);
+  position: relative;
+  margin: auto 0;
+  top: -2px;
+  left: 60px;
+}
+
+.productName {
+  font-size: 20px;
+  font-weight: 900;
+  margin: auto 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.productCard {
+  background-color: white;
+  height: 100px;
+  box-shadow: 0 0 5px white;
+  padding: 0 5px 0 20px;
+}
+
+.thPrice {
+  position: relative;
+  left: -20px;
+}
+
+.thNumber {
+  position: relative;
+  left: -20px;
+}
+
+.thTotal {
+  position: relative;
+  left: -20px;
+}
+
+.cardPrice {
+  text-align: center;
+  margin: auto 0;
+  position: relative;
+  left: -18px;
+}
+
+.cardNumber {
+  text-align: center;
+  margin: auto 0;
+  position: relative;
+  left: 15px;
+  .countBtn {
+    background-color: #cfddcd;
+  }
+}
+
+.cardTotal {
+  text-align: center;
+  margin: auto 0;
+  position: relative;
+  left: 45px;
+}
+
+.totalCard {
+  background-color: white;
+  height: 320px;
+  box-shadow: 0 0 5px white;
+
+  h5,
+  h6 {
+    margin: 20px auto;
+    text-align: center;
+  }
+}
+
+.nextBtn {
+  width: 160px;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 20px;
+}
+
+.cartPageSize {
+  height: 100vh;
+}
+
+.cartMargin {
+  margin: 150px auto;
+}

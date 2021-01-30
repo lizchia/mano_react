@@ -11,31 +11,69 @@ function ItemC(props) {
     handleEditedToggle,
     handleCompleted,
     handleEditedHeartPlus,
-    handleEditedHeartMinus,
   } = props
 
   const date = new Date(value.id)
 
   const cssClasses =
     'list-group-item justify-content-between align-items-center list-group-item-light'
-  // async function updateHeartToServer(value) {
-  //   const newHeart = { heart: heart + value }
-  //   const request = new Request('http://localhost:3002/comment', {
-  //     method: 'PUT',
-  //     body: JSON.stringify(newHeart),
-  //     headers: new Headers({
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     }),
-  //   })
-  //   const response = await fetch(request)
-  //   const data = await response.json()
-  //   setHeart(heart + value)
-  // }
 
   return (
     <li className={cssClasses}>
       {value.username}
+      <br />
+      <ul class="list-unstyled list-inline rating mb-0">
+        <li class="list-inline-item mr-0">
+          <i
+            class={
+              value.heart >= 1
+                ? 'fas fa-star amber-text'
+                : 'far fa-star amber-text'
+            }
+          >
+            {' '}
+          </i>
+        </li>
+        <li class="list-inline-item mr-0">
+          <i
+            class={
+              value.heart >= 2
+                ? 'fas fa-star amber-text'
+                : 'far fa-star amber-text'
+            }
+          ></i>
+        </li>
+        <li class="list-inline-item mr-0">
+          <i
+            class={
+              value.heart >= 3
+                ? 'fas fa-star amber-text'
+                : 'far fa-star amber-text'
+            }
+          ></i>
+        </li>
+        <li class="list-inline-item mr-0">
+          <i
+            class={
+              value.heart >= 4
+                ? 'fas fa-star amber-text'
+                : 'far fa-star amber-text'
+            }
+          ></i>
+        </li>
+        <li class="list-inline-item">
+          <i
+            class={
+              value.heart >= 5
+                ? 'fas fa-star amber-text'
+                : 'far fa-star amber-text'
+            }
+          ></i>
+        </li>
+        <li class="list-inline-item">
+          <p class="text-muted">{value.heart} </p>
+        </li>
+      </ul>
       <br />
       {value.text}
       <div>
@@ -48,7 +86,7 @@ function ItemC(props) {
         >
           reply
         </button>
-        <button
+        {/* <button
           type="button"
           className="btn btn-light"
           onClick={() => {
@@ -56,7 +94,7 @@ function ItemC(props) {
           }}
         >
           edit
-        </button>
+        </button> */}
         <button
           type="button"
           className="btn btn-light"
@@ -77,7 +115,7 @@ function ItemC(props) {
             }}
           >
             <i class="fas fa-heart"></i>
-            <span>({value.heart})</span>
+            {/* <span>({value.heart})</span> */}
           </button>
         ) : (
           <button
@@ -90,7 +128,7 @@ function ItemC(props) {
             }}
           >
             <i class="far fa-heart"></i>
-            <span>({value.heart})</span>
+            {/* <span>({value.heart})</span> */}
           </button>
         )}
         <div className="badge badge-secondary">{date.toLocaleString()}</div>

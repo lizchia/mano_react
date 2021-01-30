@@ -1,0 +1,64 @@
+/* miz card strat----- */
+/* .big-field{
+    width: 90vw;
+    margin: 0 auto;
+} */
+
+.card-field{
+    width: 99vw;
+    margin: 0 auto;
+
+}
+
+.card-square{
+    width: 230px;
+    height: 230px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.whitebox{
+    width: 230px;
+    height: 230px;
+    background: #fff;
+    opacity:0.8;
+    position: absolute;
+    left:0px;
+    top:0px;
+}
+.logoarea{
+    width: 116px;
+    height: 232px;
+    margin-left:135px;
+}
+.biglogo{
+    width: 116px;
+    height: 116px;
+    overflow: hidden;
+}
+.card-img{
+    width: 235px;
+    height: 235px;
+    object-fit: cover;
+}
+.card-show{
+   width: 192px;
+   height: 122px;
+   position: absolute;
+   left: 18px;
+   top: 71px;
+  
+
+}
+.card-title,.card-title span{
+    font-size: 12pt;
+    color:#5C6447;
+  
+}
+.card-price{
+    color:#5C6447;
+}
+.price-number{
+ font-size: 30pt;
+ line-height: 30pt;
+}

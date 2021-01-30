@@ -1,0 +1,130 @@
+
+
+.masonry-container{
+	width: 100%;
+	margin: auto;
+	border: 1px solid rgba(0,0,0,.1);
+    height:600px;
+    display:flex;
+    justify-content:space-evenly
+}
+.my-masonry-grid_column{
+    width:100%;
+}
+
+.masonry{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: stretch;
+	width: 100%;
+	margin: auto;
+}
+.column{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-content:space-between;
+    position:relative;
+}
+.tile{
+	margin: 4px;
+	
+}
+.img-life{
+		box-shadow: 0 1px 1px 2px rgba(0,0,0, .15);
+		border-radius: 10px;
+        width: 100%;
+        margin:10px;
+      
+    }
+      
+.flex{
+    display:flex;    
+    width:400px;
+}
+.outter{
+    display:block;
+    width:400px;
+   height: 600px;
+}
+.a{
+    margin-right:20px;
+    width:80%;
+}
+
+h3{
+    letter-spacing: 1px;
+   margin-bottom:40px;
+    justify-content: start;
+    /* font-weight: 900; */
+}
+.btn-life{
+    background: #BF8C60;
+    border:none;
+    border-radius: 2px;
+    color:white;
+    font-size: .5rem;
+    width:100%;
+    position:absolute;
+    bottom:50;
+    left:50;
+    transform: translate(20%, 600%);
+}
+/* miz card strat----- */
+.big-field{
+    width: 90vw;
+    margin: 0 auto;
+}
+.card-field2{
+    width: 608px;
+}
+
+.card-horizon{
+    width: 606px;
+    height: 299px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px;
+
+}
+.c-h-button{
+    width: 132px;
+    height: 47px;
+    border-radius: 24px;
+    color: #fff;
+    position: absolute;
+    left:20px ;
+    bottom:20px;
+    width:25%;
+}
+.c-h-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-vertical{
+    width: 273px;
+    height: 396px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px;
+}
+.c-v-button{
+    width: 132px;
+    height: 47px;
+    border-radius: 24px;
+    color: #fff;
+    position: absolute;
+    left:20px ;
+    bottom:20px;
+    width:50%;
+}
+.c-v-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

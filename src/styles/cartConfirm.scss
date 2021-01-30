@@ -1,0 +1,152 @@
+@media (max-width: 768px) {
+  .cfproductName {
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+  }
+  .shipping {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .cfcardTotal {
+    left: -5px !important;
+  }
+  .cfcardPrice {
+    left: -35px !important;
+  }
+  .cfcardNumber {
+    left: -15px !important;
+  }
+  .cfproductName {
+    position: relative !important;
+    left: -20px !important;
+  }
+  .orderTotal {
+    width: 200px !important;
+  }
+  .discountTable {
+    position: relative !important;
+    left: -15px !important;
+    top: 0 !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .cfproductName {
+    left: -35px !important;
+  }
+  .cfcardPrice {
+    left: -25px !important;
+  }
+}
+.cfthDetail {
+  position: relative;
+}
+
+.cfthPrice {
+  position: relative;
+  left: -20px;
+}
+
+.cfthNumber {
+  position: relative;
+  left: -20px;
+}
+
+.cfthTotal {
+  position: relative;
+  left: -20px;
+}
+
+.cfproductName {
+  font-size: 20px;
+  font-weight: 900;
+  margin: auto 0;
+  padding-left: 20px;
+}
+
+.cfproductCard {
+  background-color: white;
+  box-shadow: 0 0 5px white;
+}
+
+.cfcardPrice {
+  text-align: center;
+  margin: auto 0;
+  position: relative;
+  left: 25px;
+}
+
+.cfcardNumber {
+  text-align: center;
+  margin: auto 0;
+  position: relative;
+  left: 10px;
+}
+
+.cfcardTotal {
+  text-align: center;
+  margin: auto 0;
+  position: relative;
+  left: -10px;
+}
+
+.shipping {
+  background-color: #dfbc9e;
+  color: #596336;
+  font-weight: bold;
+  p {
+    margin: auto;
+    text-align: center;
+  }
+
+  .changeBtn {
+    background-color: #bf8c60;
+    border-radius: 20px;
+    color: white;
+    width: 80px;
+    &:hover {
+      opacity: 0.7;
+      filter: contrast(150%);
+    }
+  }
+}
+
+.carLogo {
+  color: #a9a99e;
+}
+
+.discount {
+  background-color: white;
+  box-shadow: 0 0 5px white;
+  margin: 20px 0;
+  padding: 0;
+}
+
+.discount1 {
+  background-color: white;
+  box-shadow: 0 0 5px white;
+  margin: 44px 0;
+  padding: 0;
+}
+
+.discountRight {
+  margin: auto;
+  color: #757d58;
+}
+
+.discountLeft {
+  margin: auto;
+  color: #757d58;
+}
+
+.discountTotal {
+  color: #bf8d61;
+}
+
+.orderTotal {
+  color: #bf8d61;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 2px solid #bf8d61;
+}

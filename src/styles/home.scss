@@ -1,0 +1,256 @@
+@media (max-width: 768px) {
+  .home {
+    // width: 100%;
+    height: 50%;
+  }
+  .brandPic {
+    width: 100%;
+    // height: 50px;
+  }
+  .parentbox {
+    transform: translateY(-30px);
+  }
+  .shop,
+  .life {
+    top: 150px !important;
+    width: 30% !important;
+  }
+}
+
+.bigarea {
+}
+
+.home {
+  width: 100%;
+  height: 100%;
+  // position: relative;
+}
+.aLink {
+  width: 100%;
+  height: 100%;
+  a:hover {
+    text-decoration: none;
+  }
+  h5 {
+    margin: 3.3vw 0;
+    letter-spacing: 5px;
+    color: #bf9a00;
+    text-align: center;
+    transition: 0.7s;
+    &:hover {
+      text-shadow: 0 0 5px brown;
+      transform: scale(1.2);
+      font-weight: 500;
+    }
+  }
+}
+
+.firstPage {
+}
+
+.secondPage {
+  // width: 100%;
+  min-height: 700px;
+  background-color: #a8b38b;
+  // position: relative;
+  .line {
+    width: 8.9vw;
+    height: 10vh;
+    border-bottom: 1px solid white;
+    transform: translateY(35%);
+  }
+
+  h3 {
+    width: 500px;
+    font-size: 27pt;
+    letter-spacing: 5px;
+    color: white;
+    margin-left: 8.9vw;
+    // position: absolute;
+    // left: 8.3vw;
+    // top: 20vh;
+    font-weight: bold;
+  }
+  .brandPic {
+    min-width: 482px;
+    min-height: 100px;
+    background: url('../pages/homeImages/home.svg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    position: absolute;
+    // top: 33.3vh;
+    // left: 11.3vw;
+    // z-index: 1;
+  }
+  .description2 {
+    min-width: 482px;
+    height: 154px;
+    position: absolute;
+    color: #5c6447;
+    border: 1px solid #5c6447;
+    margin-bottom: 100px;
+    padding: 5px;
+    transform: translateY(130px);
+
+    h4 {
+      font-size: 24px;
+      letter-spacing: 5px;
+      margin-left: 10px;
+      margin: 10px 0 0 22px;
+
+      color: #5c6447;
+    }
+    p {
+      font-size: 18px;
+      color: #5c6447;
+      margin: 10px 0 0 22px;
+    }
+  }
+  .parentbox {
+    height: 137px;
+  }
+  .description1 {
+    min-width: 420px;
+    height: 154px;
+    position: absolute;
+    border: 1px solid white;
+    padding: 5px;
+    // transform: translateY(100px);
+    h4 {
+      font-size: 24px;
+      letter-spacing: 10px;
+      color: white;
+      margin: 10px 0 0 22px;
+    }
+    .dec {
+      font-size: 18px;
+      letter-spacing: 5px;
+      margin: 15px 0 0 22px;
+      color: white;
+      line-height: 23px;
+    }
+  }
+
+  .moreBtn {
+    width: 100%;
+    height: 14%;
+    background-color: white;
+    opacity: 0.5;
+    padding: 10px;
+    margin: 40px 0 40px 0;
+    // transform: translateY(-60px);
+    // position: absolute;
+    // left: 62.7vw;
+    // top: 54.2vh;
+  }
+  .more {
+    color: #c5895a;
+    font-size: 24px;
+    opacity: 1;
+    margin-left: 40px;
+  }
+}
+
+.thirdPage {
+  // width: 100vw;
+  min-height: 700px;
+  overflow: hidden;
+}
+
+.fourthPage {
+  // width: 100vw;
+  // min-height: 75vw;
+  background-color: #a8b38b;
+  position: relative;
+
+  h3 {
+    width: 100vw;
+    font-size: 38pt;
+    text-align: center;
+    margin-top: 100px;
+  }
+  p {
+    color: #5c6447;
+    font-size: 18px;
+  }
+}
+.brandPic2 {
+  background: url('../pages/homeImages/home.svg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 40.3vh;
+  margin-bottom: 40px;
+}
+.noBox {
+  width: 100%;
+}
+.transparentbox {
+  background: #c5895a;
+  // min-width: 720px;
+  height: 226px;
+  opacity: 0.5;
+  position: relative;
+  transform: translateY(-100px);
+}
+.inputbox {
+  // min-width: 720px;
+  height: 40vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(-100px);
+  padding: 30px;
+}
+.btn-ipb {
+  min-width: 200px;
+  // position: absolute;
+  // left: 68px;
+  // top: 156px;
+  border: 1px solid black;
+  border-radius: 0;
+  color: black;
+  margin-left: 15px;
+}
+.contactinfo {
+  width: 90%;
+  height: 30.7vh;
+  margin-left: 20px;
+  margin-bottom: 40px;
+  // position: absolute;
+  // top: 75.6vh;
+  // left: 7vw;
+  // z-index: 1;
+}
+.ctitle {
+  color: #5c6447;
+}
+.fifthPage {
+  // width: 100vw;
+  min-height: 350px;
+  background-color: #a8b38b;
+  color: white;
+}
+.fifthPage p {
+  font-size: 18pt;
+  margin-top: 86px;
+}
+
+.footline {
+  width: 80.7vw;
+  height: 1px;
+  background: white;
+  margin-top: 45px;
+}
+.buttonarea {
+  width: 178px;
+  height: 3.7vh;
+  font-size: 34px;
+  margin-top: 8.8vh;
+}
+.fifthPage span {
+  font-size: 10pt;
+  margin-top: 8.3vh;
+  margin-bottom: 20px;
+}

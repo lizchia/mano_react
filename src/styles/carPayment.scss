@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+  .paymentOption {
+    width: 200px !important;
+  }
+  .cvv {
+    flex-direction: column !important;
+  }
+  .paymentFormBg {
+    margin: 20px 10px !important;
+    padding: 10px !important;
+  }
+}
+
+.paymentOption {
+  margin: auto;
+}
+
+.paymentFormBg {
+  background-color: white;
+  margin: 80px auto;
+  border-radius: 5px;
+  box-shadow: 0 0 7px #ccc;
+}

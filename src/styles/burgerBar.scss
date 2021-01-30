@@ -1,0 +1,82 @@
+.burgerBar-show {
+  position: fixed;
+  background: #EFF3EC;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  transition: .5s;
+  z-index: 1000;
+  padding-top: 30px;
+  .burgerBar-show-btn {
+    position: absolute;
+    left: 93vw;
+    top: 17px;
+    transition: .3s;
+    z-index: 1000;
+  }
+  
+}
+
+.burgerBar-hide {
+  position: fixed;
+  background: #EFF3EC;
+  height: 100vh;
+  width: 100vw;
+  left: -100vw;
+  transition: .3s;
+  z-index: 1000;
+  padding-top: 30px;
+
+  .burgerBar-hide-btn {
+    position: absolute;
+    left: 102vw;
+    top: 17px;
+    transition: .5s;
+    z-index: 1000;
+  }
+
+}
+
+
+.burgerBar-lists {
+    list-style: none;
+    transition: .3s;
+
+    .burgerListTitle {
+        color: #5C6447;
+        opacity: 0.7;
+        font-weight: 800;
+        margin-right: 20px;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+    }
+
+    .titleActive {
+      border-bottom: 2px solid #5C6447;
+    }
+
+    .burgerListSub a {
+        color: #C5895A;
+        opacity: 0.7;
+        font-weight: 800;
+        font-size: 26px;
+
+
+        &:hover {
+          opacity: 1;
+          text-decoration: none;
+
+        }
+
+    }
+}
+
+.barLists-disNone {
+    display: none;
+    transition: .5s;
+}
+
+

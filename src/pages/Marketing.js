@@ -1,61 +1,146 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
-import Table from 'react-bootstrap/Table'
 import { ToastsContainer, ToastsStore } from 'react-toasts'
 
-import MyBanner from '../components/MyBanner'
+import NewSite from '../components/NewSite'
+import MarketCoupon from '../components/marketing'
+
+import './marketing.css'
 
 function Marketing(props) {
+  useEffect(() => {
+    //props.changeBackgroundColorLight()
+  }, [])
+
+  const cssImg = {
+    height: '350px',
+    margin: '35px',
+  }
+  const cssCard = {
+    border: '1px solid transparent',
+  }
+  
+
   return (
     <>
-      <MyBanner title="專屬優惠" lead="mano友" />
-      <Table responsive>
-        <tr>
-          <th>手摘</th>
-          <th></th>
-        </tr>
+      <div className="container">
+        <img
+          class="text-center"
+          style={{ width: '30vw' }}
+          src="/picture/manoMem4.svg"
+        />
 
-        <tr>
-          <td>生日禮</td>
-          <td>300元生日禮金</td>
-        </tr>
-        <tr>
-          <td>全館消費</td>
-          <td>單單九折</td>
-        </tr>
-        <tr>
-          <th>一番茶</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>生日禮</td>
-          <td>100元生日禮金</td>
-        </tr>
-        <tr>
-          <td>全館消費</td>
-          <td>單單九五折</td>
-        </tr>
-        <tr>
-          <th>二番茶</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>新手禮</td>
-          <td>300元購物禮金</td>
-        </tr>
-      </Table>
-      <div>
-        <Link
-          onClick={() =>
-            ToastsStore.success(<Link to="/">快點我成為會員！</Link>)
-          }
-        >
-          <img src="/picture/m.jpg" />
-        </Link>
+        <div class="card-group text-center">
+          <div class="card" style={cssCard}>
+            <Link
+              onClick={() =>
+                ToastsStore.success(
+                  <Link to="/mall/login">快點我成為會員！</Link>
+                )
+              }
+            >
+              <img
+                style={cssImg}
+                src="/picture/manoMem1.svg"
+                className="card-img-top"
+              ></img>
+            </Link>
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-user-check"></i>手摘等級
+              </h5>
+              <p class="card-text">
+                <h6>
+                  滿一萬立即享
+                  <mark style={{ backgroundColor: '#D4AE5C' }}>手摘</mark>
+                  會員福利
+                </h6>
+                <br />
+                <h6>
+                  <i class="fas fa-gift"></i>生日月全館
+                  <mark style={{ backgroundColor: '#D4AE5C' }}>六折</mark>
+                </h6>
+                <h6>
+                  非生日月全館
+                  <mark style={{ backgroundColor: '#D4AE5C' }}>九折</mark>
+                </h6>
+              </p>
+            </div>
+          </div>
+          <div class="card" style={cssCard}>
+            <Link
+              onClick={() =>
+                ToastsStore.success(
+                  <Link to="/mall/login">快點我成為會員！</Link>
+                )
+              }
+            >
+              <img style={cssImg} src="/picture/manoMem2.svg"></img>
+            </Link>
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-user-check"></i>一番茶等級
+              </h5>
+              <p class="card-text">
+                <h6>
+                  滿三千立即享
+                  <mark style={{ backgroundColor: '#D4AE5C' }}>一番茶</mark>
+                  會員福利
+                </h6>
+                <br />
+                <h6>
+                  <i class="fas fa-gift"></i>生日單月全館
+                  <mark style={{ backgroundColor: '#D4AE5C' }}>七五折</mark>
+                </h6>
+                <h6>
+                  非生日月全館
+                  <mark style={{ backgroundColor: '#D4AE5C' }}>九五折</mark>
+                </h6>
+              </p>
+            </div>
+          </div>
+          <div class="card" style={cssCard}>
+            <Link
+              onClick={() =>
+                ToastsStore.success(
+                  <Link to="/mall/login">快點我成為會員！</Link>
+                )
+              }
+            >
+              <img style={cssImg} src="/picture/manoMem3.svg"></img>
+            </Link>
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-user-check"></i>二番茶等級
+              </h5>
+              <p class="card-text">
+                <h6>
+                  加入會員立即享
+                  <mark style={{ backgroundColor: '#D4AE5C' }}>二番茶</mark>
+                  會員福利
+                </h6>
+                <br />
+                <h6>
+                  <i class="fas fa-gift"></i>新手禮
+                </h6>
+                <h6>
+                  整筆消費
+                  <mark style={{ backgroundColor: '#D4AE5C' }}>七五折</mark>
+                </h6>
+              </p>
+            </div>
+          </div>
+        </div>
+
         <ToastsContainer store={ToastsStore} lightBackground />
       </div>
+      <div style={{ height: '250px' }}></div>
+
       <hr />
+      <MarketCoupon />
+      <hr />
+      <NewSite />
     </>
   )
 }

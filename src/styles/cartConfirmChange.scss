@@ -1,0 +1,49 @@
+@media (max-width: 768px) {
+  .confirmChange {
+    flex-direction: column;
+  }
+  .colWidth {
+    width: 100% !important;
+  }
+  .labelTxt {
+    width: 150%;
+  }
+  .shipAddress {
+    flex-direction: column !important;
+  }
+  .labelSize {
+    font-size: 28px !important;
+    position: relative;
+    right: 55px;
+  }
+}
+
+.formBg {
+  background-color: white;
+  margin: 80px auto;
+  border-radius: 5px;
+  box-shadow: 0 0 7px #ccc;
+}
+
+.inputBg {
+  background-color: #d5d7cf;
+}
+
+.labelTxt {
+  color: #757d58;
+  font-weight: bold;
+}
+
+.remarks {
+  margin-top: 40px;
+}
+
+.labelSize {
+  font-size: 36px;
+  width: 300px;
+  margin: auto;
+}
+
+.w-40 {
+  width: 40%;
+}

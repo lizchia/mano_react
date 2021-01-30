@@ -1,0 +1,40 @@
+
+.nav-show-box img{
+    opacity: 0.8;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.cWhite {
+    color: #ffffff;
+    opacity: 0.7;
+}
+
+.cGreen {
+    color: #5C6447;
+    opacity: 0.7;
+}
+
+
+.hover-op:hover {
+  opacity: 1;
+}
+
+.cartNav {
+    border: 1px solid #cfddcd;
+    width: 85%;
+    margin: 0 auto;
+
+    .cartNav-list {
+        border-right: 1px solid #cfddcd;
+    }
+
+    .cartNav-active {
+        background: #cfddcd;
+
+    }
+}
+
+

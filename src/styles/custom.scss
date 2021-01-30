@@ -1,7 +1,9 @@
 // 預設變數覆蓋需要在導入Bootstrap之前
-$primary: #a8b38b;
-// $light:;
-// $secondary: #131010;
+$primary: #C5895A;
+$secondary: #a8b38b;
+$black:#5C6447;
+$danger:#6D272B;
+$success:#A8B38B;
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap';
@@ -9,15 +11,49 @@ $primary: #a8b38b;
 
 // 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
 
+
+body {
+  font-family: 微軟正黑體;
+}
+
+.fd-col {
+  flex-direction: column;
+}
+
+.font-48 {
+  font-size: 48px;
+}
+
+
 main > .container {
   padding: 60px 15px 0;
 }
 
 .footer {
-  background-color: #A8B38B;
+  //background-color: #EFF3EC;
   color:#5C6447;
   padding: 10px;
 }
-.footer.fa, .footer.fas {
-  font-weight: 90;
+
+.coupontable {
+  border:2px solid #C5895A;
 }
+
+
+.membercenterlist{
+  color:#5C6447;
+}
+
+
+h1,h2,h3,h4,h5,h6{
+  color:#5C6447;
+}
+
+.trans-5s {
+  transition: .5s;
+}
+
+.ordersearch::placeholder{
+  color: white;
+  opacity: 0.6;
+  }

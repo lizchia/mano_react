@@ -1,0 +1,25 @@
+.page-btn {
+  list-style: none;
+  display: flex;
+  width: 95%;
+}
+
+.page-link {
+  padding: 5px;
+  display: block;
+  word-wrap: normal;
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 1000px) {
+  .page-btn {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    /* text-align: start; */
+  }
+  .page-link {
+    margin: 5px;
+    text-align: center;
+  }
+}

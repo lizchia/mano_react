@@ -1,0 +1,713 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#5c6447",
+        "PARK_ID": 1001,
+        "FACILITYID": 28001,
+        "NAME": "辻利茶舖",
+        "NAME_FR": "茶藝館",
+        "ADDRESS": "106台北市大安區忠孝東路四段45號B1",
+        "PHONE": "02 2721 6863",
+        "WEBSITE": "http://www.tsujiri.com.tw/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "抹茶專門店",
+        "FACILITY_F": "茶道課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.544912,
+          25.04203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#5c6447",
+        "PARK_ID": 1002,
+        "FACILITYID": 28002,
+        "NAME": "一〇八抹茶茶廊",
+        "NAME_FR": "甜品店",
+        "ADDRESS": "106台北市大安區忠孝東路三段300號B3",
+        "PHONE": "02 2772 2108",
+        "WEBSITE": "http://108matcha-saro.com/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "抹茶專門店",
+        "FACILITY_F": "茶道課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "提供下午茶",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.543246,
+          25.040928
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#5c6447",
+        "PARK_ID": 1003,
+        "FACILITYID": 28003,
+        "NAME": "折田菓舖",
+        "NAME_FR": "糕餅店",
+        "ADDRESS": "106台北市大安區仁愛路三段123巷6號1F",
+        "PHONE": "02 2721 6350",
+        "WEBSITE": "https://www.facebook.com/orita.japancakes/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "講座場地",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合下午茶",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.541912,
+          25.038731
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1004,
+        "FACILITYID": 28004,
+        "NAME": "LOUISA COFFEE 路易莎咖啡",
+        "NAME_FR": "咖啡店",
+        "ADDRESS": "10683台北市大安區信義路四段28號",
+        "PHONE": "02 2707 9005",
+        "WEBSITE": "http://www.louisacoffee.com.tw/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "插座",
+        "FACILITY_F": "不限時",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.544852,
+          25.033946
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1005,
+        "FACILITYID": 28005,
+        "NAME": "Louisa Coffee 路易莎咖啡(瑞安店)",
+        "NAME_FR": "咖啡店",
+        "ADDRESS": "106台北市大安區建國南路二段151巷40號",
+        "PHONE": "02 2707 6974",
+        "WEBSITE": "http://www.louisacoffee.com.tw/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "插座",
+        "FACILITY_F": "不限時",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.539573,
+          25.029552
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1006,
+        "FACILITYID": 28006,
+        "NAME": "Louisa Coffee 路易莎咖啡 (大安森林公園門市)",
+        "NAME_FR": "咖啡店",
+        "ADDRESS": "106台北市大安區信義路三段100號B1",
+        "PHONE": "02 2701 5800",
+        "WEBSITE": "http://www.louisacoffee.com.tw/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "插座",
+        "FACILITY_F": "不限時",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.534681,
+          25.03383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#5c6447",
+        "PARK_ID": 1007,
+        "FACILITYID": 28007,
+        "NAME": "Matcha One 永康店",
+        "NAME_FR": "甜品店",
+        "ADDRESS": "106台北市大安區永康街75巷16號",
+        "PHONE": "02 2351 0811",
+        "WEBSITE": "https://www.facebook.com/MatchaOne/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.531047,
+          25.028939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1008,
+        "FACILITYID": 28008,
+        "NAME": "果果Guoguo",
+        "NAME_FR": "甜品餐廳",
+        "ADDRESS": "106台北市大安區瑞安街202號",
+        "PHONE": "0903 356 605",
+        "WEBSITE": "https://www.facebook.com/pages/Guoguo/818593058215141",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "WIFI",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "甜點訂製",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.540813,
+          25.028569
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1009,
+        "FACILITYID": 28009,
+        "NAME": "舒適圈．Comfortzone",
+        "NAME_FR": "甜品店",
+        "ADDRESS": "106台北市大安區和平東路三段70巷底號",
+        "PHONE": "",
+        "WEBSITE": "hhttps://www.facebook.com/Comfortzone.tw/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "",
+        "FACILITY_F": "",
+        "DESCRIPTIO": "",
+        "DESCRIPT_1": "適合親子",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.550406,
+          25.024302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1010,
+        "FACILITYID": 28010,
+        "NAME": "Sweet Tooth",
+        "NAME_FR": "甜品店",
+        "ADDRESS": "110台北市信義區光復南路421巷9號",
+        "PHONE": "02 2758 9488",
+        "WEBSITE": "https://www.facebook.com/sweettooth.tp",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "熱門",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.558151,
+          25.036579
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1011,
+        "FACILITYID": 28011,
+        "NAME": "BABURU DRINK SHOP",
+        "NAME_FR": "冰品飲料店",
+        "ADDRESS": "10667台北市大安區大安路二段68號",
+        "PHONE": "02 2701 9633",
+        "WEBSITE": "https://www.facebook.com/baburu.tw",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "",
+        "DESCRIPT_1": "",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.545829,
+          25.0323
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1012,
+        "FACILITYID": 28012,
+        "NAME": "UFO車輪餅-通化店",
+        "NAME_FR": "糕餅店",
+        "ADDRESS": "106台北市大安區通安街",
+        "PHONE": "0983 580 031",
+        "WEBSITE": "https://www.facebook.com/UFO.cake101/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "",
+        "FACILITY_F": "",
+        "DESCRIPTIO": "創意甜點",
+        "DESCRIPT_1": "",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.553397,
+          25.030416
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1012,
+        "FACILITYID": 28012,
+        "NAME": "春山茶水舖",
+        "NAME_FR": "冰品飲料店",
+        "ADDRESS": "106台北市大安區復興南路二段323號",
+        "PHONE": "02 2737 0198",
+        "WEBSITE": "https://www.facebook.com/pages/%E7%83%8F%E9%90%B5%E8%8C%B6%E6%B0%B4%E8%88%96/128849877180078",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "",
+        "DESCRIPTIO": "",
+        "DESCRIPT_1": "",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.543475,
+          25.024313
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1013,
+        "FACILITYID": 28013,
+        "NAME": "CHANTEZ Pâtisserie 穿石",
+        "NAME_FR": "法式糕餅店",
+        "ADDRESS": "106台北市大安區濟南路三段31號",
+        "PHONE": "02 2778 6865",
+        "WEBSITE": "https://chantezpatisserie.com/",
+        "OPEN": null,
+        "NOTES": "限內用",
+        "FACILITY": "講座場地",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.535543,
+          25.040319
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1014,
+        "FACILITYID": 28014,
+        "NAME": "Aluvbe Cakery Taipei 艾樂比手作烘焙坊",
+        "NAME_FR": "麵包西餅店",
+        "ADDRESS": "106台北市大安區仁愛路三段5巷1弄21-7號",
+        "PHONE": "02 2775 3338",
+        "WEBSITE": "http://www.aluvbe.com/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "客製蛋糕",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.535335,
+          25.039126
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#5c6447",
+        "PARK_ID": 1015,
+        "FACILITYID": 28015,
+        "NAME": "伊藤久右衛門",
+        "NAME_FR": "傳統茶館",
+        "ADDRESS": "10491台北市中山區中山北路一段132號",
+        "PHONE": "02 2567 5335",
+        "WEBSITE": "https://www.facebook.com/itohkyuemonTW",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "抹茶專門店",
+        "FACILITY_F": "環境舒適",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合親子",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.522251,
+          25.051871
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#5c6447",
+        "PARK_ID": 1016,
+        "FACILITYID": 28016,
+        "NAME": "平安京茶事",
+        "NAME_FR": "甜品店",
+        "ADDRESS": "100台北市中正區師大路165號",
+        "PHONE": "02 2368 2277",
+        "WEBSITE": "https://zh-tw.facebook.com/heiankyo.fans",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "抹茶專門店",
+        "FACILITY_F": "茶道課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.527401,
+          25.020762
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1017,
+        "FACILITYID": 28017,
+        "NAME": "徹思叔叔",
+        "NAME_FR": "甜品餐廳",
+        "ADDRESS": "105台北市松山區南京東路三段337號1樓",
+        "PHONE": "02 2713 0300",
+        "WEBSITE": "http://www.uncletetsu-tw.com/matcha-ways",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "",
+        "FACILITY_F": "",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "夏日冰品",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.548343,
+          25.051789
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1018,
+        "FACILITYID": 28018,
+        "NAME": "三日月茶空間 (和菓子)",
+        "NAME_FR": "日式糖果店",
+        "ADDRESS": "106台北市大安區通化街171巷30號",
+        "PHONE": "02 2732 7575",
+        "WEBSITE": "https://m.facebook.com/mikazukiwagashi/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "特色小店",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.555038,
+          25.027993
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#5c6447",
+        "PARK_ID": 1019,
+        "FACILITYID": 28019,
+        "NAME": "京沺屋抹茶專門",
+        "NAME_FR": "冰品飲料店",
+        "ADDRESS": "108台北市萬華區中華路一段88-2號",
+        "PHONE": "02 2388 6662",
+        "WEBSITE": "https://www.facebook.com/%E4%BA%AC%E6%B2%BA%E5%B1%8B-%E5%AE%98%E7%B6%B2%E6%89%93%E5%8D%A1%E6%8C%89%E9%80%99%E9%82%8A-775995739093507/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "抹茶專門店",
+        "FACILITY_F": "茶道課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "專門店",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.508813,
+          25.045155
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1020,
+        "FACILITYID": 28020,
+        "NAME": "生活在他方",
+        "NAME_FR": "咖啡廳",
+        "ADDRESS": "100台北市中正區羅斯福路一段119巷3號",
+        "PHONE": "",
+        "WEBSITE": "http://www.facebook.com/elsewherecafe",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "室外雅座",
+        "FACILITY_F": "插座",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.520486,
+          25.030535
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#c5895a",
+        "PARK_ID": 1021,
+        "FACILITYID": 28021,
+        "NAME": "Machikaka",
+        "NAME_FR": "咖啡廳",
+        "ADDRESS": "104台北市中山區南京東路三段216巷4號",
+        "PHONE": "02 2777 2777",
+        "WEBSITE": "http://www.facebook.com/machikaka.tw",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "Mano推薦",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.543231,
+          25.051842
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1022,
+        "FACILITYID": 28022,
+        "NAME": "NKSDchoco 七見櫻堂巧克力甜點專賣店",
+        "NAME_FR": "甜品店",
+        "ADDRESS": "106台北市大安區泰順街28號",
+        "PHONE": "02 3365 2262",
+        "WEBSITE": "http://www.nksdchoco.com/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "講座場地",
+        "FACILITY_F": "DIY課程",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合親子",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.5313,
+          25.025558
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1023,
+        "FACILITYID": 28023,
+        "NAME": "KOKU café 榖珈琲",
+        "NAME_FR": "咖啡店",
+        "ADDRESS": "106台北市大安區大安路一段175巷6號",
+        "PHONE": "02 2709 5799",
+        "WEBSITE": "https://www.facebook.com/kokucafe/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "環境舒適",
+        "FACILITY_F": "熱門",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "只收現金",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.54646,
+          25.036576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1024,
+        "FACILITYID": 28024,
+        "NAME": "Uncle L2 手作舒芙蕾甜點店",
+        "NAME_FR": "甜品店",
+        "ADDRESS": "106台北市大安區泰順街40巷38號",
+        "PHONE": "",
+        "WEBSITE": "https://www.facebook.com/Uncle-L2-643645926127736/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "",
+        "FACILITY_F": "熱門",
+        "DESCRIPTIO": "",
+        "DESCRIPT_1": "",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.529694,
+          25.024365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#8c9a6a",
+        "PARK_ID": 1025,
+        "FACILITYID": 28025,
+        "NAME": "艸藴",
+        "NAME_FR": "咖啡廳",
+        "ADDRESS": "100台北市中正區和平西路一段81號",
+        "PHONE": "02 2456 3736",
+        "WEBSITE": "https://m.facebook.com/%E8%89%B8%E8%97%B4-486695388392284/",
+        "OPEN": null,
+        "NOTES": "Takeout",
+        "FACILITY": "插座",
+        "FACILITY_F": "熱門",
+        "DESCRIPTIO": "氣氛悠閒",
+        "DESCRIPT_1": "適合小型聚會",
+        "PICTURE_LI": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.518286,
+          25.026794
+        ]
+      }
+    }
+  ]
+}

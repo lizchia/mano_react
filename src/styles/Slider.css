@@ -1,0 +1,63 @@
+.Slider {
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.life p {
+  color: rgb(230, 240, 230);
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.both {
+  position: absolute;
+  display: flex;
+  width: 50%;
+  font-size: 60px;
+  left: 0;
+  top: 0;
+}
+
+.button-both {
+  color: white;
+  font-size: 1rem;
+  background: linear-gradient(to right, #919b74 50%, #bf8c60 50%);
+  border: none;
+  border-radius: 2px;
+  width: 50%;
+  position: absolute;
+  top: 50;
+  left: 50;
+  transform: translate(0%, 800%);
+}
+
+.shop {
+  position: absolute;
+  width: 25%;
+  font-size: 60px;
+  top: 70vh;
+}
+
+.life {
+  position: absolute;
+  width: 25%;
+  font-size: 60px;
+  top: 70vh;
+}
+
+.button-shop {
+  color: white;
+  background-color: #a8b38b;
+  border: none;
+  width: 100%;
+}
+
+.button-life {
+  color: white;
+  background-color: #bf8c60;
+  border: none;
+  width: 100%;
+}
