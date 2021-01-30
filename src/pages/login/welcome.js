@@ -4,10 +4,7 @@ import './login.scss'
 import { withRouter } from 'react-router-dom'
 
 function MyWelcome(props) {
-  const {
-    logoutProcess
-  } = props
-
+  const { logoutProcess } = props
 
   async function insertCouponToServer(item) {
     const request = new Request(
@@ -27,19 +24,16 @@ function MyWelcome(props) {
     const data = await response.json()
   }
 
-
-  useEffect(()=>{
+  useEffect(() => {
     props.changeBackgroundColorBrown()
-  },[])
-
+  }, [])
 
   //continue shop的callback
   const continueShopCallback = () => {
     //alert('開始購物囉!!!')
     const path = props.history.location.pathname
-    if(path.includes("/mall")) props.history.push("/mall")
-    else props.history.push("/life")
-
+    if (path.includes('/mall')) props.history.push('/mall')
+    else props.history.push('/life')
   }
 
   // logout成功時的callback
@@ -47,10 +41,8 @@ function MyWelcome(props) {
     //alert('登出成功，跳回上一頁')
     localStorage.removeItem('member')
     const path = props.history.location.pathname
-    if (path.includes('/mall'))
-      props.history.push('/mall/login')
+    if (path.includes('/mall')) props.history.push('/mall/login')
     else props.history.push('/life/login')
-
   }
 
   const displayButton = (
@@ -66,7 +58,9 @@ function MyWelcome(props) {
     </div>
   )
 
-  const member = JSON.parse(localStorage.getItem('member')) || [{memberName: ""}]
+  const member = JSON.parse(localStorage.getItem('member')) || [
+    { memberName: '' },
+  ]
 
   const displayForm = (
     <>
@@ -85,8 +79,8 @@ function MyWelcome(props) {
               >
                 Continue shop
               </button>
-            {/* <!--Modal: modalDiscount--> */}
-            <div
+              {/* <!--Modal: modalDiscount--> */}
+              <div
                 class="modal fade right text-center "
                 id="modalDiscount"
                 tabindex="-1"

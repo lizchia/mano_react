@@ -16,7 +16,7 @@ function ItemC(props) {
   //console.log(value)
 
   const date = new Date(value.cid)
-  const day = `${date.getFullYear()} 年 ${date.getMonth()} 月 ${date.getDate()} 日`
+  const day = `${date.getFullYear()} 年 ${(date.getMonth())+1} 月 ${date.getDate()} 日`
 
   const cssCard = {
     width: '300',
@@ -61,7 +61,7 @@ function ItemC(props) {
           <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
             <ul class="list-unstyled list-inline font-small">
               <li class="list-inline-item pr-2 white-text">
-                <p style={{ color: '#5C6447', fontSize:'10pt' }}>{day}</p>
+                <p style={{ color: '#5C6447', fontSize: '10pt' }}>{day}</p>
               </li>
               <li class="list-inline-item pr-1">
                 {value.completed ? (
