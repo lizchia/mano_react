@@ -1,5 +1,5 @@
-import React from 'react'
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+import React, {useEffect} from "react";
+import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import Leaflet from 'leaflet'
 import { Icon } from 'leaflet'
 import * as matchaData from '../../../src/data/MatchaBrown.json'
@@ -78,51 +78,62 @@ export const iconLight = Leaflet.divIcon({
 })
 
 export default function MApPage() {
-  const [activePark, setActivePark] = React.useState(null)
-  const [searchValue, setSearchValue] = React.useState('All')
-  const [zoom, setZoom] = React.useState(14)
-  const [location, setLocation] = React.useState([25.03351, 121.53772])
+   const [activePark, setActivePark] = React.useState(null);
+   const [searchValue, setSearchValue] = React.useState('All');
+   const [zoom, setZoom] = React.useState(14);
+   const [location, setLocation] = React.useState([25.033510, 121.537720]);
 
-  function handleChange(event) {
-    setSearchValue(event.target.value)
 
-    switch (event.target.value) {
-      case '大安區':
-        setZoom(16)
-        setLocation([25.03291, 121.543475])
-        break
 
-      case '中山區':
-        setZoom(16)
-        setLocation([25.04846, 121.516255])
 
-        break
+function handleChange(event){
 
-      case '中正區':
-        setZoom(17)
-        setLocation([25.028176, 121.519544])
-        break
 
-      case '信義區':
-        setZoom(17)
-        setLocation([25.038661, 121.561003])
-        break
+  
+setSearchValue(event.target.value);
 
-      case 'All':
-        setZoom(15)
-        setLocation([25.03351, 121.53772])
-        break
 
-      default:
-        setZoom(15)
-        setLocation([25.03351, 121.53772])
-        break
-    }
-  }
+switch (event.target.value){
+  case '大安區':
+    setZoom(16);
+    setLocation([25.032910, 121.543475]);
+    break;
 
-  console.log(searchValue)
+  case '中山區':
+    setZoom(16); 
+    setLocation([25.048460, 121.516255]);
 
-  const recommend = matchaData.features.map((park) => (
+    break;
+
+  case '中正區':
+    setZoom(17);
+    setLocation([25.028176, 121.519544]);
+    break;
+
+  case '信義區':
+    setZoom(17);
+    setLocation([25.038661, 121.561003]);
+    break;
+
+  case 'All':
+    setZoom(15);
+    setLocation([25.033510, 121.537720]);
+    break;
+
+  default:
+    setZoom(15);
+    setLocation([25.033510, 121.537720]);
+    break;
+}
+
+ };
+
+console.log(searchValue)
+
+const recommend = 
+
+  matchaData.features.map(park => (
+
     <Marker
       color={park.properties.markerColor}
       key={park.properties.PARK_ID}

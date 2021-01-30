@@ -86,6 +86,13 @@ function MemberSideLink(props) {
                     >
                       我的追蹤
                     </ListGroup.Item>
+                    <ListGroup.Item
+                      action
+                      href="/mall/membercenter/memberstory"
+                      style={index === 4 ? activeStyle : aListStyle}
+                    >
+                      文章管理
+                    </ListGroup.Item>
                   </ListGroup>
                 </div>
               </nav>
@@ -109,37 +116,44 @@ function MemberSideLink(props) {
                   className="collapse navbar-collapse"
                   id="navbarSupportedContent"
                 >
-              <ListGroup>
-                <ListGroup.Item
-                  action
-                  href="/life/membercenter"
-                  style={index === 4 ? activeStyle : aListStyle}
-                >
-                  會員資料
-                </ListGroup.Item>
-                <ListGroup.Item
-                  action
-                  href="/life/membercenter/memberorders"
-                  style={index === 1 ? activeStyle : aListStyle}
-                >
-                  我的訂單
-                </ListGroup.Item>
-                <ListGroup.Item
-                  action
-                  href="/life/membercenter/coupon"
-                  style={index === 2 ? activeStyle : aListStyle}
-                >
-                  折價券
-                </ListGroup.Item>
-                <ListGroup.Item
-                  action
-                  href="/life/membercenter/memberitemtracking"
-                  style={index === 3 ? activeStyle : aListStyle}
-                >
-                  我的追蹤
-                </ListGroup.Item>
-              </ListGroup>
-              </div>
+                  <ListGroup>
+                    <ListGroup.Item
+                      action
+                      href="/life/membercenter"
+                      style={index === 4 ? activeStyle : aListStyle}
+                    >
+                      會員資料
+                    </ListGroup.Item>
+                    <ListGroup.Item
+                      action
+                      href="/life/membercenter/memberorders"
+                      style={index === 1 ? activeStyle : aListStyle}
+                    >
+                      我的訂單
+                    </ListGroup.Item>
+                    <ListGroup.Item
+                      action
+                      href="/life/membercenter/coupon"
+                      style={index === 2 ? activeStyle : aListStyle}
+                    >
+                      折價券
+                    </ListGroup.Item>
+                    <ListGroup.Item
+                      action
+                      href="/life/membercenter/memberitemtracking"
+                      style={index === 3 ? activeStyle : aListStyle}
+                    >
+                      我的追蹤
+                    </ListGroup.Item>
+                    <ListGroup.Item
+                      action
+                      href="/mall/membercenter/memberstory"
+                      style={index === 4 ? activeStyle : aListStyle}
+                    >
+                      文章管理
+                    </ListGroup.Item>
+                  </ListGroup>
+                </div>
               </nav>
             )}
           </Col>

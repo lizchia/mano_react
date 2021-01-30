@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
+import { connect } from "react-redux";
+import { addItem } from "../redux/cart/cartAction";
+
 import Item from './Item'
 
 import SearchBar from '../components/courses/SearchBar'
@@ -10,8 +13,8 @@ import '../styles/Items-style.css'
 import { Modal, Button, Pagination } from 'react-bootstrap'
 
 class Items extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       data: [],
       totalPages: '',
@@ -33,27 +36,6 @@ class Items extends Component {
   handleWishClose = () => this.setState({ wishShow: false })
   handleWishShow = () => this.setState({ wishShow: true })
 
-  updateCartToLocalStorage = (value) => {
-    // 開啟載入指示
-    //setDataLoading(true)
-
-    const currentCart = JSON.parse(localStorage.getItem('cart')) || []
-
-    console.log('currentCart', currentCart)
-
-    const newCart = [...currentCart, value]
-    localStorage.setItem('cart', JSON.stringify(newCart))
-
-    console.log('newCart', newCart)
-    // 設定資料
-
-    this.setState({
-      mycart: newCart,
-      productName: value.name,
-    })
-    this.handleShow()
-    //alert('已成功加入購物車')
-  }
 
   insertWishListToDb = async (wishList) => {
     const request = new Request(`http://localhost:3002/itemTracking/add`, {
@@ -118,6 +100,18 @@ class Items extends Component {
 
     return this.state.data
   }
+
+  getWishData = async (username) => {
+    const response = await fetch(`http://localhost:3002/itemTracking/${username}`);
+    const json = await response.json();
+    const items = json.rows;
+
+    this.setState({wishData: items})
+    
+    return this.state.wishData
+}
+
+
   async componentDidMount() {
     let params = new URLSearchParams(this.props.location.search)
     let catIdParams = params.get('categoryId')
@@ -130,6 +124,11 @@ class Items extends Component {
     }
 
     await this.getItemsData()
+
+    const username = JSON.parse(localStorage.getItem('member')) || [{memberName: ""}]
+    this.setState({username: username[0].memberName})
+    this.getWishData(username[0].memberName)
+
   }
 
   handleChange = async (value) => {
@@ -155,6 +154,8 @@ class Items extends Component {
     this.props.history.push(
       `${this.props.match.url}?categoryId=${catIdParams}&page=${this.state.page}`
     )
+
+    window.scrollTo(0, 0)
   }
 
   onChange = async (event) => {
@@ -176,7 +177,7 @@ class Items extends Component {
   render() {
     const lists1 = []
 
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 9; i++) {
       lists1.push(
         <Pagination.Item
           // size="sm"
@@ -194,7 +195,7 @@ class Items extends Component {
       )
     }
     const lists2 = []
-    for (let i = 15; i <= 20; i++) {
+    for (let i = 26; i <= this.state.totalPages; i++) {
       lists2.push(
         <Pagination.Item
           // size="sm"
@@ -211,60 +212,6 @@ class Items extends Component {
         </Pagination.Item>
       )
     }
-    const lists3 = []
-    for (let i = 27; i <= this.state.totalPages; i++) {
-      lists3.push(
-        <Pagination.Item
-          // size="sm"
-          // className="m-1 p-1"
-          key={i}
-          value={i}
-          onClick={() => {
-            this.handleChange(i)
-            this.setState({ page: i })
-          }}
-          active={i === this.state.page}
-        >
-          {i}
-        </Pagination.Item>
-      )
-    }
-
-    // for (let i = 1; i <= this.state.totalPages; i++) {
-    //   if (i < 10) {
-    //     lists.push(
-    //       <Pagination.Item
-    //         // size="sm"
-    //         // className="m-1 p-1"
-    //         key={i}
-    //         value={i}
-    //         onClick={() => {
-    //           this.handleChange(i)
-    //           this.setState({ page: i })
-    //         }}
-    //         active={i === this.state.page}
-    //       >
-    //         0{i}
-    //       </Pagination.Item>
-    //     )
-    //   } else {
-    //     lists.push(
-    //       <Pagination.Item
-    //         // size="sm"
-    //         // className="m-1 p-1"
-    //         key={i}
-    //         value={i}
-    //         onClick={() => {
-    //           this.handleChange(i)
-    //           this.setState({ page: i })
-    //         }}
-    //         active={i === this.state.page}
-    //       >
-    //         {i}
-    //       </Pagination.Item>
-    //     )
-    //   }
-    // }
 
     const messageModal = (
       <Modal
@@ -273,16 +220,17 @@ class Items extends Component {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>加入購物車訊息</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>產品：{this.state.productName} 已成功加入購物車</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleClose}>
+        <Modal.Body className="d-flex justify-content-center align-items-center fd-col pt-4 pb-3" style={{background: "#EFF3EC", border: "none"}}>
+          <h5 style={{color: "#C5895A"}}>{this.state.productName} </h5>
+          已成功加入購物車</Modal.Body>
+        <Modal.Footer className="d-flex justify-content-center pb-4" style={{background: "#EFF3EC", border: "none"}}>
+          <Button style={{background: "transparent", color: "#5C6447", borderRadius: "2px"}} variant="secondary" onClick={this.handleClose} className="addcart-button">
             繼續購物
           </Button>
           <Button
+            style={{background: "transparent", color: "#C5895A", borderRadius: "2px"}}
             variant="primary"
+            className="addcart-button"
             onClick={() => {
               const path = this.props.history.location.pathname
               if (path.includes('/mall')) this.props.history.push('/mall/cart')
@@ -302,20 +250,19 @@ class Items extends Component {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>加入願望清單訊息</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          產品：{this.state.productName} 已成功加入願望清單
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleWishClose}>
+        <Modal.Body className="d-flex justify-content-center align-items-center fd-col pt-4 pb-3" style={{background: "#EFF3EC", border: "none"}}>
+          <h5 style={{color: "#C5895A"}}>{this.state.productName} </h5>
+          已成功願望清單</Modal.Body>
+        <Modal.Footer className="d-flex justify-content-center pb-4" style={{background: "#EFF3EC", border: "none"}}>
+          <Button style={{background: "transparent", color: "#5C6447", borderRadius: "2px"}} variant="secondary" onClick={this.handleWishClose} className="addcart-button">
             繼續購物
           </Button>
           <Button
+            style={{background: "transparent", color: "#C5895A", borderRadius: "2px"}}
             variant="primary"
+            className="addcart-button"
             onClick={() => {
-              this.props.history.push('/mall/ItemTracking')
+             　this.props.history.push('/mall/ItemTracking')
             }}
           >
             前往願望清單
@@ -350,8 +297,9 @@ class Items extends Component {
       <div className="container">
         {wishListModal}
         {messageModal}
-        <div className="tools" style={{ marginLeft: '60px' }}>
-          <MyBreadcrumb />
+
+        <div className="tool">
+          <MyBreadcrumb className="bread" />
           {result}
           <SearchBar onChange={this.onChange} />
         </div>
@@ -374,39 +322,89 @@ class Items extends Component {
               itemDescription={item.itemDescription}
               itemPrice={item.itemPrice}
               handleClick={() => {
-                this.updateCartToLocalStorage({
+                this.props.addItem({
                   id: item.itemId,
                   img: item.itemImg,
                   name: item.itemName,
-                  amount: 1,
                   price: item.itemPrice,
                   shippingId: item.shippingId,
                 })
-              }}
-              handleWishListClick={() => {
-                this.insertWishListToDb({
-                  itemId: item.itemId,
-                  itemPrice: item.itemPrice,
+                this.setState({
+                  productName: item.itemName,
                 })
-                this.setState({ productName: item.itemName })
+                this.handleShow()
+              }}
+              getWishData={async ()=> {
+                await this.getWishData(this.state.username)
+              }}
+              handleWishListClick={async () => {
+
+              if(this.state.username === "") {
+                this.props.history.push("/mall/login")
+              }else if (this.state.wishData.find(x => x.itemId === item.itemId)){
+                alert('already in wishlist')
+
+              }else {
+              this.insertWishListToDb({
+                username: this.state.username,
+                itemId: item.itemId,
+                itemPrice: item.itemPrice,
+              })
+              this.setState({ productName: item.itemName })
+              await this.getWishData(this.state.username)
+
+              }
+              }}
+          />
+          ))}
+        <div className="page-btn-box">
+          <ul
+            className="page-btn"
+            style={{
+              visibility: this.state.showPage ? 'visible' : 'hidden',
+              marginLeft: '30px',
+            }}
+          >
+            <Pagination.First
+              onClick={() => {
+                this.handleChange(1)
               }}
             />
-          ))}
+            <Pagination.Prev
+              onClick={() => {
+                this.handleChange(this.state.page - 1)
+              }}
+              disabled={this.state.page === 1 ? true : false}
+            />
 
-        <ul
-          className="page-btn"
-          style={{
-            visibility: this.state.showPage ? 'visible' : 'hidden',
-            margin: '0 auto',
-          }}
-        >
-          {lists1} <Pagination.Ellipsis /> {lists2}
-          <Pagination.Ellipsis />
-          {lists3}
-        </ul>
+            {lists1}
+
+            <Pagination.Ellipsis />
+
+            {lists2}
+
+            <Pagination.Next
+              onClick={() => {
+                this.handleChange(this.state.page + 1)
+              }}
+              disabled={
+                this.state.page === this.state.totalPages ? true : false
+              }
+            />
+            <Pagination.Last
+              onClick={() => {
+                this.handleChange(this.state.totalPages)
+              }}
+            />
+          </ul>
+        </div>
       </div>
     )
   }
 }
 
-export default withRouter(Items)
+const mapDispatchToProps = dispatch => ({
+  addItem: item => dispatch(addItem(item))
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(Items))

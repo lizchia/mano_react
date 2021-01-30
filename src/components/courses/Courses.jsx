@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { Modal, Button, Pagination } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
+import { connect } from "react-redux";
+import { addCourseItem } from "../../redux/cart/cartAction";
+
 import Course from '../Course/Course'
 import './courses-style.css'
+import '../../styles/add-cart.scss'
+
 import SearchBar from './SearchBar'
 import CsMyBreadcrumb from '../CsMyBreadcrumb'
-import $ from 'jquery'
 
 class Courses extends Component {
   constructor() {
@@ -32,28 +36,6 @@ class Courses extends Component {
   handleClose = () => this.setState({ show: false })
   handleShow = () => this.setState({ show: true })
 
-  updateCartToLocalStorage = (value) => {
-    // 開啟載入指示
-    //setDataLoading(true)
-
-    const currentCart = JSON.parse(localStorage.getItem('coursecart')) || []
-
-    // console.log('currentCart', currentCart)
-
-    const newCart = [...currentCart, value]
-    localStorage.setItem('coursecart', JSON.stringify(newCart))
-
-    // console.log('newCart', newCart)
-    // 設定資料
-
-    this.setState({
-      mycart: newCart,
-      productName: value.name,
-    })
-    this.handleShow()
-    //alert('已成功加入購物車')
-  }
-  //加入購物車 end
 
   //fetch 種類
   getCatData = async (categoryParentId) => {
@@ -138,6 +120,7 @@ class Courses extends Component {
 
   //頁碼
   handleChange = async (value) => {
+
     let params = new URLSearchParams(this.props.location.search)
     let catIdParams = params.get('categoryId')
 
@@ -161,11 +144,11 @@ class Courses extends Component {
       page: page,
      
     })
-    console.log(page)
 
     this.props.history.push(
       `${this.props.match.url}?categoryId=${catIdParams}&page=${this.state.page}`
     )
+    window.scrollTo(0, 0)
   }
 
   //搜尋input改變
@@ -206,8 +189,6 @@ class Courses extends Component {
     })
   }
 
-
-
     console.log(sortedData)
     this.setState({
       data: sortedData,
@@ -218,12 +199,12 @@ class Courses extends Component {
   render() {
     const lists = []
     // let active = this.state.page
-    
+  
     for (let i = 1; i <= this.state.totalPages; i++) {
       if (i < 10) {
         lists.push(
           <Pagination.Item
-           className="course-list-btn"
+            className="course-list-btn"
             key={i}
             value={i}
             onClick={() => {
@@ -231,11 +212,12 @@ class Courses extends Component {
               this.setState({ page: i })
               }}
             active={i === this.state.page}
-            
           >
             0{i}
           </Pagination.Item>
-        )
+       
+        )  
+                
       } else {
         lists.push(
           <li
@@ -260,16 +242,17 @@ class Courses extends Component {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>加入購物車訊息</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>產品：{this.state.productName} 已成功加入購物車</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleClose}>
+        <Modal.Body className="d-flex justify-content-center align-items-center fd-col pt-4 pb-3" style={{background: "#EFF3EC", border: "none"}}>
+          <h5 style={{color: "#C5895A"}}>{this.state.productName} </h5>
+          已成功加入購物車</Modal.Body>
+        <Modal.Footer className="d-flex justify-content-center pb-4" style={{background: "#EFF3EC", border: "none"}}>
+          <Button style={{background: "transparent", color: "#5C6447", borderRadius: "2px"}} variant="secondary" onClick={this.handleClose} className="addcart-button">
             繼續購物
           </Button>
           <Button
+            style={{background: "transparent", color: "#C5895A", borderRadius: "2px"}}
             variant="primary"
+            className="addcart-button"
             onClick={() => {
               const path = this.props.history.location.pathname
               if (path.includes('/mall')) this.props.history.push('/mall/cart')
@@ -352,13 +335,18 @@ class Courses extends Component {
               coursePrice={course.coursePrice}
               courseQty={course.courseQty}
               handleClick={() => {
-                this.updateCartToLocalStorage({
+                this.props.addCourseItem({
                   id: course.courseId,
                   img: course.courseImg,
                   name: course.courseName,
-                  amount: 1,
                   price: course.coursePrice,
                 })
+
+                this.setState({
+                  productName: course.courseName,
+                })
+                this.handleShow()
+
               }}
               // getDetail={this.getItemsDetail}
             />
@@ -367,11 +355,30 @@ class Courses extends Component {
           style={{ visibility: this.state.showPage ? 'visible' : 'hidden' }}
           className="page-lists"
         >
+         <Pagination.Prev
+         className="list-btn"
+                   onClick={() => {
+                    this.handleChange(this.state.page - 1)
+                  }}
+                  disabled= {(this.state.page === 1)?
+                  true : false}
+                />
           {lists}
+          <Pagination.Next
+                   onClick={() => {
+                    this.handleChange(this.state.page + 1)
+                  }}
+                  disabled= {(this.state.page === this.state.totalPages)?
+                  true : false}
+              />
         </ul>
       </div>
       </>
     )
   }
 }
-export default withRouter(Courses)
+const mapDispatchToProps = dispatch => ({
+  addCourseItem: item => dispatch(addCourseItem(item))
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(Courses));

@@ -10,13 +10,30 @@ function MyBreadcrumb(props) {
     '/coupon',
     '/memberorders',
     '/memberitemtracking',
+    '/memberstory',
   ]
-  const pathnames = ['首頁', '會員中心', '會員中心', '會員中心', '會員中心']
-  const pathnames2 = ['', '會員資料', '折價券', '我的訂單', '我的追蹤']
+  const pathnames = [
+    '首頁',
+    '會員中心',
+    '會員中心',
+    '會員中心',
+    '會員中心',
+    '會員中心',
+  ]
+  const pathnames2 = [
+    '',
+    '會員資料',
+    '折價券',
+    '我的訂單',
+    '我的追蹤',
+    '文章管理',
+  ]
   // 先找出對應的中文詞
   let locationPathname = props.location.pathname
 
   // `/product/xxxx` 轉為 `/product`
+  if (locationPathname.includes('/membercenter/memberstory'))
+    locationPathname = '/memberstory'
   if (locationPathname.includes('/product')) locationPathname = '/product'
   if (locationPathname.includes('/membercenter/coupon'))
     locationPathname = '/coupon'
@@ -26,6 +43,7 @@ function MyBreadcrumb(props) {
     locationPathname = '/memberitemtracking'
   if (locationPathname.includes('/membercenter'))
     locationPathname = '/membercenter'
+  
 
   const index = pathlist.findIndex((v) => v === locationPathname)
   const searchicon = {
@@ -46,6 +64,44 @@ function MyBreadcrumb(props) {
     color: 'white',
   }
 
+  const inputshow = (
+    <Form
+      inline
+      style={{ width: '204px', height: '30px' }}
+      onSubmit={(e) => {
+        e.preventDefault()
+      }}
+    >
+      <Button
+        variant="outline-success"
+        style={searchicon}
+        onClick={() => {
+          handleClickSearch(searchTerm)
+        }}
+      >
+        <i class="fas fa-search"></i>
+      </Button>
+      <FormControl
+        type="text"
+        placeholder="搜尋商品/課程"
+        onChange={(event) => {
+          handleChangeSearch(event)
+        }}
+        onKeyPress={(event) => {
+          // 處理按下 Enter鍵
+          if (event.key === 'Enter' && event.target.value !== '') {
+            handleClickSearch(searchTerm)
+          }
+        }}
+        className="ordersearch"
+        style={searchbar}
+      />
+    </Form>
+  )
+  console.log(pathnames)
+  console.log(pathnames2)
+  console.log(index)
+  console.log(locationPathname)
   return (
     <>
       <Container>

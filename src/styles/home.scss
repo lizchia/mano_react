@@ -38,14 +38,10 @@
     text-align: center;
     transition: 0.7s;
     &:hover {
-      text-shadow: 0 0 5px brown;
-      transform: scale(1.2);
+      transform: scale(1.4);   
       font-weight: 500;
     }
   }
-}
-
-.firstPage {
 }
 
 .secondPage {

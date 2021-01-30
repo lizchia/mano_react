@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Table, Card, Container, Row, Col, ListGroup, Image, Media, Button } from "react-bootstrap"
-
+import { Table, Card, Container, Row, Col, ListGroup, Image, Media, Button } from "react-bootstrap";
+import "./heart.css"
 
 
 function Heart(props) {
@@ -42,20 +42,34 @@ function Heart(props) {
         <>
             {myHeart ? (
                 
-                <Button onClick={() => {
+                <i style={{margin: '5px',
+               
+                
+            color: '#F8C3CD'}}
+                className="far fa-heart fa-lg heart-animation"
+                onClick={() => {
                     insertWishListToDb({
-                        "itemId": props.itemId
+                        username: props.username,
+                        itemId: props.itemId,
+                        itemPrice: props.itemPrice 
                     });
                     setmyHeart(!myHeart)
-                }} ><i className="far fa-heart"></i></Button>
+                }}></i>
             ) : (
-                    <Button onClick={() => {
+                    <i style={{margin: '5px',
+                    transform: 'scale( 1.25 )',
+                    transition: '.2',
+                    color: '#F8C3CD'}}
+                    className="fas fa-heart fa-lg heart-animation" aria-hidden="true"
+                    onClick={() => {
                         removeWishListFromDb({
-                            "itemId": props.itemId
+                            username: props.username,
+                            itemId: props.itemId
                         });
+
                         setmyHeart(!myHeart)
                         console.log(props.itemId)
-                    }}><i className="fas fa-heart" aria-hidden="true"></i></Button>
+                    }}></i>
                 )}
         </>
     )

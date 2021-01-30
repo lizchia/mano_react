@@ -7,17 +7,29 @@ function MyFooter(props) {
     console.log(props.history)
   }, [])
   //document.body.style.background ='#5C6447'
-  const cssSocial = {
-    //height: '100px',
-    lineHeight: 'center',
-    borderTop: '1px solid #5C6447',
-    borderBottom: '1px solid #5C6447',
-  }
-  const cssSvg = {
-    fontSize: '20pt',
-    margin: '10px',
-    color: '#5C6447',
-  }
+  const cssSocial = props.history.location.pathname.includes('/membercenter')
+    ? {
+        lineHeight: 'center',
+        borderTop: '1px solid #929684',
+        borderBottom: '1px solid #929684',
+      }
+    : {
+        // height: '100px',
+        lineHeight: 'center',
+        borderTop: '1px solid #5C6447',
+        borderBottom: '1px solid #5C6447',
+      }
+  const cssSvg = props.history.location.pathname.includes('/membercenter')
+    ? {
+        fontSize: '20pt',
+        margin: '10px',
+        color: '#929684',
+      }
+    : {
+        fontSize: '20pt',
+        margin: '10px',
+        color: '#5C6447',
+      }
   const cssImg = {
     transform: '90',
   }
@@ -25,17 +37,19 @@ function MyFooter(props) {
     '/membercenter'
   )
     ? {
-      color: '#929684',
-    }
+        color: '#929684',
+      }
     : {
-      color: '#5C6447',
-    }
-    const bgchangecolor = props.history.location.pathname.includes(
-      '/membercenter'
-    )?"footer-dark":"footer"
+        color: '#5C6447',
+      }
+  const bgchangecolor = props.history.location.pathname.includes(
+    '/membercenter'
+  )
+    ? 'footer-dark'
+    : 'footer'
   const footer = (
     <>
-      <footer className={` mt-auto py-3 text-center ${bgchangecolor}`} >
+      <footer className={` mt-auto py-3 text-center ${bgchangecolor}`}>
         <div className="container mb-2">
           {/* <h3> 最新活動 </h3>
           <div className="d-flex row" style={{ backgroundColor: '#D4AE5C' }}>
@@ -110,20 +124,16 @@ function MyFooter(props) {
                 Life Style
               </a>
               <br />
-              <a
-                style={showTextColor}
-                href={
-                  props.history.location.pathname.includes('/mall')
-                    ? '/mall/contact'
-                    : '/life/contact'
-                }
-              >
+              <a style={showTextColor} href="http://localhost:3000/#fourthPage">
                 Contact Us
               </a>
             </div>
           </div>
-          <span className="" style={Object.assign({ fontSize: '10pt' },showTextColor)}>
-            2020 © MANO copyright
+          <span
+            className=""
+            style={Object.assign({ fontSize: '10pt' }, showTextColor)}
+          >
+            2020 © MANO copyright &nbsp;&nbsp; 歡迎致電 : (02)6618-1818
           </span>
         </div>
       </footer>
@@ -136,9 +146,13 @@ function MyFooter(props) {
   if (
     path === '/mall/login' ||
     path === '/mall/welcome' ||
+    path === '/mall/register' ||
+    path === '/mall/forgetpwd' ||
     path === '/' ||
     path === '/life/welcome' ||
-    path === 'life/login'
+    path === '/life/register' ||
+    path === '/life/forgetpwd' ||
+    path === '/life/login'
   )
     displayFooter = ''
   else displayFooter = footer

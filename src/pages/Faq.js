@@ -16,7 +16,7 @@ const Faq = (props) => {
       </div>
       <div className="container">
         <div className="py-4">
-          <h3 className="grass text-center fs-32 mb-3">常見問題Q&A</h3>
+          <h2 className="grass text-center fs-32 mb-3">常見問題Q&A</h2>
           <Accordion defaultActiveKey="0">
             <Card>
               <Card.Header>
@@ -96,13 +96,11 @@ const Faq = (props) => {
               <Accordion.Collapse eventKey="5">
                 <Card.Body>
                   如需追蹤商品(課程)，須先加入會員。
-                  在商品或課程列表的右下方會有追蹤此商品(課程)的按鈕，點擊後會提示該商品(課程)已完成追蹤。
+                  在商品或課程列表的右上方會有追蹤此商品(課程)的按鈕，點擊後會提示該商品(課程)已完成追蹤。
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
           </Accordion>
-          <p style={{ marginTop: '20px' }}>如有問題請致電 : 0988-123-321</p>
-          <p>感謝您的來電，謝謝!</p>
         </div>
       </div>
     </>

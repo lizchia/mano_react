@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect,
+} from 'react-router-dom'
 
 import MyNavbar from './components/MyNavbar'
 import MyFooter from './components/MyFooter'
@@ -19,42 +25,44 @@ import CourseDetail from './pages/CourseDetail/CourseDetail'
 
 import ItemTracking from './pages/ItemTracking/ItemTracking'
 
-import CartComfirm from "./pages/Cart/CartComfirm"
-import CartComfirmChange from "./pages/Cart/CartComfirmChange"
-import CartComplete from "./pages/Cart/CartComplete"
-import CartPayment from "./pages/Cart/CartPayment"
+import CartComfirm from './pages/Cart/CartComfirm'
+import CartComfirmChange from './pages/Cart/CartComfirmChange'
+import CartComplete from './pages/Cart/CartComplete'
+import CartPayment from './pages/Cart/CartPayment'
 import Cart from './pages/Cart/Cart'
 
 import Membercenter from './pages/Membercenter'
 import Coupon from './pages/Coupon'
-import MemberOrders from "./pages/MemberOrders"
-import MemberItemtrack from "./pages/MemberItemTrack"
+import MemberOrders from './pages/MemberOrders'
+import MemberItemtrack from './pages/MemberItemTrack'
+import MemberStory from './pages/MemberStory'
 
 import NotFoundPage from './pages/NotFoundPage'
 
 import Marketing from './pages/Marketing'
 import Comment from './pages/Comment'
-import Story from "./pages/Story"
+import Story from './pages/Story'
 
 import Login from './pages/login/login'
 import MyWelcome from './pages/login/welcome'
 import MyRegister from './pages/login/register'
 import MyForgetPwd from './pages/login/forgetPwd'
+import MyChangePassword from './pages/login/changePassword'
+
 import Faq from './pages/Faq'
 
-import SmallNav from "./components/SmallNav"
+import SmallNav from './components/SmallNav'
+import CartToggle from './components/Cart/CartToggle'
 
-import WithSpinner from "./utils/WithSpinner/WithSpinner"
+import WithSpinner from './utils/WithSpinner/WithSpinner'
 import ProtectedRoute from './utils/ProtectedRoute'
-var sha1 = require('sha1');
+var sha1 = require('sha1')
 
-const CartWhithSpinner = WithSpinner(Cart);
-const ShopWithSpinner = WithSpinner(ProductList);
-const CourseWithSpinner = WithSpinner(CourseList);
-
+const CartWhithSpinner = WithSpinner(Cart)
+const ShopWithSpinner = WithSpinner(ProductList)
+const CourseWithSpinner = WithSpinner(CourseList)
 
 function App(props) {
-
   const [isLoading, setIsLoading] = useState(false)
 
   const [name, setName] = useState('')
@@ -68,41 +76,33 @@ function App(props) {
 
   const [width, setWidth] = useState(window.innerWidth)
 
-
-  useEffect(()=>{
-
-    window.addEventListener("resize", ()=>{
-      let width = window.innerWidth;
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      let width = window.innerWidth
       setWidth(width)
     })
-
-  },[])
+  }, [])
 
   //更改背景顏色
-  function changeBackgroundColorLight(){
-    document.body.style.background ='#EFF3EC'
+  function changeBackgroundColorLight() {
+    document.body.style.background = '#EFF3EC'
   }
 
-  function changeBackgroundColorDark(){
-    document.body.style.background ='url(/bg-dark-with-pattern.svg) repeat'
+  function changeBackgroundColorDark() {
+    document.body.style.background = 'url(/bg-dark-with-pattern.svg) repeat'
   }
 
-  function changeBackgroundColorBrown(){
-    document.body.style.background ='#CDBAA9'
+  function changeBackgroundColorBrown() {
+    document.body.style.background = '#CDBAA9'
   }
 
-  function changeBackgroundColorWhite(){
-    document.body.style.background ='#FFFFFF'
+  function changeBackgroundColorWhite() {
+    document.body.style.background = '#FFFFFF'
   }
 
-  function changeBackgroundColorGreen(){
-    document.body.style.background ='#A8B38B'
+  function changeBackgroundColorGreen() {
+    document.body.style.background = '#A8B38B'
   }
-
-
-
-
-
 
   // 處理會員登入
   const loginProcess = (loginSuccessCallback) => {
@@ -158,6 +158,7 @@ function App(props) {
     } else {
       if (data.length !== 0) {
         errors.push('E-mail is exist')
+        alert('帳號已被註冊')
       } else if (matches === null)
         errors.push("E-mail doesn't match the pattern")
     }
@@ -179,119 +180,132 @@ function App(props) {
     <Router>
       <>
         {width <= 900 ? (
-          <SmallNav style={{zIndex: "10"}} />
+          <SmallNav style={{ zIndex: '10' }} />
         ) : (
-          <MyNavbar style={{zIndex: "10"}} />
+          <MyNavbar style={{ zIndex: '10' }} />
         )}
+        {/* <CartToggle /> */}
         <MainContent>
           <Switch>
             <Route path="/life" exact>
-              <LifePage/>
+              <LifePage />
             </Route>
             <Route path="/life/map" exact>
-              <MapPage/>
+              <MapPage />
             </Route>
 
             <Route path="/mall" exact>
-                <MallPage />
+              <MallPage
+                changeBackgroundColorWhite={changeBackgroundColorWhite}
+              />
             </Route>
-
 
             <Route path="/mall/about">
-              <About 
-              changeBackgroundColorGreen={changeBackgroundColorGreen}/>
+              <About changeBackgroundColorGreen={changeBackgroundColorGreen} />
             </Route>
             <Route path="/life/about">
-              <About 
-              changeBackgroundColorGreen={changeBackgroundColorGreen}/>
+              <About changeBackgroundColorGreen={changeBackgroundColorGreen} />
             </Route>
 
             <Route path="/mall/shop/:second?/:third?/:fourth?/:fifth?/:sixth?/:seventh?/:page?">
-              <ShopWithSpinner 
-              changeBackgroundColorLight={changeBackgroundColorLight}
-              isLoading={isLoading}
-              setIsLoading={setIsLoading} />
+              <ShopWithSpinner
+                changeBackgroundColorLight={changeBackgroundColorLight}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
             </Route>
             <Route path="/mall/itemDetail/:second?/:third?/:fourth?/:fifth?/:sixth?/:seventh?/:page?">
-              <ItemDetail 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              <ItemDetail
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
 
             <Route path="/life/course/:second?/:third?/:fourth?/:page?">
-              <CourseList 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              <CourseList
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
             <Route path="/life/courseDetail/:second?/:third?/:fourth?">
-              <CourseDetail 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              <CourseDetail
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
 
             <Route path="/mall/ItemTracking">
-              <ItemTracking 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              <ItemTracking
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
 
             <Route path="/mall/cart" exact>
-              <CartWhithSpinner 
-              changeBackgroundColorLight={changeBackgroundColorLight}
-              isLoading={isLoading}
-              setIsLoading={setIsLoading} />
+              <CartWhithSpinner
+                changeBackgroundColorLight={changeBackgroundColorLight}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
             </Route>
             <Route path="/mall/cart/comfirm" exact>
-              <CartComfirm 
-              changeBackgroundColorLight={changeBackgroundColorLight} />
+              <CartComfirm
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
             <Route path="/mall/cart/comfirm/change">
               <CartComfirmChange
-              changeBackgroundColorLight={changeBackgroundColorLight} />
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
             <Route path="/mall/cart/complete">
-              <CartComplete 
-              changeBackgroundColorLight={changeBackgroundColorLight} />
+              <CartComplete
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
             <Route path="/mall/cart/payment">
-              <CartPayment 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              <CartPayment
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
 
             <Route path="/life/cart" exact>
-              <CartWhithSpinner 
+              <CartWhithSpinner
                 changeBackgroundColorLight={changeBackgroundColorLight}
                 isLoading={isLoading}
-                setIsLoading={setIsLoading} />
+                setIsLoading={setIsLoading}
+              />
             </Route>
             <Route path="/life/cart/comfirm" exact>
-              <CartComfirm 
-              changeBackgroundColorLight={changeBackgroundColorLight} />
+              <CartComfirm
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
             <Route path="/life/cart/comfirm/change">
               <CartComfirmChange
-              changeBackgroundColorLight={changeBackgroundColorLight} />
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
             <Route path="/life/cart/complete">
-              <CartComplete 
-              changeBackgroundColorLight={changeBackgroundColorLight} />
+              <CartComplete
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
             <Route path="/life/cart/payment">
-              <CartPayment 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              <CartPayment
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
-
 
             <Route exact path="/life/marketing">
-              <Marketing 
-              changeBackgroundColorWhite={changeBackgroundColorWhite}/>
+              <Marketing
+                changeBackgroundColorWhite={changeBackgroundColorWhite}
+              />
             </Route>
             <Route exact path="/life/comment">
-              <Comment 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              <Comment
+                changeBackgroundColorLight={changeBackgroundColorLight}
+              />
             </Route>
             <Route exact path="/life/story">
-              <Story 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              <Story changeBackgroundColorWhite={changeBackgroundColorWhite} />
             </Route>
-
-
 
             <Route path="/mall/login">
               <Login
@@ -335,6 +349,8 @@ function App(props) {
                 changeBackgroundColorBrown={changeBackgroundColorBrown}
                 username={username}
                 setUsername={setUsername}
+                data={data}
+                setData={setData}
               />
             </Route>
 
@@ -380,6 +396,8 @@ function App(props) {
                 changeBackgroundColorBrown={changeBackgroundColorBrown}
                 username={username}
                 setUsername={setUsername}
+                data={data}
+                setData={setData}
               />
             </Route>
 
@@ -388,47 +406,70 @@ function App(props) {
             </ProtectedRoute> */}
 
             <Route exact path="/mall/membercenter">
-              <Membercenter changeBackgroundColorDark={changeBackgroundColorDark}/>
+              <Membercenter
+                changeBackgroundColorDark={changeBackgroundColorDark}
+              />
             </Route>
             <Route exact path="/mall/membercenter/coupon">
-              <Coupon changeBackgroundColorDark={changeBackgroundColorDark}/>
+              <Coupon changeBackgroundColorDark={changeBackgroundColorDark} />
             </Route>
             <Route exact path="/mall/membercenter/memberorders">
-              <MemberOrders changeBackgroundColorDark={changeBackgroundColorDark}/>
+              <MemberOrders
+                changeBackgroundColorDark={changeBackgroundColorDark}
+              />
             </Route>
             <Route exact path="/mall/membercenter/memberitemtracking">
-              <MemberItemtrack/>
+              <MemberItemtrack />
+            </Route>
+            <Route exact path="/mall/membercenter/memberstory">
+              <MemberStory />
             </Route>
             <Route exact path="/life/membercenter">
-              <Membercenter changeBackgroundColorDark={changeBackgroundColorDark}/>
+              <Membercenter
+                changeBackgroundColorDark={changeBackgroundColorDark}
+              />
             </Route>
             <Route exact path="/life/membercenter/coupon">
-              <Coupon changeBackgroundColorDark={changeBackgroundColorDark}/>
+              <Coupon changeBackgroundColorDark={changeBackgroundColorDark} />
             </Route>
             <Route exact path="/life/membercenter/memberorders">
-              <MemberOrders changeBackgroundColorDark={changeBackgroundColorDark}/>
+              <MemberOrders
+                changeBackgroundColorDark={changeBackgroundColorDark}
+              />
             </Route>
             <Route exact path="/life/membercenter/memberitemtracking">
               <MemberItemtrack />
             </Route>
-
+            <Route exact path="/life/membercenter/memberstory">
+              <MemberStory />
+            </Route>
 
             <Route exact path="/mall/faq">
-              <Faq 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              <Faq changeBackgroundColorLight={changeBackgroundColorLight} />
             </Route>
             <Route exact path="/life/faq">
-              <Faq 
-              changeBackgroundColorLight={changeBackgroundColorLight}/>
+              <Faq changeBackgroundColorLight={changeBackgroundColorLight} />
             </Route>
             <Route exact path="/">
-              <Home 
-              changeBackgroundColorWhite={changeBackgroundColorWhite}/>
+              <Home changeBackgroundColorWhite={changeBackgroundColorWhite} />
             </Route>
+
+            <Route exact path="/mychangepassword/:furl?">
+              <MyChangePassword
+                changeBackgroundColorBrown={changeBackgroundColorBrown}
+                data={data}
+                setData={setData}
+                username={username}
+                setUsername={setUsername}
+              />
+            </Route>
+
             <Route exact path="/404">
-              <NotFoundPage />
+              <NotFoundPage
+                changeBackgroundColorWhite={changeBackgroundColorWhite}
+              />
             </Route>
-            {/* <Redirect to="/404" /> */}
+            <Redirect to="/404" />
           </Switch>
         </MainContent>
         <MyFooter />

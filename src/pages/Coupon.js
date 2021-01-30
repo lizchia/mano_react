@@ -68,9 +68,12 @@ function Coupon(props) {
       <tr style={{ border: '2px solid #C5895A' }}>
         <td>{value.discountName}</td>
         <td style={{ color: ' #C5895A' }}>
-          {`${value.discountMethod.substr(2, 3)}折`}
+          {Number(value.discountMethod) < 1 && Number(value.discountMethod) > 0
+            ? `${value.discountMethod.substr(2, 3)}折`
+            : `折扣${value.discountMethod.substr(1, 4)}元`}
         </td>
         <td>{value.discountPeriod}</td>
+        {/* <td>{value.created_at.substr(0,10)}</td> */}
         <td>{value.updated.substr(0, 10)}</td>
         <td>未使用</td>
       </tr>
@@ -86,7 +89,8 @@ function Coupon(props) {
             : `折扣${value.discountMethod.substr(1, 4)}元`}
         </td>
         <td>{value.discountPeriod}</td>
-        <td>{value.created_at.substr(0, 10)}</td>
+        {/* <td>{value.created_at.substr(0,10)}</td> */}
+        <td>{value.updated.substr(0, 10)}</td>
         <td>已使用</td>
       </tr>
     )
@@ -103,7 +107,17 @@ function Coupon(props) {
     <>
       <MyBreadcrumb />
       <MemberSideLink>
-        <Col md={10} xs={12} style={{ background: 'white', padding: '0' }}>
+        <Col
+          md={10}
+          xs={12}
+          className="mb-5"
+          style={{
+            background: 'white',
+            padding: '0',
+            borderRadius: '5px',
+            overflow: 'hidden',
+          }}
+        >
           <div
             style={{
               width: '100%',
@@ -152,9 +166,9 @@ function Coupon(props) {
               </tbody>
             </Table>
           </Col>
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             升級會員，享有更多優惠，會員等級說明
-            <Link to="../faq">看這邊>></Link>
+            <Link to="../../life/marketing">看這邊>></Link>
           </div>
         </Col>
       </MemberSideLink>

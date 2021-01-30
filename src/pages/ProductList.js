@@ -13,6 +13,15 @@ function ProductList(props) {
     props.changeBackgroundColorLight()
   }, [])
 
+  const [width, setWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      let width = window.innerWidth
+      setWidth(width)
+    })
+  }, [])
+
   return (
     <>
       <div
@@ -28,7 +37,8 @@ function ProductList(props) {
         }}
       ></div>
       <Container className="d-flex justify-content-center mt-5">
-        <CategoryBar className="w-25" />
+        {width <= 900 ? '' : <CategoryBar className="w-25" />}
+
         <Items />
       </Container>
     </>

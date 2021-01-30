@@ -13,6 +13,7 @@ function Story(props) {
   //const [username, setUser] = useState('')
   const [member, setMember] = useState([])
   const [img, setImg] = useState('')
+  const [searchValue, setSearchValue] = useState('')
   // const [page, setPage] = useState('')
 
   async function getComFromServer() {
@@ -91,7 +92,7 @@ function Story(props) {
   }
   // 一開始就會開始載入資料
   useEffect(() => {
-    props.changeBackgroundColorLight()
+    props.changeBackgroundColorWhite()
     getComFromServer()
     const member = JSON.parse(localStorage.getItem('member')) || [
       { memberName: '', memberId: '' },
@@ -145,10 +146,8 @@ function Story(props) {
     doUpload(event)
     alert('上傳成功')
   }
-  const handleSearch = (event) => {
-    const result = com.filter((obj) =>
-      obj.username.includes(event.target.value)
-    )
+  const handleSearch = (searchValue) => {
+    const result = com.filter((obj) => obj.username.includes(searchValue))
     setCom(result)
   }
   return (
@@ -175,22 +174,24 @@ function Story(props) {
             <div className="col-3">
               <input
                 type="search"
-                style={{ width:'100px',border: '1px solid #D4AE5C' }}
+                style={{ width: '100px', border: '1px solid #D4AE5C' }}
                 placeholder="找朋友"
                 onFocus={{ border: '1px solid grey' }}
+                value={searchValue}
                 //className="btn-success btn-block btn-rounded z-depth-1 text-center"
                 onChange={(event) => {
+                  setSearchValue(event.target.value)
+                  if (event.target.value === '') getComFromServer()
+                }}
+                onKeyPress={(event) => {
                   //handleSearch()
-                  console.log(event.target.value)
-                  console.log(com)
+                  console.log(searchValue)
                   console.log(
-                    com.filter((obj) =>
-                      obj.username.includes(event.target.value)
-                    )
+                    com.filter((obj) => obj.username.includes(searchValue))
                   )
 
                   //com.filter().includes(event.target.value)
-                  handleSearch(event)
+                  handleSearch(searchValue)
                 }}
               ></input>
             </div>

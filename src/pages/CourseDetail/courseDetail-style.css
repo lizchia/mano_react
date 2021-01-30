@@ -36,14 +36,25 @@
 }
 
 .img-wrap{
-    height:80%;
+    width: 550px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+  
+}
+
+.detail-top-img{
     width:100%;
+    height:100%;
+    object-fit:cover;
+   
 }
 
 .course-img-detail{
     overflow: hidden;
     object-fit:cover;
-    height:50%;
+    height:60%;
     width:100%;
 }
 
@@ -85,16 +96,34 @@
 .people{
     font-size:.8rem;
     margin-top:-10px;
-    margin-bottom:20%;
     display:flex;
     justify-content: space-evenly;
-    color:#97a887b7;
+    color:#a8b38b;
     
 }
 .course-btn{
+    border:#D4AE5C;
     background:#D4AE5C;
 }
-
+.course-card-content{
+    height:100%;
+}
+.course-score{
+    color:#a8b38b;
+    display:flex;
+    justify-content: start;
+    padding-left: 25px;
+}
 @media screen and (max-width: 1000px) {
-  
+    .detail-top-img{
+        width:70%;
+        height:100%;
+        object-fit:cover;
+       
+    }
+    .course-tools{
+        width:90%;
+        padding:0;
+    }
+    
 }

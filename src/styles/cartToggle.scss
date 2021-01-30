@@ -1,0 +1,31 @@
+.cartToggle-box {
+    position: absolute;
+    top: 25px;
+    right: -20px;
+    border: 1px solid #5C6447;
+    width: 310px;
+    padding: 20px 7px 10px 7px;
+    background-color: #FFFFFF;
+    height: 450px;
+    overflow: scroll;
+    font-size: 16px;
+    color: #5C6447;
+    border-radius: 2px;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .cartToggle-btn {
+        font-size: 14px;
+        border-radius: 2px;
+        border: 1px solid #5C6447;
+        color: #5C6447;
+        margin-left: 85px;
+
+        &:hover {
+            background: #5C6447;
+            color: #FFFFFF;
+        }
+    }
+}

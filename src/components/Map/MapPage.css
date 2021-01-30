@@ -10,6 +10,7 @@ width:100%;
 
 .cardText{
 padding:10px;
+font-size:15px;
 }
 
 .map-input{
@@ -21,7 +22,7 @@ margin-top: 5px;
 .map-top-img{
 overflow: hidden;
 object-fit:"cover" ;
-filter:brightness(.6);
+filter:brightness(.6)contrast(80%);
 border-radius: 5px;
 }
 
@@ -59,6 +60,15 @@ z-index: 1;
   justify-content: space-between;
 
 }
+.map-title-name{
+  width:80%;
+  overflow:hidden;
+  white-space:wrap;
+  text-overflow: ellipsis;
+}
+
+
+
 
 @media screen and (max-width: 1000px) {
   .leaflet-container {
@@ -94,6 +104,11 @@ z-index: 1;
     height:100%;
     object-fit: cover;
     }
+    .cat-fourCat{
+      height: 150px;
+      margin-right: 40px;
+      width:20%;
+    }  
 
 }
 
@@ -114,10 +129,11 @@ z-index: 1;
     white-space: nowrap;
     text-overflow: ellipsis;
     width:90%;
+    
   }
   .map-input{
     width:20%;
-    
+      
   }
   .mapText{
     font-size: x-small;
@@ -131,6 +147,11 @@ z-index: 1;
   width:20%;
   margin:5%;
 
+  } 
+  .cat-fourCat{
+    height: 120px;
+    margin-right: 10px;
+    width:20%;
   }
 
 }

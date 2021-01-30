@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import $ from 'jquery'
+import { connect } from "react-redux";
+import { addCourseItem } from "../../redux/cart/cartAction";
 import Comment from '../Comment.js'
+
 
 import {
   Modal,
@@ -52,6 +54,7 @@ class CourseDetail extends Component {
       related1: [],
       related2: [],
       related3: [],
+      width:(window.innerWidth),
     }
   }
 
@@ -59,28 +62,6 @@ class CourseDetail extends Component {
   handleClose = () => this.setState({ show: false })
   handleShow = () => this.setState({ show: true })
 
-  updateCartToLocalStorage = (value) => {
-    // 開啟載入指示
-    //setDataLoading(true)
-
-    const currentCart = JSON.parse(localStorage.getItem('coursecart')) || []
-
-    // console.log('currentCart', currentCart)
-
-    const newCart = [...currentCart, value]
-    localStorage.setItem('coursecart', JSON.stringify(newCart))
-
-    // console.log('newCart', newCart)
-    // 設定資料
-
-    this.setState({
-      mycart: newCart,
-      productName: value.name,
-    })
-    this.handleShow()
-    //alert('已成功加入購物車')
-  }
-  //加入購物車 end
 
   //單一商品
   getItemsDetail = async () => {
@@ -118,6 +99,10 @@ class CourseDetail extends Component {
   async componentDidMount() {
     this.props.changeBackgroundColorLight()
     await this.getItemsDetail()
+    window.addEventListener("resize", ()=>{
+      let width = window.innerWidth;
+      this.setState({width : width})
+    })
   }
 
   render() {
@@ -128,21 +113,21 @@ class CourseDetail extends Component {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>加入購物車訊息</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>產品：{this.state.productName} 已成功加入購物車</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleClose}>
+        <Modal.Body className="d-flex justify-content-center align-items-center fd-col pt-4 pb-3" style={{background: "#EFF3EC", border: "none"}}>
+          <h5 style={{color: "#C5895A"}}>{this.state.productName} </h5>
+          已成功加入購物車</Modal.Body>
+        <Modal.Footer className="d-flex justify-content-center pb-4" style={{background: "#EFF3EC", border: "none"}}>
+          <Button style={{background: "transparent", color: "#5C6447", borderRadius: "2px"}} variant="secondary" onClick={this.handleClose} className="addcart-button">
             繼續購物
           </Button>
           <Button
+            style={{background: "transparent", color: "#C5895A", borderRadius: "2px"}}
             variant="primary"
+            className="addcart-button"
             onClick={() => {
               const path = this.props.history.location.pathname
-              if (path.includes("/mall")) this.props.history.push("/mall/cart")
-              else this.props.history.push("/life/cart")
-
+              if (path.includes('/mall')) this.props.history.push('/mall/cart')
+              else this.props.history.push('/life/cart')
             }}
           >
             前往購物車結帳
@@ -155,19 +140,23 @@ class CourseDetail extends Component {
       <>
         <div className="container">
           {messageModal}
-          <div className="tools" style={{ paddingTop: '12px', justifyContent:"center" }}>
+          <div className="course-tools" style={{ paddingTop: '12px', justifyContent:"center" }}>
             <CsMyBreadcrumb />
           </div>
           <Row>
           <Col xs={12} md={12}>
               <Row>
               <Col xs={0} md={2} style={{ marginTop:"-8%", marginRight:"5%" }}>
-              <CsCategoryBar />
+              {this.state.width <= 900 ? (
+                  ''
+                ) : (
+                  <CsCategoryBar />
+                )}
                 </Col>
                 <Col xs={12} md={6}>
-                <div style={{ height:"60%" }}>
+                <div className="img-wrap">
                   <img
-                    style={{ width: '95%', objectFit:'contain', overflow:'hidden' }}
+                    className="detail-top-img"
                     src={`/courses/${this.state.single.courseImg}`}
                     alt={this.state.single.courseImg}
                   />
@@ -176,16 +165,19 @@ class CourseDetail extends Component {
                  
                 </Col>
                 <Col xs={12} md={3}>
-                  <Card style={{ width: '350px', height: '80%' }}>
+                  <Card style={{ width: '350px', height: '100%' }}>
                     <Card.Body>
                       <Card.Title>
                         <h3 className="name">{this.state.single.courseName}</h3>
                       </Card.Title>
-                      <Card.Text>
+                      <Card.Text className="course-card-content">
                         <div className="people">
                           <p>人數上限：{this.state.single.courseQty}</p>
                           <p>日期 : {this.state.single.coursePeriod}</p>
                         </div>
+                        <div className="course-score" style={{ display:"flex" }}><p>抹の度 :&nbsp;</p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <div className="course-score" style={{ display:"flex" }}><p>職人推薦 :&nbsp;</p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+
                       </Card.Text>
                     </Card.Body>
 
@@ -237,15 +229,18 @@ class CourseDetail extends Component {
                           className="course-add-cart course-btn"
                           id="btns1"
                           onClick={() => {
-                            for (let i = 0; i < this.state.amount; i++) {
-                              this.updateCartToLocalStorage({
+                            for(let i=0; i < this.state.amount; i++){
+                              this.props.addCourseItem({
                                 id: this.state.single.courseId,
                                 img: this.state.single.courseImg,
                                 name: this.state.single.courseName,
-                                amount: 1,
                                 price: this.state.single.coursePrice,
+                              })}
+                              this.setState({
+                                productName: this.state.single.courseName,
                               })
-                            }
+                              this.handleShow()
+
                           }}
                         >
                           add to cart
@@ -256,7 +251,7 @@ class CourseDetail extends Component {
                   </Card>
                 </Col>
                 <Col xs={12} md={12} style={{ margin: '2.5% 0' }}>
-                  <h4 style={{ width: '100%' }}><BsFillPlayFill />課程內容</h4>
+                  <h4 style={{ width: '100%' }}><BsFillPlayFill />課程內容</h4><h6>&nbsp;&nbsp;&nbsp;&nbsp;MANO Course</h6>
                   <Card body>
                   從抹茶的淵源歷史到抹茶的品種栽種、製作，到抹茶的沖刷、品嘗方法，三日月茶空間(抹茶體驗課程)，將帶領您體驗抹茶的美妙世界。<br/>
                   課程內容：<br/>
@@ -266,13 +261,13 @@ class CourseDetail extends Component {
                     </Card>
                 </Col>
                 <Col xs={12} md={12} style={{ margin: '2.5% 0' }}>
-                  <h4 style={{ width: '100%' }}><BsFillPlayFill />報名方法</h4>
+                  <h4 style={{ width: '100%' }}><BsFillPlayFill />報名方法</h4><h6>&nbsp;&nbsp;&nbsp;&nbsp;How To Register</h6>
                   <Card body>
                   可電話02-28760995報名，或是粉絲頁私訊報名，或是三日月茶空間現場報名。報名後必須繳清1200元費用，即可完成報名。
                   </Card>
                 </Col>
                 <Col xs={12} md={12} style={{ margin: '2.5% 0' }}>
-                  <h4 style={{ width: '100%' }}><BsFillPlayFill />報名須知</h4>
+                  <h4 style={{ width: '100%' }}><BsFillPlayFill />報名須知</h4><h6>&nbsp;&nbsp;&nbsp;&nbsp;You Must Know</h6>
                   <Card body>每班課程以6～8人為限，滿6人即確定開課，若報名人數未滿6人，則課程取消，費用無息退還；若您報名後臨時有事，上課當日不克前來上課，恕無法退還費用或更改日期，但可以轉讓于別人來上課。當日上課的同學在店內消費或外帶均有九折優惠。</Card>
                 </Col>
                 <Col xs={12} md={12} style={{ margin: '2.5% 0' }}>
@@ -286,8 +281,7 @@ class CourseDetail extends Component {
                           <Card.Link
                             href={`/life/courseDetail${this.state.related1.linkUrl}/categoryId=${this.state.related1.categoryId}?courseId=${this.state.related1.courseId}`}>
                             <img
-                              className="course-img-detail"
-                              style={{ height: "50%", objectFit: "cover" }}
+                              className="course-img-detail"  
                               src={`/courses/${this.state.related1.courseImg}`}
                               alt={this.state.related1.courseImg}
                             />
@@ -306,7 +300,6 @@ class CourseDetail extends Component {
                             href={`/life/courseDetail${this.state.related2.linkUrl}/categoryId=${this.state.related2.categoryId}?courseId=${this.state.related2.courseId}`}>
                             <img
                               className="course-img-detail"
-                              style={{ width: "100%", objectFit: "cover"  }}
                               src={`/courses/${this.state.related2.courseImg}`}
                               alt={this.state.related2.courseImg}
                             />
@@ -327,7 +320,6 @@ class CourseDetail extends Component {
                             href={`/life/courseDetail${this.state.related3.linkUrl}/categoryId=${this.state.related3.categoryId}?courseId=${this.state.related3.courseId}`}>
                             <img
                               className="course-img-detail"
-                              style={{ width: "100%", objectFit: "cover"  }}
                               src={`/courses/${this.state.related3.courseImg}`}
                               alt={this.state.related3.courseImg}
                             />
@@ -358,4 +350,8 @@ class CourseDetail extends Component {
   }
 }
 
-export default withRouter(CourseDetail)
+const mapDispatchToProps = dispatch => ({
+  addCourseItem: item => dispatch(addCourseItem(item))
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(CourseDetail));

@@ -5,10 +5,6 @@ import { withRouter } from 'react-router-dom'
 
 function MyWelcome(props) {
   const { logoutProcess } = props
-  const member = JSON.parse(localStorage.getItem('member')) || [
-    { memberName: '' },
-  ]
-  console.log(member)
 
   async function insertCouponToServer(item) {
     const request = new Request(
@@ -43,7 +39,9 @@ function MyWelcome(props) {
   const logoutSuccessCallback = () => {
     //alert('登出成功，跳回上一頁')
     localStorage.removeItem('member')
-    props.history.push('/')
+    const path = props.history.location.pathname
+    if (path.includes('/mall')) props.history.push('/mall/login')
+    else props.history.push('/life/login')
   }
 
   const displayButton = (
@@ -59,6 +57,10 @@ function MyWelcome(props) {
     </div>
   )
 
+  const member = JSON.parse(localStorage.getItem('member')) || [
+    { memberName: '' },
+  ]
+
   const displayForm = (
     <>
       <div className="bg position-relative d-flex">
@@ -73,14 +75,9 @@ function MyWelcome(props) {
                 className="btn btn-primary mb2 loginBlock continueShopBtn"
                 data-toggle="modal"
                 data-target="#modalDiscount"
-                // onClick={() => {
-                //   continueShopCallback()
-                //   insertCouponToServer()
-                // }}
               >
                 Continue shop
               </button>
-
               {/* <!--Modal: modalDiscount--> */}
               <div
                 class="modal fade right text-center "

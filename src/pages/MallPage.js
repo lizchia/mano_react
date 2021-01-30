@@ -68,11 +68,11 @@ function MallPage(props) {
                     setIsshow(21)
                   }}
                 >
-                  {isshow === index ? <div className="whitebox"></div> : ''}
+                  {isshow === index ? <div className="whitebox" ></div> : ''}
 
                   <img className="card-img" src={`items/${value.itemImg}`} />
                   {isshow === index ? (
-                    <div className="card-show">
+                    <div className="card-show"  data-aos="fade-in" data-aos-duration="1000">
                       <p className="card-title ">{value.itemName}</p>
                       <div className="card-price d-flex justify-content-between align-items-end">
                         <span>網路價</span>

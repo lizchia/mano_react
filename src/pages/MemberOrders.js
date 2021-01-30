@@ -26,11 +26,27 @@ function MemberOrders(props) {
   const [orderindex, setOrderindex] = useState(0)
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState([])
+  const [tempOrder, setTempOrder] = useState([])
+  const [activeNumber, setActiveNumber] = useState(0)
+
+
   const handleChangeSearch = (event) => {
     setSearchTerm(event.target.value)
   }
   const handleClickSearch = (searchTerm) => {
     const results = searchResults.filter((oneorder) =>
+      JSON.stringify(oneorder).includes(searchTerm)
+    )
+    results.length === 0 ? console.log('沒有資料', searchResults) : setOrder(results)
+    const finalpage = Math.ceil(results.length / 5)
+    const arr = []
+    for (let i = 1; i <= finalpage; i++) {
+      arr.push(i)
+    }
+    setPagearr([1])
+  }
+  const handleClickSearchOrder = (searchTerm) => {
+    const results = tempOrder.filter((oneorder) =>
       JSON.stringify(oneorder).includes(searchTerm)
     )
     results.length === 0 ? console.log('沒有資料', results) : setOrder(results)
@@ -39,7 +55,7 @@ function MemberOrders(props) {
     for (let i = 1; i <= finalpage; i++) {
       arr.push(i)
     }
-    setPagearr(arr)
+    setPagearr([1])
   }
 
   const active = { borderBottom: '2px solid #C5895A' }
@@ -64,7 +80,7 @@ function MemberOrders(props) {
     console.log('主要的資料', data)
     // 設定資料
     setOrder(data)
-    setSearchResults(data)
+    setTempOrder(data)
   }
   async function getPageData(memberId) {
     const request = new Request(
@@ -84,9 +100,28 @@ function MemberOrders(props) {
     // 設定總共幾筆訂單
     setPagearr(data)
   }
+  async function getSearchData(memberId) {
+    const request = new Request(
+      `http://localhost:3002/membercenter/memberorderSearch/${memberId}`,
+      {
+        method: 'GET',
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'appliaction/json',
+        }),
+      }
+    )
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('主要的資料', data)
+    // 設定資料
+    setSearchResults(data)
+  }
   useEffect(() => {
     getData(localMember[0].memberId, 1)
     getPageData(localMember[0].memberId)
+    getSearchData(localMember[0].memberId)
     changeBackgroundColorDark()
   }, [])
 
@@ -130,6 +165,17 @@ function MemberOrders(props) {
     getDetailData(orderId)
     getCourseDetailData(orderId)
     setDetailshow(true)
+  }
+  const activeStyle = {
+    width: '120px',
+    height: '44px',
+    color: '#5C6447',
+    borderBottom: '2px solid #C5895A',
+  }
+  const topButtonStyle = {
+    width: '120px',
+    height: '44px',
+    color: '#5C6447'
   }
 
   const displayDetail = (
@@ -191,7 +237,7 @@ function MemberOrders(props) {
           </tr>
           <tr className="text-primary">
             <td>收件資料</td>
-            <td colSpan={3}>
+            <td colSpan={2}>
               {detailshow ? order[orderindex].ship_name : ''}
               <br />
               {detailshow
@@ -199,6 +245,9 @@ function MemberOrders(props) {
                   order[orderindex].shipDistrict +
                   order[orderindex].shipAddress
                 : ''}
+            </td>
+            <td colSpan={1}>備註：
+            {detailshow ? order[orderindex].note : ''}
             </td>
           </tr>
         </tbody>
@@ -237,14 +286,56 @@ function MemberOrders(props) {
           >
             <button
               className="btn"
-              style={{
-                width: '120px',
-                height: '44px',
-                color: '#5C6447',
-                borderBottom: '2px solid #C5895A',
+              style={activeNumber === 0 ? activeStyle : topButtonStyle}
+              onMouseDown={() => {
+                setSearchTerm('')
+                setActiveNumber(0)
+              }}
+              onClick={() => {
+                getData(localMember[0].memberId, 1)
+                getPageData(localMember[0].memberId)
               }}
             >
               全部訂單
+            </button>
+            <button
+              className="btn"
+              style={activeNumber === 1 ? activeStyle : topButtonStyle}
+              onMouseDown={() => {
+                setSearchTerm('未出貨')
+                setActiveNumber(1)
+              }}
+              onClick={() => {
+                handleClickSearchOrder(searchTerm)
+              }}
+            >
+              未出貨
+            </button>
+            <button
+              className="btn"
+              style={activeNumber === 2 ? activeStyle : topButtonStyle}
+              onMouseDown={() => {
+                setSearchTerm('已出貨')
+                setActiveNumber(2)
+              }}
+              onClick={() => {
+                handleClickSearchOrder(searchTerm)
+              }}
+            >
+              已出貨
+            </button>
+            <button
+              className="btn"
+              style={activeNumber === 3 ? activeStyle : topButtonStyle}
+              onMouseDown={() => {
+                setSearchTerm('未付款')
+                setActiveNumber(3)
+              }}
+              onClick={() => {
+                handleClickSearchOrder(searchTerm)
+              }}
+            >
+              未付款
             </button>
           </div>
           <Col md={{ span: 10, offset: 1 }}>
@@ -313,8 +404,13 @@ function MemberOrders(props) {
               <Pagination>
                 <Pagination.Prev
                   onClick={() => {
-                    setPagenow(pageNow - 1)
+                    if (pageNow < 2) {
+                      setPagenow(1)
+                    } else {
+                      setPagenow(pageNow - 1)
+                    }
                     getData(localMember[0].memberId, pageNow - 1)
+                    setDetailshow(false)
                   }}
                 />
                 {pageArr.map((value) => {
@@ -327,6 +423,7 @@ function MemberOrders(props) {
                         onClick={() => {
                           getData(localMember[0].memberId, value)
                           setPagenow(value)
+                          setDetailshow(false)
                         }}
                       >
                         {value}
@@ -344,8 +441,8 @@ function MemberOrders(props) {
                       nextnum = pageNow + 1
                       setPagenow(pageNow + 1)
                     }
-
                     getData(localMember[0].memberId, nextnum)
+                    setDetailshow(false)
                   }}
                 />
               </Pagination>
@@ -357,4 +454,4 @@ function MemberOrders(props) {
   )
 }
 
-export default MemberOrders
+export default withRouter(MemberOrders)

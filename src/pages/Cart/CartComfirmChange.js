@@ -1,6 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Container, Button } from 'react-bootstrap'
 import areaData from '../areaData'
+
+import { connect } from "react-redux";
+import { setOrderInfo } from "../../redux/cart/cartAction";
+
 import { withRouter } from 'react-router-dom'
 import '../../styles/cartConfirmChange.scss'
 
@@ -223,7 +227,7 @@ function CartComfirmChange(props) {
               memberArray.push(member)
               console.log(memberArray)
               localStorage.setItem('member', JSON.stringify(memberArray))
-              localStorage.setItem('note', note)
+              props.setOrderInfo({note: note})
               const path = props.history.location.pathname
               if (path.includes('/mall'))
                 props.history.push('/mall/cart/comfirm')
@@ -238,4 +242,10 @@ function CartComfirmChange(props) {
   )
 }
 
-export default withRouter(CartComfirmChange)
+const mapDispatchToProps = dispatch => ({
+  setOrderInfo: item => dispatch(setOrderInfo(item))
+
+});
+
+
+export default withRouter(connect(null, mapDispatchToProps)(CartComfirmChange));

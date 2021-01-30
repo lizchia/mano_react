@@ -63,7 +63,7 @@ function Editpassword(props) {
           <Form.Control
             id="pwd1"
             type="password"
-            min={6}
+            min={8}
             onFocus={()=>{setMember({...member,
               memberId:localMember[0].memberId});}}
             onKeyUp={() => validate()}
@@ -92,7 +92,7 @@ function Editpassword(props) {
             ""
           ) : (
             <Alert id="hint2" variant={content ? "success" : "danger"}>
-              {content ? "兩次密碼一致" : "兩次密碼不一致，密碼至少要6個字以上"}
+              {content ? "兩次密碼一致" : "兩次密碼不一致，密碼至少要8個字以上"}
             </Alert>
           )}
           <button

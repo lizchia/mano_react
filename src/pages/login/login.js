@@ -135,7 +135,7 @@ function MyLogin(props) {
                     value="login"
                     type="submit"
                     className="btn btn-primary mb2 loginBlock loginBtn"
-                    onMouseEnter={() => {
+                    onMouseDown={() => {
                       console.log(data)
                       getData(username)
                     }}
